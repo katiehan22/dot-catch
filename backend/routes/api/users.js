@@ -9,16 +9,17 @@ const { isProduction } = require('../../config/keys');
 const validateRegisterInput = require('../../validations/register');
 const validateLoginInput = require('../../validations/login');
 
-/* GET users listing. */
+// GET users listing
 router.get('/', function(req, res, next) {
   res.json({
     message: "GET /api/users"
   });
 });
 
+// POST /api/users/register
 router.post('/register', validateRegisterInput, async (req, res, next) => {
   const user = await User.findOne({
-    $or: [{ email: req.body.email }, { username: req.body.username }]
+    $or: [{ email: req.body.email }]
   });
 
   if (user) {
@@ -28,15 +29,11 @@ router.post('/register', validateRegisterInput, async (req, res, next) => {
     if (user.email === req.body.email) {
       errors.email = "A user has already registered with this email";
     }
-    if (user.username === req.body.username) {
-      errors.username = "A user has already registered with this username";
-    }
     err.errors = errors;
     return next(err);
   }
 
   const newUser = new User({
-    username: req.body.username,
     email: req.body.email
   });
 
@@ -70,6 +67,7 @@ router.post('/login', validateLoginInput, async (req, res, next) => {
   })(req, res, next);
 });
 
+// GET /api/users/current
 router.get('/current', restoreUser, (req, res) => {
   if (!isProduction) {
     const csrfToken = req.csrfToken();
@@ -78,9 +76,13 @@ router.get('/current', restoreUser, (req, res) => {
   if (!req.user) return res.json(null);
   res.json({
     _id: req.user._id,
-    username: req.user.username,
     email: req.user.email
   });
 });
+
+// DELETE /api/users/logout
+router.delete('/logout', async (req, res, next) => {
+  
+})
 
 module.exports = router;
