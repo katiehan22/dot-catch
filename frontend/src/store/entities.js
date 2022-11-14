@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
 
 export const entitiesReducer = combineReducers({
-    // def mergesort
+    //bubblesort
+
 })
