@@ -10,10 +10,13 @@ const validateRegisterInput = require('../../validations/register');
 const validateLoginInput = require('../../validations/login');
 
 // GET users listing
-router.get('/', function(req, res, next) {
-  res.json({
-    message: "GET /api/users"
-  });
+router.get('/', async function(req, res, next) {
+  try {
+    const users = await User.find().populate('firstName', 'age', 'location', 'gender', 'matches');
+    return res.json(users);
+  } catch (error) {
+    return res.json([]);
+  }
 });
 
 // POST /api/users/register
@@ -79,5 +82,48 @@ router.get('/current', restoreUser, (req, res) => {
     email: req.user.email
   });
 });
+
+// PATCH /api/users/:userId
+router.patch('/:userId', async (req, res, next) => {
+  try {
+    const user = await User.findById(req.params.userId);
+
+    if (user) {
+      user.email = req.body.email || user.email;
+      user.firstName = req.body.firstName || user.firstName;
+      user.age = req.body.age || user.age;
+      user.location = req.body.location || user.location;
+      user.gender = req.body.gender || user.gender;
+      user.genderPreference = req.body.genderPreference || user.genderPreference;
+      user.prompt1 = req.body.prompt1 || user.prompt1;
+      user.prompt2 = req.body.prompt2 || user.prompt2;
+      user.prompt3 = req.body.prompt3 || user.prompt3;
+      user.prompt4 = req.body.prompt4 || user.prompt4;
+      if (req.body.likedUserId) user.likes.set(req.body.likedUserId, true);
+      if (req.body.matchedUserId) user.matches.set(req.body.matchedUserId, true);
+    }
+
+    if (req.body.password) {
+      bcrypt.genSalt(10, (err, salt) => {
+        if (err) throw err;
+        bcrypt.hash(req.body.password, salt, async (err, hashedPassword) => {
+          if (err) throw err;
+          try {
+            user.hashedPassword = hashedPassword;
+            const updatedUser = await user.save();
+          }
+          catch (err) {
+            next(err);
+          }
+        })
+      });
+    }
+
+    return res.json(user);
+
+  } catch (error) {
+    next(error)
+  }
+})
 
 module.exports = router;

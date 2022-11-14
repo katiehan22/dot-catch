@@ -23,7 +23,7 @@ const userSchema = Schema({
     gender: {
         type: String
     },
-    sexualOrientation: {
+    genderPreference: {
         type: String
     },
     prompt1: {
@@ -44,10 +44,12 @@ const userSchema = Schema({
     },
     likes: {
         type: Map,
+        default: {},
         of: Boolean
     },
     matches: {
         type: Map,
+        default: {},
         of: Boolean
     }
 }, {
