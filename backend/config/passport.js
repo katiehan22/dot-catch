@@ -57,10 +57,6 @@ exports.loginUser = async function (user) {
     };
 };
 
-exports.logOutUser = async function () {
-    
-}
-
 exports.requireUser = passport.authenticate('jwt', { session: false });
 
 exports.restoreUser = (req, res, next) => {

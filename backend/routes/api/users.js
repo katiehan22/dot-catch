@@ -80,9 +80,4 @@ router.get('/current', restoreUser, (req, res) => {
   });
 });
 
-// DELETE /api/users/logout
-router.delete('/logout', async (req, res, next) => {
-  
-})
-
 module.exports = router;
