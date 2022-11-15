@@ -75,7 +75,12 @@ export const updateUser = (user) => async dispatch => {
 
 export const deleteUser = (userId) => async dispatch => {
     try {
-
+        const res = await jwtFetch(`/api/users/${userId}`, { //TODO: double-check route
+            method: 'DELETE'
+        })
+        if(res.ok){
+            dispatch(removeUser(userId))
+        }
     } catch (err) {
         const resBody = await err.json()
         if (resBody.statusCode === 400) {
