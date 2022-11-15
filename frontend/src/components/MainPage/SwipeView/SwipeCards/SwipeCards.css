@@ -1,5 +1,5 @@
 .swipe-cards {
-    padding: 10%;
+    padding: 10% 3% 10% 3%;
     width: 100%;
 }
 
@@ -13,16 +13,35 @@
 
 .swipe {
     position: absolute;
-    width: 55%;
+    width: 65%;
     height: 80%;
     display: flex;
 }
 
 .card {
     position: relative;
-    background-color: #748067;
     width: 100%;
     height: 100%;
-    border-radius: 20px;
+    display: flex;
     box-shadow: 0px 18px 53 0px rgba(0, 0, 0, 0.3);
+}
+
+.user-img {
+    background-color: #ebebeb;
+    width: 50%;
+    height: 100%;
+    border-radius: 20px 0px 0px 20px;
+    text-align: center;
+}
+
+.user-prof {
+    background-color: #77966d;
+    text-align: center;
+    width: 50%;
+    height: 100%;
+    border-radius: 0px 20px 20px 0px;
+}
+
+.user-prof > * {
+    color: white;
 }

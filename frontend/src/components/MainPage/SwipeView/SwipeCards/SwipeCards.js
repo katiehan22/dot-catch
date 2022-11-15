@@ -20,7 +20,12 @@ const SwipeCards = () => {
                         onCardLeftScreen={() => outOfFrame(user._id)}
                     >
                         <div className='card'>
-                            <h3>{user._id}</h3>
+                            <div className='user-img'>
+                                <h3>{user._id}</h3>
+                            </div>
+                            <div className='user-prof'>
+                                <h3>bio</h3>
+                            </div>
                         </div>
                     </TinderCard>
                 ))}
