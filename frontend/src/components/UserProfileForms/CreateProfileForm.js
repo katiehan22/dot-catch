@@ -50,20 +50,25 @@ const CreateProfileForm = () => {
         <h1 className="profile-form-heading">Create your profile</h1>
         <form className="user-profile-form">
           <div className="user-profile-form-left">
-            <label htmlFor="first-name">First Name: </label>
-            <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} required />
-            <br />
-            <label htmlFor="age">Age: </label>
-            <input type="text" value={age} onChange={(e) => setAge(e.target.value)} required />
-            <br />
-            <label htmlFor="location">City: </label>
-            <input type="text" value={location} onChange={(e) => setLocation(e.target.value)} required />
-            <br />
-            <label htmlFor="gender">Gender: </label>
-            <input type="radio" name="gender" id="gender" value="woman" onChange={(e) => setGender(e.target.value)} required />Woman
-            <input type="radio" name="gender" id="gender" value="man" onChange={(e) => setGender(e.target.value)} required />Man
-            <input type="radio" name="gender" id="gender" value="nonbinary" onChange={(e) => setGender(e.target.value)} required />Nonbinary
-            <br />
+            <div className="first-name-container">
+              <label htmlFor="first-name">First Name: </label>
+              <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} required className="profile-form-input"/>
+            </div>
+            <div className="age-container">
+              <label htmlFor="age">Age: </label>
+              <input type="text" value={age} onChange={(e) => setAge(e.target.value)} required className="profile-form-input" />
+            </div>
+            <div className="city-container">
+              <label htmlFor="location">City: </label>
+              <input type="text" value={location} onChange={(e) => setLocation(e.target.value)} required className="profile-form-input" />
+            </div>
+            <div className="gender-container">
+              <label htmlFor="gender">Gender: </label>
+              <br />
+              <input type="radio" name="gender" id="gender" value="woman" onChange={(e) => setGender(e.target.value)} required />Woman
+              <input type="radio" name="gender" id="gender" value="man" onChange={(e) => setGender(e.target.value)} required />Man
+              <input type="radio" name="gender" id="gender" value="nonbinary" onChange={(e) => setGender(e.target.value)} required />Nonbinary
+            </div>
             <label htmlFor="gender-preference">I'm Looking For: </label>
             <input type="radio" name="gender-preference" id="gender-preference" value="men" onChange={(e) => setGenderPreference(e.target.value)} required />Men
             <input type="radio" name="gender-preference" id="gender-preference" value="women" onChange={(e) => setGenderPreference(e.target.value)} required />Women

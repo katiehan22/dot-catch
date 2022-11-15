@@ -17,11 +17,6 @@
   margin-top: 15px;
 }
 
-.user-profile-form input {
-  border: 1px solid #222222;
-  border-radius: 5px;
-}
-
 .user-profile-form textarea {
   border: 1px solid #222222;
   border-radius: 5px;
@@ -49,4 +44,22 @@
 
 .create-profile-button:hover {
   background-color: #748067;
+}
+
+.first-name-container, .age-container, .city-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+/* .gender-container input {
+  margin-left: 10px;
+} */
+
+.profile-form-input {
+  width: 50%;
+  height: 25px;
+  padding: 5px;
+  border: 1px solid #222222;
+  border-radius: 5px;
 }
