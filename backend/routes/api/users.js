@@ -12,7 +12,7 @@ const validateLoginInput = require('../../validations/login');
 // GET users listing
 router.get('/', async function(req, res, next) {
   try {
-    const users = await User.find({}, '_id firstName age location gender likes matches').exec();
+    const users = await User.find({}, '_id firstName age bio location gender likes matches').exec();
     return res.json(users);
   } catch (error) {
     return res.json([]);
@@ -25,7 +25,7 @@ router.get('/', async function(req, res, next) {
 //     const user = await User.findById(req.params.userId, '_id firstName age location gender likes matches').exec();
 //     return res.json(user);
 //   } catch (error) {
-//     next(error);
+//     return res.json(null);
 //   }
 // });
 
@@ -90,6 +90,7 @@ router.get('/current', restoreUser, (req, res) => {
   res.json({
     _id: req.user._id,
     firstName: req.user.firstName,
+    bio: req.user.bio,
     age: req.user.age,
     location: req.user.location,
     gender: req.user.gender,
@@ -107,6 +108,7 @@ router.patch('/:userId', requireUser, async (req, res, next) => {
     if (user) {
       user.email = req.body.email || user.email;
       user.firstName = req.body.firstName || user.firstName;
+      user.bio = req.body.bio || user.bio;
       user.age = req.body.age || user.age;
       user.location = req.body.location || user.location;
       user.gender = req.body.gender || user.gender;
