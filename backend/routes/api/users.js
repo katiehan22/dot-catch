@@ -13,7 +13,9 @@ const validateLoginInput = require('../../validations/login');
 router.get('/', async function(req, res, next) {
   try {
     const users = await User.find({}, '_id firstName age location gender likes matches').exec();
-    return res.json(users);
+    const usersObj = {};
+    users.map( user => usersObj[user._id] = user )
+    return res.json(usersObj);
   } catch (error) {
     return res.json([]);
   }

@@ -3,7 +3,9 @@ import MatchesList from "./MatchesList"
 
 export default function MatchesSidebar() {
 
-  const allMatches = useSelector( state => state.users[state.session.currentUser].matches )
+  // const currentUser = useSelector( state => state.users[state.session.user] )
+
+  const allMatches = useSelector( state => state.session.user.matches )
   const matchesArray = Object.keys(allMatches)
 
   return(
