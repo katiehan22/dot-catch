@@ -1,12 +1,20 @@
-function MainPage() {
-  return (
-    <>
-      <p>A Twitter Clone</p>
-      <footer>
-        Copyright &copy; 2022 Chirper
-      </footer>
-    </>
-  );
+import { useDispatch } from 'react-redux';
+import SwipeView from './SwipeView/SwipeView';
+import { fetchUsers } from '../../store/users';
+import './MainPage.css';
+import { useEffect } from 'react';
+
+const MainPage = () => {
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(fetchUsers());
+    }, [dispatch])
+
+    return (
+        <>
+            <SwipeView />
+        </>
+    )
 }
 
 export default MainPage;
