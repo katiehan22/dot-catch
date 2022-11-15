@@ -20,14 +20,14 @@ router.get('/', async function(req, res, next) {
 });
 
 // GET /api/users/:userId
-router.get('/:userId', async function (req, res, next) {
-  try {
-    const user = await User.findById(req.params.userId, '_id firstName age location gender likes matches').exec();
-    return res.json(user);
-  } catch (error) {
-    next(error);
-  }
-});
+// router.get('/:userId', async function (req, res, next) {
+//   try {
+//     const user = await User.findById(req.params.userId, '_id firstName age location gender likes matches').exec();
+//     return res.json(user);
+//   } catch (error) {
+//     next(error);
+//   }
+// });
 
 // POST /api/users/register
 router.post('/register', validateRegisterInput, async (req, res, next) => {
