@@ -3,6 +3,7 @@ import SwipeView from './SwipeView/SwipeView';
 import { fetchUsers } from '../../store/users';
 import './MainPage.css';
 import { useEffect } from 'react';
+import MatchesSidebar from '../MatchesSidebar/MatchesSidebar';
 
 const MainPage = () => {
     const dispatch = useDispatch();
@@ -12,6 +13,7 @@ const MainPage = () => {
 
     return (
         <>
+            <MatchesSidebar />
             <SwipeView />
         </>
     )
