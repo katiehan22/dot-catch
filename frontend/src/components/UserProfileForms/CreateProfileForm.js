@@ -34,14 +34,14 @@ const CreateProfileForm = () => {
       location: location,
       gender: gender,
       genderPreference: genderPreference,
-      prompt1: favLang,
-      prompt2: tabSpace,
-      prompt3: macPc,
-      prompt4: lightDark,
+      prompt1: { "favLang": favLang },
+      prompt2: {"tabSpace": tabSpace},
+      prompt3: {"macPc": macPc},
+      prompt4: {"lightDark": lightDark},
       bio: bio
     }
-    console.log(updatedUser)
-    // dispatch(updateUser(updatedUser));
+    // console.log(updatedUser)
+    dispatch(updateUser(updatedUser));
   }
 
   return (

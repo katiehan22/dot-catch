@@ -33,7 +33,7 @@ export const clearUserErrors = () => ({
 
 export const fetchUsers = () => async dispatch => {
     try {
-        const res = await jwtFetch('/api/users') //TODO: double-check route
+        const res = await jwtFetch('/api/users')
         const users = await res.json()
         dispatch(receiveUsers(users))
     } catch(err) {
@@ -59,12 +59,12 @@ export const fetchUser = (userId) => async dispatch => {
 
 export const updateUser = (user) => async dispatch => {
     try{
-        const res = await jwtFetch(`/api/users/${user.id}`, { //TODO: double-check route
-            method: 'PUT',
+        const res = await jwtFetch(`/api/users/${user._id}`, { 
+            method: 'PATCH',
             body: JSON.stringify(user)
         })
-        const user = await res.json()
-        dispatch(receiveUser(user))
+        const updatedUser = await res.json()
+        dispatch(receiveUser(updatedUser))
     } catch(err) {
         const res = await err.json()
         if (res.statusCode === 400){

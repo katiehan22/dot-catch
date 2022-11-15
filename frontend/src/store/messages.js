@@ -62,12 +62,12 @@ export const createMessage = (data) => async dispatch => {
 
 export const updateMessage = (message) => async dispatch => {
   try {
-    const res = await jwtFetch(`/api/messages/${message.id}`, {
+    const res = await jwtFetch(`/api/messages/${message._id}`, {
       method: 'PATCH',
       body: JSON.stringify(message)
     })
-    const message = await res.json();
-    dispatch(receiveMessage(message));
+    const updatedMessage = await res.json();
+    dispatch(receiveMessage(updatedMessage));
   } catch (err) {
     const resBody = await err.json();
     if(resBody.statusCode === 400) {
