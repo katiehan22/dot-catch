@@ -12,6 +12,7 @@ import Profile from './components/Profile/Profile';
 import MainPage from './components/MainPage/MainPage';
 
 import { getCurrentUser } from './store/session';
+import CreateProfileForm from './components/UserProfileForms/CreateProfileForm';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -30,6 +31,7 @@ function App() {
 
         <ProtectedRoute exact path="/profile" component={Profile} />
         <ProtectedRoute exact path="/main" component={MainPage} />
+        <ProtectedRoute exact path="/createprofile" component={CreateProfileForm} />
       </Switch>
     </>
   );
