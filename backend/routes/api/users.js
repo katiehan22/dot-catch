@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const User = mongoose.model('User');
 const router = express.Router();
-const { loginUser, restoreUser } = require('../../config/passport');
+const { loginUser, restoreUser, requireUser } = require('../../config/passport');
 const { isProduction } = require('../../config/keys');
 const validateRegisterInput = require('../../validations/register');
 const validateLoginInput = require('../../validations/login');
@@ -89,7 +89,7 @@ router.get('/current', restoreUser, (req, res) => {
 });
 
 // PATCH /api/users/:userId
-router.patch('/:userId', async (req, res, next) => {
+router.patch('/:userId', requireUser, async (req, res, next) => {
   try {
     const user = await User.findById(req.params.userId);
 
@@ -132,7 +132,7 @@ router.patch('/:userId', async (req, res, next) => {
 })
 
 // DELETE /api/users/:userId
-router.delete('/:userId', async (req, res, next) => {
+router.delete('/:userId', requireUser, async (req, res, next) => {
 
   User.findByIdAndRemove(req.params.userId).exec().then(data => {
     if (!data) return res.status(404).end();
