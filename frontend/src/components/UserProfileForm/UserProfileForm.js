@@ -5,10 +5,6 @@ const UserProfileForm = () => {
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.session.user);
 
-  useEffect(() => {
-
-  }, [dispatch])
-
   return (
     <>
     </>
