@@ -36,15 +36,14 @@ function LoginForm () {
         >X
         </button>
       </div>
-      <div className="errors">{errors?.email}</div>
       <label>
-        <input type="text"
+        <input type="email"
           value={email}
           onChange={update('email')}
           placeholder="Email"
         />
+      <div className="errors">{errors?.email}</div>
       </label>
-      <div className="errors">{errors?.password}</div>
       <label>
         <input type="password"
           value={password}
@@ -52,6 +51,7 @@ function LoginForm () {
           placeholder="Password"
         />
       </label>
+      <div className="errors">{errors?.password}</div>
       <button
         className='submit-button'
         type="submit"
