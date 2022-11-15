@@ -12,12 +12,22 @@ const validateLoginInput = require('../../validations/login');
 // GET users listing
 router.get('/', async function(req, res, next) {
   try {
-    const users = await User.find({}, '_id firstName age location gender matches').exec();
+    const users = await User.find({}, '_id firstName age location gender likes matches').exec();
     return res.json(users);
   } catch (error) {
     return res.json([]);
   }
 });
+
+// GET /api/users/:userId
+// router.get('/:userId', async function (req, res, next) {
+//   try {
+//     const user = await User.findById(req.params.userId, '_id firstName age location gender likes matches').exec();
+//     return res.json(user);
+//   } catch (error) {
+//     next(error);
+//   }
+// });
 
 // POST /api/users/register
 router.post('/register', validateRegisterInput, async (req, res, next) => {
@@ -84,6 +94,7 @@ router.get('/current', restoreUser, (req, res) => {
     location: req.user.location,
     gender: req.user.gender,
     genderPreference: req.user.genderPreference,
+    likes: req.user.likes,
     matches: req.user.matches
   });
 });
