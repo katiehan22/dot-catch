@@ -8,11 +8,13 @@ const csurf = require('csurf');
 const { isProduction } = require('./config/keys');
 
 require('./models/User');
+require('./models/Message')
 require('./config/passport');
 const passport = require('passport');
 
 const usersRouter = require('./routes/api/users');
 const csrfRouter = require('./routes/api/csrf');
+const messagesRouter = require('./routes/api/messages')
 
 const app = express();
 
@@ -40,6 +42,7 @@ app.use(
 
 app.use('/api/users', usersRouter);
 app.use('/api/csrf', csrfRouter);
+app.use('/api/messages', messagesRouter)
 
 app.use((req, res, next) => {
     const err = new Error('Not Found');
