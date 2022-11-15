@@ -64,13 +64,57 @@ export const updateMessage = (message) => async dispatch => {
   try {
     const res = await jwtFetch(`/api/messages/${message.id}`, {
       method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
       body: JSON.stringify(message)
-    });
+    })
+    const message = await res.json();
+    dispatch(receiveMessage(message));
   } catch (err) {
-
+    const resBody = await err.json();
+    if(resBody.statusCode === 400) {
+      return dispatch(receiveMessageErrors(resBody.errors));
+    }
   }
 };
+
+export const deleteMessage = (messageId) => async dispatch => {
+  try {
+    const res = await jwtFetch(`/api/messages/${messageId}`, {
+      method: 'DELETE'
+    })
+    dispatch(removeMessage(messageId))
+  } catch (err) {
+    const resBody = await err.json();
+    if (resBody.statusCode === 400) {
+      return dispatch(receiveMessageErrors(resBody.errors));
+    }
+  }
+}
+
+const nullErrors = null;
+export const messageErrorsReducer = (state = nullErrors, action) => {
+  switch (action.type) {
+    case RECEIVE_MESSAGE_ERRORS:
+      return action.errors;
+    case CLEAR_MESSAGE_ERRORS:
+      return nullErrors;
+    default:
+      return state;
+  }
+};
+
+const messagesReducer = (state={}, action) => {
+  switch (action.type) {
+    case RECEIVE_USER_MESSAGES:
+      return { ...action.messages };
+    case RECEIVE_MESSAGE:
+      return { ...state, [action.message.id]: action.message };
+    case REMOVE_MESSAGE:
+      let newState = {...state};
+      delete newState[action.messageId];
+      return newState;
+    default:
+      return state;
+  }
+}
+
+export default messagesReducer;
