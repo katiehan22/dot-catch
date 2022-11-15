@@ -7,7 +7,7 @@ const SwipeCards = () => {
     const currentUserId = useSelector(state => state.session.user ? state.session.user._id : null);
  
     const swiped = (dir, likedUserId) => {
-        console.log("removing: " + likedUserId);
+        console.log(dir);
     }
     const outOfFrame = nameLeft => console.log(nameLeft + " left the screen!");
 
