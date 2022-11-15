@@ -133,7 +133,6 @@ router.patch('/:userId', requireUser, async (req, res, next) => {
 
 // DELETE /api/users/:userId
 router.delete('/:userId', requireUser, async (req, res, next) => {
-
   User.findByIdAndRemove(req.params.userId).exec().then(data => {
     if (!data) return res.status(404).end();
     else return res.status(204).end();
