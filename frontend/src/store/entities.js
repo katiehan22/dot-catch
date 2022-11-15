@@ -1,6 +1,8 @@
 import { combineReducers } from "redux";
+import messagesReducer from "./messages";
+import usersReducer from "./users";
 
 export const entitiesReducer = combineReducers({
-    //bubblesort
-
+    users: usersReducer,
+    messages: messagesReducer
 })
