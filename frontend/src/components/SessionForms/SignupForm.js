@@ -62,15 +62,14 @@ function SignupForm () {
         >X
         </button>
       </div>
-      <div className="errors">{errors?.email}</div>
       <label>
-        <input type="text"
+        <input type="email"
           value={email}
           onChange={update('email')}
           placeholder="Email"
         />
       </label>
-      <div className="errors">{errors?.username}</div>
+      <div className="errors">{errors?.email}</div>
       <label>
         <input type="text"
           value={name}
@@ -78,23 +77,25 @@ function SignupForm () {
           placeholder="First name"
         />
       </label>
-      <div className="errors">{errors?.password}</div>
+      <div className="errors">{errors?.username}</div>
       <label>
         <input type="password"
+          className='bottom-flat'
           value={password}
           onChange={update('password')}
           placeholder="Password"
         />
       </label>
-      <div className="errors">
-        {password !== password2 && 'Confirm Password field must match'}
-      </div>
+      <div className="errors">{errors?.password}</div>
       <label>
         <input type="password"
           value={password2}
           onChange={update('password2')}
           placeholder="Confirm password"
         />
+      <div className="errors">
+        {password !== password2 && 'Confirm password field must match'}
+      </div>
       </label>
         <button
           className='submit-button'
