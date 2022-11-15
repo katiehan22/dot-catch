@@ -9,7 +9,7 @@ export default function MatchesList( { matchesArray } ) {
   )
 
   return(
-    <ul>
+    <ul className="matchesGrid">
       {listItems}
     </ul>
   )

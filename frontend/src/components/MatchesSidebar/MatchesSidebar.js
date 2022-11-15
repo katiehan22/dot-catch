@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux"
 import MatchesList from "./MatchesList"
+import './MatchesSidebar.css'
 
 export default function MatchesSidebar() {
 
@@ -9,8 +10,8 @@ export default function MatchesSidebar() {
   const matchesArray = Object.keys(allMatches)
 
   return(
-    <section>
-      <h1>Matches</h1>
+    <section className="matchesSidebarContainer">
+      <h1 className="matchesSidebarTitle">Matches</h1>
       <div>
         <MatchesList matchesArray={matchesArray} />
       </div>
