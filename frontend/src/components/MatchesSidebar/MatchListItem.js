@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux"
 
 export default function MatchListItem( {match} ) {
-  const matchedUser = useSelector( state => state.users[match] )
+  const matchedUser = useSelector( state => state.entities.users[match] )
   
   if ( matchedUser === undefined ) return null;
   

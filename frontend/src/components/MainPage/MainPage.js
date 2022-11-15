@@ -12,10 +12,10 @@ const MainPage = () => {
     }, [dispatch])
 
     return (
-        <>
+        <section className='main-page'>
             <MatchesSidebar />
             <SwipeView />
-        </>
+        </section>
     )
 }
 

@@ -3,7 +3,7 @@ import TinderCard from 'react-tinder-card';
 import './SwipeCards.css';
 
 const SwipeCards = () => {
-    const users = useSelector(state => state.users ? Object.values(state.users) : []);
+    const users = useSelector(state => state.entities.users ? Object.values(state.entities.users) : []);
     const currentUserId = useSelector(state => state.session.user ? state.session.user._id : null);
  
     const swiped = (dir, likedUserId) => {
