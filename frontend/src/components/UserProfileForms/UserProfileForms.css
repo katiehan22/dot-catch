@@ -1,8 +1,7 @@
-.create-user-profile-container {
+.create-user-profile-page {
   display: flex;
   flex-direction: column;
   margin-top: 15px;
-  /* border: 1px solid red; */
   padding: 15px;
 }
 
@@ -13,8 +12,13 @@
 
 .user-profile-form {
   display: flex;
-  justify-content: space-around;
   margin-top: 15px;
+  flex-direction: column;
+}
+
+.user-profile-form-container {
+  display: flex;
+  justify-content: space-around;
 }
 
 .user-profile-form textarea {
@@ -27,7 +31,6 @@
   width: 47%;
   /* margin-right: 2%;
   margin-left: 2%; */
-  /* border: 1px solid green; */
 }
 
 .create-profile-button {
@@ -51,10 +54,6 @@
   flex-direction: column;
   margin-bottom: 10px;
 }
-
-/* .gender-container input {
-  margin-left: 10px;
-} */
 
 .profile-form-input {
   width: 50%;
