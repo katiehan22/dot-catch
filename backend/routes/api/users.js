@@ -12,7 +12,7 @@ const validateLoginInput = require('../../validations/login');
 // GET users listing
 router.get('/', async function(req, res, next) {
   try {
-    const users = await User.find().populate('firstName', 'age', 'location', 'gender', 'matches');
+    const users = await User.find({}, '_id firstName age location gender matches').exec();
     return res.json(users);
   } catch (error) {
     return res.json([]);
@@ -79,7 +79,12 @@ router.get('/current', restoreUser, (req, res) => {
   if (!req.user) return res.json(null);
   res.json({
     _id: req.user._id,
-    email: req.user.email
+    firstName: req.user.firstName,
+    age: req.user.age,
+    location: req.user.location,
+    gender: req.user.gender,
+    genderPreference: req.user.genderPreference,
+    matches: req.user.matches
   });
 });
 
@@ -122,7 +127,16 @@ router.patch('/:userId', async (req, res, next) => {
     return res.json(user);
 
   } catch (error) {
-    next(error)
+    next(error);
+  }
+})
+
+// DELETE /api/users/:userId
+router.delete('/:userId', async (req, res, next) => {
+  try {
+    
+  } catch (error) {
+    next(error);
   }
 })
 
