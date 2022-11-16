@@ -1,0 +1,99 @@
+import { useSelector, useDispatch } from 'react-redux';
+import { updateUser } from '../../../../store/users';
+import { receiveCurrentUser } from '../../../../store/session';
+import TinderCard from 'react-tinder-card';
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Mousewheel, Pagination } from "swiper";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/mousewheel"
+import './SwipeCards.css';
+
+const SwipeCards = () => {
+    const dispatch = useDispatch();
+    const users = useSelector(state => state.entities.users ? Object.values(state.entities.users) : []);
+    const userLikes = useSelector(state => state.session.user.likes !== {} ? Object.keys(state.session.user.likes) : []);
+    const userMatches = useSelector(state => state.session.user.matches !== {} ? Object.keys(state.session.user.matches) : []);
+    const currentUser = useSelector(state => state.session.user ? state.session.user : null);
+    
+    const usersToSwipe = users.filter(user => {
+        switch(currentUser.genderPreference) {
+            case 'M':
+                return !userLikes.includes(user._id) && user._id !== currentUser._id && !userMatches.includes(user._id) && currentUser.genderPreference === user.gender;
+            case 'F':
+                return !userLikes.includes(user._id) && user._id !== currentUser._id && !userMatches.includes(user._id) && currentUser.genderPreference === user.gender;
+            case 'N':
+                return !userLikes.includes(user._id) && user._id !== currentUser._id && !userMatches.includes(user._id) && currentUser.genderPreference === user.gender;
+            case 'NP':
+                return !userLikes.includes(user._id) && user._id !== currentUser._id && !userMatches.includes(user._id);
+            case undefined:
+                return !userLikes.includes(user._id) && user._id !== currentUser._id && !userMatches.includes(user._id);
+        }
+    });
+
+    const swiped = (dir, likedUser) => {
+        if (dir === 'right') {
+            if (!Object.keys(likedUser.likes).includes(currentUser._id)) {
+                dispatch(updateUser({ ...currentUser, likedUserId: likedUser._id }));
+                dispatch(receiveCurrentUser({ ...currentUser, ...currentUser.likes[likedUser._id] = true }));
+            } else {
+                dispatch(updateUser({ ...currentUser, matchedUserId: likedUser._id }));
+                dispatch(updateUser({ ...likedUser, matchedUserId: currentUser._id, deleteLikerId: currentUser._id }));
+                dispatch(receiveCurrentUser({ ...currentUser, ...currentUser.matches[likedUser._id] = true }));
+            }
+        }
+    }
+    // const outOfFrame = nameLeft => console.log(nameLeft + " left the screen!");
+
+    return (
+        <div className='swipe-cards'>
+            <div className='swipe-cards-container'>
+                {usersToSwipe.map(user => 
+                    <TinderCard 
+                        className='swipe'
+                        key={user._id}
+                        preventSwipe={['up', 'down']}
+                        onSwipe={dir => swiped(dir, user)}
+                        // onCardLeftScreen={() => outOfFrame(user._id)}
+                    >
+                        <div className='card'>
+                            <Swiper
+                                direction={"vertical"}
+                                slidesPerView={1}
+                                spaceBetween={0}
+                                mousewheel={{ thresholdDelta: 40, sensitivity: 0.5 }}
+                                pagination={{type: 'progressbar'}}
+                                modules={[Mousewheel, Pagination]}
+                                allowTouchMove={false}
+                                className="mySwiper"
+                            >
+                                <SwiperSlide>
+                                    <div className='card-content'>
+                                        <div className='user-img'>
+                                            <h3>{user.firstName}</h3>
+                                        </div>
+                                        <div className='user-prof'>
+                                            <h3>bio</h3>
+                                        </div>
+                                    </div>
+                                </SwiperSlide>
+                                <SwiperSlide>
+                                    <div className='card-content'>
+                                        <div className='user-img'>
+                                            <h3>{user.firstName}</h3>
+                                        </div>
+                                        <div className='user-prof'>
+                                            <h3>bio</h3>
+                                        </div>
+                                    </div>
+                                </SwiperSlide>
+                            </Swiper>
+                        </div>
+                    </TinderCard>
+                )}
+            </div>
+        </div>
+    )
+}
+
+export default SwipeCards;

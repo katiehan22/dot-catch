@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import './NavBar.css';
 import { logout } from '../../store/session';
-import { showLoginModal, showSignupModal }  from '../../store/ui'
+import { showLoginModal, showSignupModal }  from '../../store/ui';
 import { LoginFormModal } from '../SessionForms/LoginFormModal';
 import { SignupFormModal } from '../SessionForms/SignupFormModal';
 import { ProfileNavButton } from '../ProfileNavButton/ProfileNavButton';
