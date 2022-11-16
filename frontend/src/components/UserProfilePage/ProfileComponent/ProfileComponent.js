@@ -21,21 +21,58 @@ const ProfileComponent = ({ user }) => {
       >
         <SwiperSlide>
           <div className='card-content'>
-            <div className='user-img'>
-              <h3>{user.firstName}</h3>
-            </div>
-            <div className='user-prof'>
-              <h3>bio</h3>
+            <div className='user-img left-div uncolored-div' />
+            <div className='right-div colored-div'>
+              <h1>{user.firstName + ', ' + user.age}</h1>
+              <p>{user.location}</p>
             </div>
           </div>
         </SwiperSlide>
         <SwiperSlide>
           <div className='card-content'>
-            <div className='user-img'>
-              <h3>{user.firstName}</h3>
+            <div className='full-div uncolored-div'>
+              <h1>About {user.firstName}</h1>
+              <p>{user.bio}</p>
             </div>
-            <div className='user-prof'>
-              <h3>bio</h3>
+          </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div className='card-content'>
+            <div className='left-div uncolored-div'>
+              <h1>const favLang = </h1>
+            </div>
+            <div className='right-div colored-div'>
+              <h1>{user.prompt1 ? user.prompt1['favLang'] : 'undefined'}</h1>
+            </div>
+          </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div className='card-content'>
+            <div className='left-div colored-div'>
+              <h1>tabs || spaces</h1>
+            </div>
+            <div className='right-div uncolored-div'>
+              <h1>{user.prompt2 ? user.prompt2['tabSpace'] : 'undefined'}</h1>
+            </div>
+          </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div className='card-content'>
+            <div className='left-div uncolored-div'>
+              <h1>Mac || PC</h1>
+            </div>
+            <div className='right-div colored-div'>
+              <h1>{user.prompt3 ? user.prompt3['macPc'] : 'undefined'}</h1>
+            </div>
+          </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div className='card-content'>
+            <div className='left-div colored-div'>
+              <h1>Light Mode || Dark Mode</h1>
+            </div>
+            <div className='right-div uncolored-div'>
+              <h1>{user.prompt4 ? user.prompt4['lightDark'] : 'undefined'}</h1>
             </div>
           </div>
         </SwiperSlide>

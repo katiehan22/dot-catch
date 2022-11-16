@@ -7,10 +7,8 @@ const MainPage = () => {
 
     return (
         <section className='main-page'>
-            <div>
-                <MatchesSidebar />
-                <SwipeView />
-            </div>
+            <MatchesSidebar />
+            <SwipeView />
         </section>
     )
 }

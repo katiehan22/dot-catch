@@ -27,21 +27,51 @@
 }
 
 .user-img {
-    background-color: #ebebeb;
+    background-image: url('https://media.wired.com/photos/5926fb75cfe0d93c47431fef/master/pass/fb_14-m-zuckerberg4_0963_fullsizeJPG_SRGB.jpg');
+    background-size: 100% 100%;
     width: 50%;
     height: 100%;
     border-radius: 20px 0px 0px 20px;
-    text-align: center;
 }
 
-.user-prof {
-    background-color: #77966d;
-    text-align: center;
+.left-div {  
+    width: 50%;
+    height: 100%;
+    border-radius: 20px 0px 0px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.right-div {
     width: 50%;
     height: 100%;
     border-radius: 0px 20px 20px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.user-prof > * {
+.full-div {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.colored-div {
+    background-color: #77966d;
+}
+
+.uncolored-div {
+    background-color: #ebebeb;
+}
+
+.colored-div > * {
     color: white;
 }
