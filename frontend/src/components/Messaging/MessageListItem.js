@@ -1,8 +1,6 @@
 import { useSelector } from "react-redux"
-import { useParams } from "react-router-dom";
 
 export default function MessageListItem( {message, clickedMatchId} ) {
-  // const matchedUserId = useParams();
 
   const matchedUser = useSelector( state => state.entities.users[clickedMatchId] )
 

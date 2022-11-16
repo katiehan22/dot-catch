@@ -5,22 +5,20 @@ import { Link } from "react-router-dom";
 import { createMessage, fetchUserMessages } from "../../store/messages";
 import MessagesList from "./MessagesList";
 
-export default function Messaging({clickedMatchId}) {
+export default function Messaging({matchedUser}) {
   
   const dispatch = useDispatch();
-
+  
   const [message, setMessage] = useState('');
-
-  const matchedUser = useSelector( state => state.entities.users[clickedMatchId] )
-
+  
   const currentUserId = useSelector( state => state.session.user._id );
-
+  const clickedMatchId = matchedUser._id
+  
   const messageArray = useSelector( state => Object.values(state.entities.messages) )
 
   useEffect( () => {
     dispatch( fetchUserMessages(currentUserId, clickedMatchId) )
   }, [dispatch, clickedMatchId, messageArray.length] )
-
 
   const newMessage = {
     user_from: currentUserId,
@@ -57,6 +55,7 @@ export default function Messaging({clickedMatchId}) {
           required
         />
         <button
+          className="sendMessageButton"
           type="submit"
           onClick={Send}>Send
         </button>

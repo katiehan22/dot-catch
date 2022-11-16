@@ -1,12 +1,10 @@
 import MatchListItem from "./MatchListItem"
 
-export default function MatchesList( { matchesArray, setClickedMatchId, setShowMessages } ) {
+export default function MatchesList( { matchesArray } ) {
   const listItems = matchesArray.map(match =>
     <MatchListItem
       key={match}
       match={match}
-      setClickedMatchId={setClickedMatchId}
-      setShowMessages={setShowMessages}
     />
   )
 

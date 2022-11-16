@@ -1,7 +1,5 @@
 .messageUl {
   background-color: #EBEBEB;
-  /* box-sizing: border-box; */
-
   overflow: scroll;
 }
 
@@ -12,9 +10,18 @@
   height: 90vh;
 }
 
+.messageInputForm {
+  display: flex;
+}
+
 #messageInput {
   padding: 10px;
   flex-grow: 1;
+}
+
+.sendMessageButton {
+  right: 0;
+  padding: 10px;
 }
 
 .leftMessage {
