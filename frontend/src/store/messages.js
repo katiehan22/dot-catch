@@ -62,12 +62,12 @@ export const createMessage = (data) => async dispatch => {
 
 export const updateMessage = (message) => async dispatch => {
   try {
-    const res = await jwtFetch(`/api/messages/${message.id}`, {
+    const res = await jwtFetch(`/api/messages/${message._id}`, {
       method: 'PATCH',
       body: JSON.stringify(message)
     })
-    const message = await res.json();
-    dispatch(receiveMessage(message));
+    const updatedMessage = await res.json();
+    dispatch(receiveMessage(updatedMessage));
   } catch (err) {
     const resBody = await err.json();
     if(resBody.statusCode === 400) {
@@ -107,7 +107,7 @@ const messagesReducer = (state={}, action) => {
     case RECEIVE_USER_MESSAGES:
       return { ...action.messages };
     case RECEIVE_MESSAGE:
-      return { ...state, [action.message.id]: action.message };
+      return { ...state, [action.message._id]: action.message };
     case REMOVE_MESSAGE:
       let newState = {...state};
       delete newState[action.messageId];

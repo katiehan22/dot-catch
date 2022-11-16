@@ -1,4 +1,6 @@
+import { useSelector } from "react-redux";
 import jwtFetch from "./jwt";
+import { receiveCurrentUser } from "./session";
 
 const RECEIVE_USERS = 'users/RECEIVE_USERS'
 const RECEIVE_USER = 'users/RECEIVE_USER'
@@ -33,7 +35,7 @@ export const clearUserErrors = () => ({
 
 export const fetchUsers = () => async dispatch => {
     try {
-        const res = await jwtFetch('/api/users') //TODO: double-check route
+        const res = await jwtFetch('/api/users')
         const users = await res.json()
         dispatch(receiveUsers(users))
     } catch(err) {
@@ -59,12 +61,16 @@ export const fetchUser = (userId) => async dispatch => {
 
 export const updateUser = (user) => async dispatch => {
     try{
-        const res = await jwtFetch(`/api/users/${user.id}`, { //TODO: double-check route
-            method: 'PUT',
+        const res = await jwtFetch(`/api/users/${user._id}`, { 
+            method: 'PATCH',
             body: JSON.stringify(user)
         })
-        const user = await res.json()
-        dispatch(receiveUser(user))
+        const updatedUser = await res.json()
+        dispatch(receiveUser(updatedUser));
+        // const currentUser = useSelector(state => state.session.user);
+        // if(currentUser._id === user._id) {
+        //     dispatch(receiveCurrentUser(updatedUser))
+        // }
     } catch(err) {
         const res = await err.json()
         if (res.statusCode === 400){
@@ -75,7 +81,12 @@ export const updateUser = (user) => async dispatch => {
 
 export const deleteUser = (userId) => async dispatch => {
     try {
-
+        const res = await jwtFetch(`/api/users/${userId}`, { //TODO: double-check route
+            method: 'DELETE'
+        })
+        if(res.ok){
+            dispatch(removeUser(userId))
+        }
     } catch (err) {
         const resBody = await err.json()
         if (resBody.statusCode === 400) {
@@ -101,7 +112,7 @@ const usersReducer = (state = {}, action) => {
         case RECEIVE_USERS:
             return {...action.users}
         case RECEIVE_USER:
-            return {...state, [action.user.id]: action.user}
+            return {...state, [action.user._id]: action.user}
         case REMOVE_USER:
             const newState = {...state}
             delete newState[action.userId]

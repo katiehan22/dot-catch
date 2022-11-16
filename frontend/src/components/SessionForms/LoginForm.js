@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './SessionForm.css';
-
 import { login, clearSessionErrors } from '../../store/session';
+import { hideModal } from '../../store/ui';
 
 function LoginForm () {
   const [email, setEmail] = useState('');
@@ -28,30 +28,37 @@ function LoginForm () {
 
   return (
     <form className="session-form" onSubmit={handleSubmit}>
-      <h2>Log In Form</h2>
-      <div className="errors">{errors?.email}</div>
+      <div className='form-top'>
+        <h2>Log in</h2>
+        <button className='close'
+          type='button'
+          onClick={() => dispatch(hideModal())}
+        >X
+        </button>
+      </div>
       <label>
-        <span>Email</span>
-        <input type="text"
+        <input type="email"
           value={email}
           onChange={update('email')}
           placeholder="Email"
         />
+      <div className="errors">{errors?.email}</div>
       </label>
-      <div className="errors">{errors?.password}</div>
       <label>
-        <span>Password</span>
         <input type="password"
           value={password}
           onChange={update('password')}
           placeholder="Password"
         />
       </label>
-      <input
+      <div className="errors">{errors?.password}</div>
+      <button
+        className='submit-button'
         type="submit"
         value="Log In"
         disabled={!email || !password}
-      />
+      >Log in
+      </button>
     </form>
   );
 }

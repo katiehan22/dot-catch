@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import SwipeView from './SwipeView/SwipeView';
 import { fetchUsers } from '../../store/users';
 import './MainPage.css';
@@ -13,13 +13,16 @@ const MainPage = () => {
     const [showMessages, setShowMessages] = useState(false);
 
     const [clickedMatchId, setClickedMatchId] = useState('');
+    const userMatches = useSelector(state => state.session.user.matches !== {} ? Object.keys(state.session.user.matches) : []);
 
     useEffect(() => {
         dispatch(fetchUsers());
-    }, [dispatch])
+    }, [dispatch, userMatches.length])
+
+    
 
     return (
-        <>
+        <section className='main-page'>
             {!showMessages && 
             <div>
                 <MatchesSidebar
@@ -34,7 +37,7 @@ const MainPage = () => {
                     setShowMessages={setShowMessages}/>
                 <Messaging clickedMatchId={clickedMatchId}/>
             </div>}
-        </>
+        </section>
     )
 }
 
