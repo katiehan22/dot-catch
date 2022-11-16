@@ -157,9 +157,7 @@ const { update } = require('../../models/User');
 const singleUpload = upload.single("image");
 
 router.post("/:userId/add-photo", async (req, res) => {
-  // const uid = req.params.id;
   const user = await User.findById(req.params.userId);
-  console.log(user, "user")
 
   singleUpload(req, res, function (err) {
     if (err) {
@@ -174,15 +172,9 @@ router.post("/:userId/add-photo", async (req, res) => {
     }
 
     const update = req.file.location;
-    // return update;
-    console.log(update);
     user.photos.push(update);
     user.save();
     res.json(user);
-
-    // User.findByIdAndUpdate(uid, update, { new: true })
-    //   .then((user) => res.status(200).json({ success: true, user: user }))
-    //   .catch((err) => res.status(400).json({ success: false, error: err }));
   });
 });
 

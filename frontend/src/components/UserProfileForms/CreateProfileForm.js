@@ -29,18 +29,8 @@ const CreateProfileForm = () => {
 
   const handleFiles = (e) => {
     const file = e.target.files[0];
-    // const files = e.target.files;
-    // const filereader = new FileReader();
-    dispatch(uploadPhoto(currentUser._id, file));
-    // filereader.onloadend = () => {
-    //   dispatch(uploadPhoto(currentUser._id, file));
-      // console.log(file);
-      // console.log(filereader.result);
-      // setPhotos([{photoFile: file, photoUrl: filereader.result}])
-    // };
-    // if (file) {
-    //   filereader.readAsDataURL(file);
-    // }
+    setPhotos(file);
+    // dispatch(uploadPhoto(currentUser._id, file));
   }
 
   const handleProfileSubmit = (e) => {
