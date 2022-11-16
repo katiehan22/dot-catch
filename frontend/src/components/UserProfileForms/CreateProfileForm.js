@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { clearUserErrors, updateUser } from "../../store/users";
+import { clearUserErrors, updateUser, uploadPhoto } from "../../store/users";
 import "./UserProfileForms.css";
 import { receiveCurrentUser } from "../../store/session";
 
@@ -19,12 +19,29 @@ const CreateProfileForm = () => {
   const [macPc, setMacPc] = useState('');
   const [lightDark, setLightDark] = useState('');
   const [bio, setBio] = useState('');
+  const [photos, setPhotos] = useState([]);
 
   useEffect(() => {
     return () => {
       dispatch(clearUserErrors());
     };
   }, [dispatch]);
+
+  const handleFiles = (e) => {
+    const file = e.target.files[0];
+    // const files = e.target.files;
+    const filereader = new FileReader();
+    dispatch(uploadPhoto(currentUser._id, file));
+    // filereader.onloadend = () => {
+    //   dispatch(uploadPhoto(currentUser._id, file));
+      // console.log(file);
+      // console.log(filereader.result);
+      // setPhotos([{photoFile: file, photoUrl: filereader.result}])
+    // };
+    // if (file) {
+    //   filereader.readAsDataURL(file);
+    // }
+  }
 
   const handleProfileSubmit = (e) => {
     e.preventDefault();
@@ -39,10 +56,13 @@ const CreateProfileForm = () => {
       prompt2: {"tabSpace": tabSpace},
       prompt3: {"macPc": macPc},
       prompt4: {"lightDark": lightDark},
-      bio: bio
+      bio: bio,
+      photos: photos
     }
-    dispatch(updateUser(updatedUser));
-    dispatch(receiveCurrentUser(updatedUser));
+    console.log(updatedUser);
+    // dispatch(uploadPhoto(currentUser._id, photos[0]))
+    // dispatch(updateUser(updatedUser));
+    // dispatch(receiveCurrentUser(updatedUser));
   }
 
   return (
@@ -104,6 +124,8 @@ const CreateProfileForm = () => {
               <br />
               <label htmlFor="bio">Bio: </label>
               <textarea value={bio} onChange={(e) => setBio(e.target.value)} required placeholder="What else do you want others to know about you?"/>
+              <br />
+              <input type="file" multiple onChange={handleFiles}/>
             </div>
           </div>
           <input type="submit" value="Create Profile" className="create-profile-button" />

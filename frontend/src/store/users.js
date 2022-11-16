@@ -95,6 +95,25 @@ export const deleteUser = (userId) => async dispatch => {
     }
 }
 
+export const uploadPhoto = (userId, file) => async dispatch => {
+    try {
+        const imageData = new FormData();
+        imageData.append("image", file);
+        const res = await jwtFetch(`/api/users/${userId}/add-photo`, {
+            method: 'POST',
+            body: imageData
+        })
+        // const updatedUser = await res.json();
+        // dispatch(receiveUser(updatedUser));
+    } catch (err) {
+        console.log(err)
+        // const res = await err.json()
+        // if (res.statusCode === 400) {
+        //     return dispatch(receiveUserErrors(res.errors))
+        // }
+    }
+}
+
 const nullErrors = null
 export const userErrorsReducer = (state = nullErrors, action) => {
     switch(action.type){
