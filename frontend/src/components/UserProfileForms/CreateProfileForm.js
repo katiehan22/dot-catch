@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearUserErrors, updateUser } from "../../store/users";
 import "./UserProfileForms.css";
+import { receiveCurrentUser } from "../../store/session";
 
 const CreateProfileForm = () => {
   const dispatch = useDispatch();
@@ -40,8 +41,8 @@ const CreateProfileForm = () => {
       prompt4: {"lightDark": lightDark},
       bio: bio
     }
-    // console.log(updatedUser)
     dispatch(updateUser(updatedUser));
+    dispatch(receiveCurrentUser(updatedUser));
   }
 
   return (
@@ -66,15 +67,15 @@ const CreateProfileForm = () => {
               <div className="gender-container">
                 <label htmlFor="gender">Gender: </label>
                 <br />
-                <input type="radio" name="gender" id="gender" value="woman" onChange={(e) => setGender(e.target.value)} required />Woman
-                <input type="radio" name="gender" id="gender" value="man" onChange={(e) => setGender(e.target.value)} required />Man
-                <input type="radio" name="gender" id="gender" value="nonbinary" onChange={(e) => setGender(e.target.value)} required />Nonbinary
+                <input type="radio" name="gender" id="gender" value="F" onChange={(e) => setGender(e.target.value)} required />Woman
+                <input type="radio" name="gender" id="gender" value="M" onChange={(e) => setGender(e.target.value)} required />Man
+                <input type="radio" name="gender" id="gender" value="N" onChange={(e) => setGender(e.target.value)} required />Nonbinary
               </div>
               <label htmlFor="gender-preference">I'm Looking For: </label>
-              <input type="radio" name="gender-preference" id="gender-preference" value="men" onChange={(e) => setGenderPreference(e.target.value)} required />Men
-              <input type="radio" name="gender-preference" id="gender-preference" value="women" onChange={(e) => setGenderPreference(e.target.value)} required />Women
-              <input type="radio" name="gender-preference" id="gender-preference" value="nonbinary" onChange={(e) => setGenderPreference(e.target.value)} required />Nonbinary people
-              <input type="radio" name="gender-preference" id="gender-preference" value="no-preference" onChange={(e) => setGenderPreference(e.target.value)} required />No preference
+              <input type="radio" name="gender-preference" id="gender-preference" value="M" onChange={(e) => setGenderPreference(e.target.value)} required />Men
+              <input type="radio" name="gender-preference" id="gender-preference" value="F" onChange={(e) => setGenderPreference(e.target.value)} required />Women
+              <input type="radio" name="gender-preference" id="gender-preference" value="N" onChange={(e) => setGenderPreference(e.target.value)} required />Nonbinary people
+              <input type="radio" name="gender-preference" id="gender-preference" value="NP" onChange={(e) => setGenderPreference(e.target.value)} required />No preference
             </div>
             <div className="user-profile-form-right">  
               <label htmlFor="language">Favorite Programming Language: </label>

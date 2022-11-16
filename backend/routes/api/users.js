@@ -12,7 +12,7 @@ const validateLoginInput = require('../../validations/login');
 // GET users listing
 router.get('/', async function(req, res, next) {
   try {
-    const users = await User.find({}, '_id firstName age location gender likes matches').exec();
+    const users = await User.find({}, '_id firstName age location gender likes matches bio').exec();
     const usersObj = {};
     users.map( user => usersObj[user._id] = user )
     return res.json(usersObj);
@@ -128,7 +128,6 @@ router.patch('/:userId', requireUser, async (req, res, next) => {
           if (err) throw err;
           try {
             user.hashedPassword = hashedPassword;
-            const updatedUser = await user.save();
           }
           catch (err) {
             next(err);
@@ -136,7 +135,7 @@ router.patch('/:userId', requireUser, async (req, res, next) => {
         })
       });
     }
-
+    const updatedUser = await user.save();
     return res.json(user);
 
   } catch (error) {
