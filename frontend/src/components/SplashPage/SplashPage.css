@@ -1,0 +1,20 @@
+.splash-page-container {
+    height: 100vh;
+    width: 100vw;
+}
+
+.mySwiper {
+    height: 100%;
+    width: 100%;
+}
+
+.slide {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+
+}
+
+.slide-text {
+    width: 50vw;
+}

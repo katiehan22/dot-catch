@@ -6,3 +6,8 @@ form > .errors {
   align-items: center;
 }
 
+.wrap-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
