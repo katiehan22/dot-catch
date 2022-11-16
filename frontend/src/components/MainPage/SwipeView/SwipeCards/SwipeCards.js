@@ -18,6 +18,8 @@ const SwipeCards = () => {
             case 'F':
                 return !userLikes.includes(user._id) && user._id !== currentUser._id && !userMatches.includes(user._id) && currentUser.genderPreference === user.gender;
             case 'N':
+                return !userLikes.includes(user._id) && user._id !== currentUser._id && !userMatches.includes(user._id) && currentUser.genderPreference === user.gender;
+            case 'NP':
                 return !userLikes.includes(user._id) && user._id !== currentUser._id && !userMatches.includes(user._id);
             case undefined:
                 return !userLikes.includes(user._id) && user._id !== currentUser._id && !userMatches.includes(user._id);
