@@ -1,24 +1,47 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Mousewheel, Pagination } from "swiper";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/mousewheel";
+import './Profile.css';
 
+const Profile = ({ user }) => {
 
-
-function Profile () {
-  const dispatch = useDispatch();
-  const currentUser = useSelector(state => state.session.user);
-  
-  
-  useEffect(() => {
-    
-  }, [currentUser, dispatch]);
-
-  
-    return (
-      <>
-        <h2>Hi from profile</h2>
-        
-      </>
-    );
+  return (
+    <div className='card'>
+      <Swiper
+        direction={"vertical"}
+        slidesPerView={1}
+        spaceBetween={0}
+        mousewheel={{ thresholdDelta: 40, sensitivity: 0.5 }}
+        pagination={{ type: 'progressbar' }}
+        modules={[Mousewheel, Pagination]}
+        allowTouchMove={false}
+        className="mySwiper"
+      >
+        <SwiperSlide>
+          <div className='card-content'>
+            <div className='user-img'>
+              <h3>{user.firstName}</h3>
+            </div>
+            <div className='user-prof'>
+              <h3>bio</h3>
+            </div>
+          </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div className='card-content'>
+            <div className='user-img'>
+              <h3>{user.firstName}</h3>
+            </div>
+            <div className='user-prof'>
+              <h3>bio</h3>
+            </div>
+          </div>
+        </SwiperSlide>
+      </Swiper>
+    </div>
+  );
 }
 
 export default Profile;

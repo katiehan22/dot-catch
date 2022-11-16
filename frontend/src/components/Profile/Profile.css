@@ -1,0 +1,47 @@
+.card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.mySwiper {
+    height: 100%;
+    width: 100%;
+    border-radius: 20px;
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19); */
+}
+
+.swiper-pagination-progressbar.swiper-pagination-vertical, .swiper-vertical > .swiper-pagination-progressbar {
+    height: 20%;
+    top: 30px;
+    left: auto;
+    right: 25px;
+    --swiper-theme-color: green;
+}
+
+.card-content {
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+.user-img {
+    background-color: #ebebeb;
+    width: 50%;
+    height: 100%;
+    border-radius: 20px 0px 0px 20px;
+    text-align: center;
+}
+
+.user-prof {
+    background-color: #77966d;
+    text-align: center;
+    width: 50%;
+    height: 100%;
+    border-radius: 0px 20px 20px 0px;
+}
+
+.user-prof > * {
+    color: white;
+}
