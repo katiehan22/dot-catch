@@ -2,9 +2,7 @@ import { useSelector } from "react-redux"
 import MatchesList from "./MatchesList"
 import './MatchesSidebar.css'
 
-export default function MatchesSidebar() {
-
-  // const currentUser = useSelector( state => state.users[state.session.user] )
+export default function MatchesSidebar( {setClickedMatchId, setShowMessages} ) {
 
   const allMatches = useSelector( state => state.session.user.matches )
   const matchesArray = Object.keys(allMatches)
@@ -13,7 +11,10 @@ export default function MatchesSidebar() {
     <section className="matchesSidebarContainer">
       <h1 className="matchesSidebarTitle">Matches</h1>
       <div>
-        <MatchesList matchesArray={matchesArray} />
+        <MatchesList
+        setClickedMatchId={setClickedMatchId}
+        setShowMessages={setShowMessages}
+        matchesArray={matchesArray} />
       </div>
     </section>
   )
