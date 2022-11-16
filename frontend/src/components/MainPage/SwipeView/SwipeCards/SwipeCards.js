@@ -1,8 +1,13 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { updateUser } from '../../../../store/users';
-import TinderCard from 'react-tinder-card';
-import './SwipeCards.css';
 import { receiveCurrentUser } from '../../../../store/session';
+import TinderCard from 'react-tinder-card';
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Mousewheel, Pagination } from "swiper";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/mousewheel"
+import './SwipeCards.css';
 
 const SwipeCards = () => {
     const dispatch = useDispatch();
@@ -52,12 +57,37 @@ const SwipeCards = () => {
                         // onCardLeftScreen={() => outOfFrame(user._id)}
                     >
                         <div className='card'>
-                            <div className='user-img'>
-                                <h3>{user.firstName}</h3>
-                            </div>
-                            <div className='user-prof'>
-                                <h3>bio</h3>
-                            </div>
+                            <Swiper
+                                direction={"vertical"}
+                                slidesPerView={1}
+                                spaceBetween={0}
+                                mousewheel={{ thresholdDelta: 40, sensitivity: 0.5 }}
+                                pagination={{type: 'progressbar'}}
+                                modules={[Mousewheel, Pagination]}
+                                allowTouchMove={false}
+                                className="mySwiper"
+                            >
+                                <SwiperSlide>
+                                    <div className='card-content'>
+                                        <div className='user-img'>
+                                            <h3>{user.firstName}</h3>
+                                        </div>
+                                        <div className='user-prof'>
+                                            <h3>bio</h3>
+                                        </div>
+                                    </div>
+                                </SwiperSlide>
+                                <SwiperSlide>
+                                    <div className='card-content'>
+                                        <div className='user-img'>
+                                            <h3>{user.firstName}</h3>
+                                        </div>
+                                        <div className='user-prof'>
+                                            <h3>bio</h3>
+                                        </div>
+                                    </div>
+                                </SwiperSlide>
+                            </Swiper>
                         </div>
                     </TinderCard>
                 )}

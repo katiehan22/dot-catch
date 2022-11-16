@@ -16,7 +16,8 @@
     "react-scripts": "5.0.1",
     "react-tinder-card": "^1.6.2",
     "redux": "^4.2.0",
-    "redux-thunk": "^2.4.1"
+    "redux-thunk": "^2.4.1",
+    "swiper": "^8.4.4"
   },
   "scripts": {
     "start": "react-scripts start",
