@@ -119,6 +119,8 @@ router.patch('/:userId', requireUser, async (req, res, next) => {
       user.prompt2 = req.body.prompt2 || user.prompt2;
       user.prompt3 = req.body.prompt3 || user.prompt3;
       user.prompt4 = req.body.prompt4 || user.prompt4;
+      if (req.body.deleteLikerId) user.likes.delete(req.body.deleteLikerId);
+      if (req.body.deleteMatcherId) user.matches.delete(req.body.deleteMatcherId);
       if (req.body.likedUserId) user.likes.set(req.body.likedUserId, true);
       if (req.body.matchedUserId) user.matches.set(req.body.matchedUserId, true);
     }

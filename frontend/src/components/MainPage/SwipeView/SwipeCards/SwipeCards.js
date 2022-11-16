@@ -33,7 +33,7 @@ const SwipeCards = () => {
                 dispatch(receiveCurrentUser({ ...currentUser, ...currentUser.likes[likedUser._id] = true }));
             } else {
                 dispatch(updateUser({ ...currentUser, matchedUserId: likedUser._id }));
-                dispatch(updateUser({ ...likedUser, matchedUserId: currentUser._id }));
+                dispatch(updateUser({ ...likedUser, matchedUserId: currentUser._id, deleteLikerId: currentUser._id }));
                 dispatch(receiveCurrentUser({ ...currentUser, ...currentUser.matches[likedUser._id] = true }));
             }
         }
