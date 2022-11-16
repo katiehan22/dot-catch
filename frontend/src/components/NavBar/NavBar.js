@@ -5,6 +5,7 @@ import { logout } from '../../store/session';
 import { showLoginModal, showSignupModal }  from '../../store/ui';
 import { LoginFormModal } from '../SessionForms/LoginFormModal';
 import { SignupFormModal } from '../SessionForms/SignupFormModal';
+import { ProfileNavButton } from '../ProfileNavButton/ProfileNavButton';
 
 
 function NavBar () {
@@ -21,10 +22,7 @@ function NavBar () {
   const getLinks = () => {
     if (loggedIn) {
       return (
-        <div className="links-nav">
-          <Link to={'/profile'}>Profile</Link>
-          <button onClick={logoutUser}>Logout</button>
-        </div>
+        <ProfileNavButton></ProfileNavButton>
       );
     } else {
       return (
@@ -37,12 +35,12 @@ function NavBar () {
   }
 
   return (
-    <>
-      <h1>Chirper</h1>
+    <nav className='nav'>
+      <h1>.catch</h1>
       { getLinks() }
       {modal === 'login' &&(<LoginFormModal></LoginFormModal>)}
       {modal === 'signup' &&(<SignupFormModal></SignupFormModal>)}
-    </>
+    </nav>
   );
 }
 

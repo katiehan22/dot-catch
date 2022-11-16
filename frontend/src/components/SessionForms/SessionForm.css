@@ -20,6 +20,7 @@
   justify-content: space-between;
   padding-bottom: 10px;
   border-bottom: 1px solid #ebebeb;
+  margin-bottom: 25px;
 }
 
 .submit-button {
@@ -33,4 +34,17 @@
 
 .submit-button:disabled {
   background-color: #ebebeb;
+}
+
+.bottom-flat {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.errors {
+  min-height: 16px;
+  color: #77966D;
+  font-weight: 300;
+  font-size: 15px;
+  text-align: center;
 }

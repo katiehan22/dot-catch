@@ -1,11 +1,12 @@
 import jwtFetch from './jwt';
+import { hideModal } from './ui';
 
 const RECEIVE_CURRENT_USER = "session/RECEIVE_CURRENT_USER";
 const RECEIVE_SESSION_ERRORS = "session/RECEIVE_SESSION_ERRORS";
 const CLEAR_SESSION_ERRORS = "session/CLEAR_SESSION_ERRORS";
 export const RECEIVE_USER_LOGOUT = "session/RECEIVE_USER_LOGOUT";
 
-const receiveCurrentUser = currentUser => ({
+export const receiveCurrentUser = currentUser => ({
   type: RECEIVE_CURRENT_USER,
   currentUser
 });
@@ -34,6 +35,7 @@ const startSession = (userInfo, route) => async dispatch => {
     });
     const { user, token } = await res.json();
     localStorage.setItem('jwtToken', token);
+    dispatch(hideModal())
     return dispatch(receiveCurrentUser(user));
   } catch(err) {
     const res = await err.json();
