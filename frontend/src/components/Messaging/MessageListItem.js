@@ -13,7 +13,7 @@ export default function MessageListItem( {message, clickedMatchId} ) {
   const messageDateTime = message.createdAt.toLocaleString()
 
   return(
-    <li>
+    <li className={messageSender === matchedUser ? 'leftMessage' : 'rightMessage'}>
       <h4>{messageDateTime}</h4>
       <h3>{messageSender.firstName}:</h3>
       <p>{message.body}</p>

@@ -14,7 +14,6 @@ const MainPage = () => {
 
     const [clickedMatchId, setClickedMatchId] = useState('');
 
-    // console.log(clickedMatchId)
     useEffect(() => {
         dispatch(fetchUsers());
     }, [dispatch])
@@ -29,8 +28,10 @@ const MainPage = () => {
                 <SwipeView/>
             </div>}
             {showMessages &&
-            <div>
-                <MatchesSidebar  />
+            <div className='mainPageMatchesMessagesContainer'>
+                <MatchesSidebar
+                    setClickedMatchId={setClickedMatchId}
+                    setShowMessages={setShowMessages}/>
                 <Messaging clickedMatchId={clickedMatchId}/>
             </div>}
         </>
