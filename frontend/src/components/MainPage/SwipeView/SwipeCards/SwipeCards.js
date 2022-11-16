@@ -26,8 +26,14 @@ const SwipeCards = () => {
 
     const swiped = (dir, likedUser) => {
         if (dir === 'right') {
-            dispatch(updateUser({ ...currentUser, likedUserId: likedUser._id }));
-            dispatch(receiveCurrentUser({ ...currentUser, ...currentUser.likes[likedUser._id] = true }));
+            if (!Object.keys(likedUser.likes).includes(currentUser._id)) {
+                dispatch(updateUser({ ...currentUser, likedUserId: likedUser._id }));
+                dispatch(receiveCurrentUser({ ...currentUser, ...currentUser.likes[likedUser._id] = true }));
+            } else {
+                dispatch(updateUser({ ...currentUser, matchedUserId: likedUser._id }));
+                dispatch(updateUser({ ...likedUser, matchedUserId: currentUser._id }));
+                dispatch(receiveCurrentUser({ ...currentUser, ...currentUser.matches[likedUser._id] = true }));
+            }
         }
     }
     // const outOfFrame = nameLeft => console.log(nameLeft + " left the screen!");
