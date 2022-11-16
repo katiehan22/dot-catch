@@ -1,16 +1,9 @@
-import { useState } from "react";
 import { useEffect } from "react";
-import { useSelector } from "react-redux"
+import { useRef } from "react";
 import MessageListItem from "./MessageListItem";
 import './Messaging.css'
 
 export default function MessagesList( {clickedMatchId, messageArray} ) {
-
-
-
-  // const [convoLength, setConvoLength] = useState(0);
-
-  // setConvoLength(messageArray.length)
 
   const messageList = messageArray.map(message =>
     <MessageListItem
@@ -19,10 +12,16 @@ export default function MessagesList( {clickedMatchId, messageArray} ) {
       clickedMatchId={clickedMatchId}
     />
   )
+  const bottomRef = useRef(null);
+
+  useEffect( () => {
+    bottomRef.current?.scrollIntoView()
+  }, [messageArray])
 
   return(
-    <ul className="messageUl">
+    <ul className="messageUl" >
       {messageList}
+      <div ref={bottomRef}></div>
     </ul>
   )
 }
