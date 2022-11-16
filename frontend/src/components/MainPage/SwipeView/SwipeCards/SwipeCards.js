@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { updateUser } from '../../../../store/users';
 import TinderCard from 'react-tinder-card';
 import './SwipeCards.css';
+import { receiveCurrentUser } from '../../../../store/session';
 
 const SwipeCards = () => {
     const dispatch = useDispatch();
@@ -10,11 +11,23 @@ const SwipeCards = () => {
     const userMatches = useSelector(state => state.session.user.matches !== {} ? Object.keys(state.session.user.matches) : []);
     const currentUser = useSelector(state => state.session.user ? state.session.user : null);
     
-    const usersToSwipe = users.filter(user => currentUser.genderPreference ? !userLikes.includes(user._id) && user._id !== currentUser._id && !userMatches.includes(user._id) && currentUser.genderPreference === user.gender : !userLikes.includes(user._id) && user._id !== currentUser._id && !userMatches.includes(user._id));
+    const usersToSwipe = users.filter(user => {
+        switch(currentUser.genderPreference) {
+            case 'M':
+                return !userLikes.includes(user._id) && user._id !== currentUser._id && !userMatches.includes(user._id) && currentUser.genderPreference === user.gender;
+            case 'F':
+                return !userLikes.includes(user._id) && user._id !== currentUser._id && !userMatches.includes(user._id) && currentUser.genderPreference === user.gender;
+            case 'N':
+                return !userLikes.includes(user._id) && user._id !== currentUser._id && !userMatches.includes(user._id);
+            case undefined:
+                return !userLikes.includes(user._id) && user._id !== currentUser._id && !userMatches.includes(user._id);
+        }
+    });
 
-    const swiped = (dir, likedUserId) => {
+    const swiped = (dir, likedUser) => {
         if (dir === 'right') {
-            dispatch(updateUser({ ...currentUser, likedUserId }));
+            dispatch(updateUser({ ...currentUser, likedUserId: likedUser._id }));
+            dispatch(receiveCurrentUser({ ...currentUser, ...currentUser.likes[likedUser._id] = true }));
         }
     }
     // const outOfFrame = nameLeft => console.log(nameLeft + " left the screen!");
@@ -27,7 +40,7 @@ const SwipeCards = () => {
                         className='swipe'
                         key={user._id}
                         preventSwipe={['up', 'down']}
-                        onSwipe={dir => swiped(dir, user._id)}
+                        onSwipe={dir => swiped(dir, user)}
                         // onCardLeftScreen={() => outOfFrame(user._id)}
                     >
                         <div className='card'>

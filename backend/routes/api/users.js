@@ -12,7 +12,7 @@ const validateLoginInput = require('../../validations/login');
 // GET users listing
 router.get('/', async function(req, res, next) {
   try {
-    const users = await User.find({}, '_id firstName age location gender likes matches bio').exec();
+    const users = await User.find({}, '_id firstName age location gender likes matches bio prompt1 prompt2 prompt3 prompt4').exec();
     const usersObj = {};
     users.map( user => usersObj[user._id] = user )
     return res.json(usersObj);
@@ -137,8 +137,24 @@ router.patch('/:userId', requireUser, async (req, res, next) => {
         })
       });
     }
+
     const updatedUser = await user.save();
-    return res.json(user);
+
+    res.json({
+      _id: user._id,
+      firstName: user.firstName,
+      bio: user.bio,
+      age: user.age,
+      location: user.location,
+      gender: user.gender,
+      genderPreference: user.genderPreference,
+      likes: user.likes,
+      matches: user.matches,
+      prompt1: user.prompt1,
+      prompt2: user.prompt2,
+      prompt3: user.prompt3,
+      prompt4: user.prompt4
+    });
 
   } catch (error) {
     next(error);
