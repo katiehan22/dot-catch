@@ -153,10 +153,13 @@ router.delete('/:userId', requireUser, async (req, res, next) => {
 
 
 const upload = require("./image_upload_aws.js");
+const { update } = require('../../models/User');
 const singleUpload = upload.single("image");
 
-router.post("/:userId/add-photo", function (req, res) {
-  const uid = req.params.id;
+router.post("/:userId/add-photo", async (req, res) => {
+  // const uid = req.params.id;
+  const user = await User.findById(req.params.userId);
+  console.log(user, "user")
 
   singleUpload(req, res, function (err) {
     if (err) {
@@ -170,33 +173,17 @@ router.post("/:userId/add-photo", function (req, res) {
       });
     }
 
-    let update = { profilePicture: req.file.location };
+    const update = req.file.location;
+    // return update;
+    console.log(update);
+    user.photos.push(update);
+    user.save();
+    res.json(user);
 
-    User.findByIdAndUpdate(uid, update, { new: true })
-      .then((user) => res.status(200).json({ success: true, user: user }))
-      .catch((err) => res.status(400).json({ success: false, error: err }));
+    // User.findByIdAndUpdate(uid, update, { new: true })
+    //   .then((user) => res.status(200).json({ success: true, user: user }))
+    //   .catch((err) => res.status(400).json({ success: false, error: err }));
   });
 });
-// const arrUploads = upload.array("files");
-
-// router.post("/:userId/upload", upload.array("files"), async (req, res) => {
-//   const uid = req.params.id;
-  // anyUploads(req, res, function (err) {
-  //   if (err) {
-  //     return res.json({
-  //       success: false,
-  //       errors: {
-  //         title: "Image Upload Error",
-  //         detail: err.message,
-  //         error: err,
-  //       },
-  //     });
-  //   }
-  //   let update = { photos: req.file.location };
-  //   User.findByIdAndUpdate(uid, update, { new: true })
-  //     .then((user) => res.status(200).json({ success: true, user: user }))
-  //     .catch((err) => res.status(400).json({ success: false, error: err }));
-  // });
-// });
 
 module.exports = router;

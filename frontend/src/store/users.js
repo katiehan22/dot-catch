@@ -103,8 +103,8 @@ export const uploadPhoto = (userId, file) => async dispatch => {
             method: 'POST',
             body: imageData
         })
-        // const updatedUser = await res.json();
-        // dispatch(receiveUser(updatedUser));
+        const updatedUser = await res.json();
+        dispatch(receiveUser(updatedUser));
     } catch (err) {
         console.log(err)
         // const res = await err.json()

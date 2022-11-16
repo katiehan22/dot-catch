@@ -30,7 +30,7 @@ const CreateProfileForm = () => {
   const handleFiles = (e) => {
     const file = e.target.files[0];
     // const files = e.target.files;
-    const filereader = new FileReader();
+    // const filereader = new FileReader();
     dispatch(uploadPhoto(currentUser._id, file));
     // filereader.onloadend = () => {
     //   dispatch(uploadPhoto(currentUser._id, file));
@@ -132,6 +132,7 @@ const CreateProfileForm = () => {
         </form>
         {/* <div className="errors">{errors?.users}</div> */}
       </div>
+      {/* <img src={currentUser.photos[0]}/> */}
     </>
   )
 }
