@@ -3,9 +3,9 @@ import { Mousewheel, Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/mousewheel";
-import './Profile.css';
+import './ProfileComponent.css';
 
-const Profile = ({ user }) => {
+const ProfileComponent = ({ user }) => {
 
   return (
     <div className='card'>
@@ -44,4 +44,4 @@ const Profile = ({ user }) => {
   );
 }
 
-export default Profile;
+export default ProfileComponent;

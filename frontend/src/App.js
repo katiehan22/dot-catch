@@ -8,7 +8,7 @@ import NavBar from './components/NavBar/NavBar';
 import SplashPage from './components/SplashPage/SplashPage';
 import LoginForm from './components/SessionForms/LoginForm';
 import SignupForm from './components/SessionForms/SignupForm';
-import Profile from './components/Profile/Profile';
+import UserProfilePage from './components/UserProfilePage/UserProfilePage';
 import MainPage from './components/MainPage/MainPage';
 
 import { getCurrentUser } from './store/session';
@@ -29,7 +29,7 @@ function App() {
         <AuthRoute exact path="/login" component={LoginForm} />
         <AuthRoute exact path="/signup" component={SignupForm} />
 
-        <ProtectedRoute exact path="/profile" component={Profile} />
+        <ProtectedRoute exact path="/profile/:userId" component={UserProfilePage} />
         <ProtectedRoute exact path="/main" component={MainPage} />
         <ProtectedRoute exact path="/createprofile" component={CreateProfileForm} />
       </Switch>
