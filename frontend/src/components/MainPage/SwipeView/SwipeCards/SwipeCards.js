@@ -1,6 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { updateUser } from '../../../../store/users';
-import { receiveCurrentUser } from '../../../../store/session';
 import TinderCard from 'react-tinder-card';
 import './SwipeCards.css';
 import ProfileComponent from '../../../UserProfilePage/ProfileComponent/ProfileComponent';
