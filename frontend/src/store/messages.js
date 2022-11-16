@@ -107,7 +107,7 @@ const messagesReducer = (state={}, action) => {
     case RECEIVE_USER_MESSAGES:
       return { ...action.messages };
     case RECEIVE_MESSAGE:
-      return { ...state, [action.message.id]: action.message };
+      return { ...state, [action.message._id]: action.message };
     case REMOVE_MESSAGE:
       let newState = {...state};
       delete newState[action.messageId];

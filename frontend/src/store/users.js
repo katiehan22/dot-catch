@@ -1,4 +1,6 @@
+import { useSelector } from "react-redux";
 import jwtFetch from "./jwt";
+import { receiveCurrentUser } from "./session";
 
 const RECEIVE_USERS = 'users/RECEIVE_USERS'
 const RECEIVE_USER = 'users/RECEIVE_USER'
@@ -64,7 +66,11 @@ export const updateUser = (user) => async dispatch => {
             body: JSON.stringify(user)
         })
         const updatedUser = await res.json()
-        dispatch(receiveUser(updatedUser))
+        dispatch(receiveUser(updatedUser));
+        // const currentUser = useSelector(state => state.session.user);
+        // if(currentUser._id === user._id) {
+        //     dispatch(receiveCurrentUser(updatedUser))
+        // }
     } catch(err) {
         const res = await err.json()
         if (res.statusCode === 400){
@@ -106,7 +112,7 @@ const usersReducer = (state = {}, action) => {
         case RECEIVE_USERS:
             return {...action.users}
         case RECEIVE_USER:
-            return {...state, [action.user.id]: action.user}
+            return {...state, [action.user._id]: action.user}
         case REMOVE_USER:
             const newState = {...state}
             delete newState[action.userId]
