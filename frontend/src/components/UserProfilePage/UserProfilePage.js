@@ -12,7 +12,11 @@ const UserProfilePage = () => {
     return (
         <section className='main-page'>
             <MatchesSidebar />
-            <ProfileComponent user={user} />
+            <section className='profile-section'>
+                <div className='profile-card-container'>
+                    <ProfileComponent user={user} />
+                </div>
+            </section>
         </section>
     )
 }

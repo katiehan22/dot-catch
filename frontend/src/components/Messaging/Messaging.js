@@ -39,7 +39,7 @@ export default function Messaging({clickedMatchId}) {
     <section className="messagingContainer">
       <Link
         className="matchItemContainer"
-        to={ {pathname: '/main', state: { user: matchedUser, fromApp: true } } }
+        to={ {pathname: `/profile/${matchedUser._id}`, state: { user: matchedUser, fromApp: true } } }
         >
           <img className="matchedUserImg" src="https://cdn2.iconfinder.com/data/icons/media-player-ui/512/Media-Icon-25-512.png" alt="matched user" />
           <h2 className="matchedUserName">{matchedUser.firstName}</h2>

@@ -13,30 +13,23 @@ const MainPage = () => {
     const [showMessages, setShowMessages] = useState(false);
 
     const [clickedMatchId, setClickedMatchId] = useState('');
-    const userMatches = useSelector(state => state.session.user.matches !== {} ? Object.keys(state.session.user.matches) : []);
-
-    useEffect(() => {
-        dispatch(fetchUsers());
-    }, [dispatch, userMatches.length])
-
-    
 
     return (
         <section className='main-page'>
             {!showMessages && 
-            <div>
+            <>
                 <MatchesSidebar
                 setClickedMatchId={setClickedMatchId}
                 setShowMessages={setShowMessages}/>
                 <SwipeView/>
-            </div>}
+            </>}
             {showMessages &&
-            <div className='mainPageMatchesMessagesContainer'>
+            <>
                 <MatchesSidebar
                     setClickedMatchId={setClickedMatchId}
                     setShowMessages={setShowMessages}/>
-                <Messaging clickedMatchId={clickedMatchId}/>
-            </div>}
+                <Messaging clickedMatchId={clickedMatchId} />
+            </>}
         </section>
     )
 }
