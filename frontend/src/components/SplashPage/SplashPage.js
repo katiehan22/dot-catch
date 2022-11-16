@@ -9,6 +9,7 @@ import "./SplashPage.css";
 import { Mousewheel, Pagination } from "swiper";
 import SignupForm from "../SessionForms/SignupForm";
 import NavBar from "../NavBar/NavBar";
+import background from './splash-1.png'
 
 export default function SplashPage() {
   return (
@@ -25,9 +26,9 @@ export default function SplashPage() {
         className="mySwiper"
       >
         <SwiperSlide>
-          <div className="slide slide-one" style={{ backgroundColor: 'white' }}>
-            <div className="slide-text" >
-
+          <div className="slide slide-one wrap-center">
+            <div className="slide-text-one" >
+              <h2>Crack the code to dating</h2>
             </div>
           </div>
         </SwiperSlide>

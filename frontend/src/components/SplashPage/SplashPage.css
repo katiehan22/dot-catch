@@ -9,12 +9,29 @@
 }
 
 .slide {
-    display: flex;
-    justify-content: space-between;
+    
     height: 100%;
-
+    width: 100%;
 }
 
 .slide-text {
     width: 50vw;
+}
+
+.slide-one {
+    background-image: url(./splash-1.png);
+    background-size: cover;
+}
+
+.wrapper-center {
+    display: flex;
+}
+
+.slide-text-one {
+    width:60vw;
+    height: 60vh;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid #ebebeb;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
 }
