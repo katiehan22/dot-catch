@@ -14,6 +14,7 @@ import MainPage from './components/MainPage/MainPage';
 import { getCurrentUser } from './store/session';
 import CreateProfileForm from './components/UserProfileForms/CreateProfileForm';
 import MessagesPage from './components/Messaging/MessagesPage';
+import UpdateProfileForm from './components/UserProfileForms/UpdateProfileForm';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -32,6 +33,7 @@ function App() {
 
         <ProtectedRoute exact path="/profile/:userId" component={UserProfilePage} />
         <ProtectedRoute exact path="/createprofile" component={CreateProfileForm} />
+        <ProtectedRoute exact path="/updateprofile" component={UpdateProfileForm} />
         <ProtectedRoute exact path="/messages" component={MessagesPage} />
       </Switch>
     </>
