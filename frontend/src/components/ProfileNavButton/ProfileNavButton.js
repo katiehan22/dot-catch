@@ -1,16 +1,19 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState} from "react"
 import { useDispatch, useSelector} from "react-redux"
 import { Link } from "react-router-dom"
 import { logout } from "../../store/session"
 import './ProfileNavButton.css'
+import { useHistory } from "react-router-dom"
 
 export const ProfileNavButton = () => {
     const dispatch = useDispatch()
     const currUser = useSelector(state => state.session.user)
+    const history = useHistory()
 
     return (
         <>
             <div className="menu">
+                <div className="item" onClick={() => history.push({ pathname: `/profile/${currUser._id}` , state: {fromApp: true, user: currUser}})}><span>View profile</span></div>
                 <div className="item"><span>Update profile</span></div>
                 <div className="item" onClick={() => dispatch(logout())}><span>Logout</span></div>
                 <div id="nav-button">
