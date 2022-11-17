@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import './SessionForm.css';
 import { signup, clearSessionErrors } from '../../store/session';
 import { hideModal } from '../../store/ui';
@@ -101,7 +102,8 @@ function SignupForm () {
           className='submit-button'
           type="submit"
           disabled={!email || !name || !password || password !== password2}
-        >Sign up
+        >
+          Sign up
         </button>
     </form>
   );

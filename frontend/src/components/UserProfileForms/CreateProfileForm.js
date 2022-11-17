@@ -3,13 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearUserErrors, updateUser, uploadPhoto } from "../../store/users";
 import "./UserProfileForms.css";
 import { receiveCurrentUser } from "../../store/session";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation, Redirect } from "react-router-dom";
 
 const CreateProfileForm = () => {
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.session.user);
   const errors = useSelector(state => state.errors.users);
   const history = useHistory();
+  const linkLocation = useLocation();
 
   const [firstName, setFirstName] = useState('');
   const [age, setAge] = useState('');
@@ -99,6 +100,8 @@ const CreateProfileForm = () => {
     dispatch(receiveCurrentUser(updatedUser));
     history.push("/");
   }
+
+  if (!linkLocation.state?.fromApp) return <Redirect to='/' />
 
   return (
     <>
