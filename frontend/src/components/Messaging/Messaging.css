@@ -18,8 +18,58 @@
   padding: 5px 0;
 }
 
-.messagesHeaderLink {
+.messagesHeader {
+  display: flex;
+  justify-content: space-between;
   margin-left: 20px;
+  margin-right: 57.5px;
+  align-items: center;
+}
+
+.unmatch-dropdown {
+  position: relative;
+  height: 100%;
+}
+
+.unmatch-dropdown > div {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.unmatch-icon {
+  height: 25px;
+  width: 25px;
+  cursor: pointer;
+}
+
+.unmatch-dropdown-content {
+  position: absolute;
+  z-index: 30;
+  opacity: 0;
+  box-shadow: 1.5pt 0pt 5pt 0.5pt #D3D3D3;
+  border-radius: 10px;
+  padding: 10px;
+  top: 50px;
+  right: 0px;
+  width: 130px;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  transition: opacity 0.5s ease, bottom 0.5s ease;
+  background-color: white;
+}
+
+.unmatch-dropdown:hover .unmatch-dropdown-content {
+  opacity: 1;
+  z-index: 30;
+}
+
+.unmatch-dropdown-content:hover .hover-green {
+  color: #ff6666;
+}
+
+.messagesHeaderLink {
   display: flex;
   align-items: center;
 
@@ -33,7 +83,7 @@
   width: 70vw;
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 72px);
+  height: 90vh;
 }
 
 .formPlaceholder {
@@ -114,10 +164,6 @@
 .rightMessage p {
   color: white;
   word-wrap: break-word;
-}
-
-.leftMessage p {
-  /* word-wrap: break-word; */
 }
 
 .leftMessage, .rightMessage {

@@ -1,9 +1,14 @@
 .profile-section {
-    width: 80vw;
+    width: 70vw;
     height: 90vh;
 }
 
 .profile-card-container {
-    padding: 0 3% 0 3%;
-    height: 100%;
+    padding: 3%;
+    height: 90%;
+    display: flex;
+}
+
+.profile-card-container > .card {
+    /* height: 90%; */
 }

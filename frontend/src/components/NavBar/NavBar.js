@@ -27,8 +27,8 @@ function NavBar () {
     } else {
       return (
         <div className="links-auth">
-          <button onClick={() => dispatch(showLoginModal())}>Login</button>
-          <button onClick={() => dispatch(showSignupModal())}>Signup</button>
+          <button className='splash-nav-buttons' onClick={() => dispatch(showLoginModal())}>Login</button>
+          <button className='splash-nav-buttons' onClick={() => dispatch(showSignupModal())}>Signup</button>
         </div>
       );
     }
@@ -36,7 +36,9 @@ function NavBar () {
 
   return (
     <nav className='nav'>
-      <h1>.catch</h1>
+      <Link to='/'>
+        <h1>.catch</h1>
+      </Link>
       { getLinks() }
       {modal === 'login' &&(<LoginFormModal></LoginFormModal>)}
       {modal === 'signup' &&(<SignupFormModal></SignupFormModal>)}
