@@ -2,6 +2,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const debug = require('debug');
+const bodyParser = require("body-parser");
 
 const cors = require('cors');
 const csurf = require('csurf');
@@ -19,6 +20,8 @@ const messagesRouter = require('./routes/api/messages')
 const app = express();
 
 app.use(logger('dev'));
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
