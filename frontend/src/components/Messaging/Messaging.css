@@ -64,11 +64,20 @@
   color: white;
 }
 
+.editMsgCloseButton {
+  height: 20px;
+  margin-left: 15px;
+}
+
 .sendMessageButton {
   right: 0;
   padding: 10px;
 }
 
+.sendEditMessageButton {
+  color: white;
+  margin-left: 15px;
+}
 .singleMsgContainer {
   display: flex;
   flex-direction: column;
