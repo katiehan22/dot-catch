@@ -44,7 +44,7 @@ const SwipeCards = () => {
     return (
         <div className='swipe-cards'>
             <div className='swipe-cards-container'>
-                {usersToSwipe.map(user => 
+                {usersToSwipe.map((user, index) => (
                     <TinderCard 
                         className='swipe'
                         key={user._id}
@@ -54,7 +54,23 @@ const SwipeCards = () => {
                     >
                         <ProfileComponent user={user} />
                     </TinderCard>
-                )}
+                ))}
+                <TinderCard
+                    className='swipe'
+                    preventSwipe={['up', 'down', 'left']}
+                >
+                    <div className='card instructions'>
+                        <h1>Swipe right to like!</h1>
+                    </div>
+                </TinderCard>
+                <TinderCard
+                    className='swipe'
+                    preventSwipe={['up', 'down', 'right']}
+                >
+                    <div className='card instructions'>
+                        <h1>Swipe left to pass!</h1>
+                    </div>
+                </TinderCard>
             </div>
         </div>
     )

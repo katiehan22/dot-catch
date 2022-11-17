@@ -1,7 +1,7 @@
 .swipe-view-section {
     background-color: #ffff;
     display: flex;
-    height: 90vh;
+    height: 92.5%;
     width: 70vw;
 }
 
@@ -11,5 +11,5 @@
 }
 
 .viewing-option-btns {
-    
+    height: 7.5%;
 }
