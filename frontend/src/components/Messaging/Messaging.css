@@ -45,19 +45,22 @@
 .unmatch-dropdown-content {
   position: absolute;
   z-index: 30;
-  display: none;
+  opacity: 0;
   box-shadow: 1.5pt 0pt 5pt 0.5pt #D3D3D3;
   border-radius: 10px;
   padding: 10px;
   top: 45px;
   right: 0px;
   width: 130px;
+  display: flex;
   justify-content: center;
   cursor: pointer;
+  transition: opacity 0.5s ease, bottom 0.5s ease;
+  transition-delay: 0;
 }
 
 .unmatch-dropdown:hover .unmatch-dropdown-content {
-  display: flex;
+  opacity: 1;
 }
 
 .unmatch-dropdown-content:hover .hover-green {
@@ -139,10 +142,6 @@
 .rightMessage p {
   color: white;
   word-wrap: break-word;
-}
-
-.leftMessage p {
-  /* word-wrap: break-word; */
 }
 
 .leftMessage, .rightMessage {
