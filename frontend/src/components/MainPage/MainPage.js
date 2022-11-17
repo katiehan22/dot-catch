@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
-import SplashPage from '../SplashPage/SplashPage';
 import { LoggedInView } from './LoggedInView';
+import SplashPage from '../SplashPage/SplashPage'
 
 
 const MainPage = () => {
@@ -8,7 +8,7 @@ const MainPage = () => {
 
     return (
         <>
-            {curr ? <LoggedInView /> : <SplashPage />}
+            {curr ? <LoggedInView /> : <SplashPage></SplashPage>}
         </>
     )
 }
