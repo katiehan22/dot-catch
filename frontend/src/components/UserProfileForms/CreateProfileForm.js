@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { clearUserErrors, updateUser, uploadPhoto } from "../../store/users";
+import { clearUserErrors, fetchUsers, updateUser, uploadPhoto } from "../../store/users";
 import "./UserProfileForms.css";
 import { receiveCurrentUser } from "../../store/session";
 import { useHistory, useLocation, Redirect } from "react-router-dom";
@@ -8,9 +8,12 @@ import { useHistory, useLocation, Redirect } from "react-router-dom";
 const CreateProfileForm = () => {
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.session.user);
+  const users = useSelector(state => state.entities.users ? Object.values(state.entities.users) : []);
   const errors = useSelector(state => state.errors.users);
   const history = useHistory();
   const linkLocation = useLocation();
+  
+  const randomUsers = ([...users].sort(() => 0.5 - Math.random())).slice(0, Math.round(0.75 * users.length));
 
   const [firstName, setFirstName] = useState('');
   const [age, setAge] = useState('');
@@ -32,6 +35,7 @@ const CreateProfileForm = () => {
   const [lightDarkStyle, setLightDarkStyle] = useState({ "light": "profile-button-unchecked", "dark": "profile-button-unchecked" });
 
   useEffect(() => {
+    dispatch(fetchUsers());
     return () => {
       dispatch(clearUserErrors());
     };
@@ -98,6 +102,7 @@ const CreateProfileForm = () => {
     // dispatch(uploadPhoto(currentUser._id, photos[0]))
     dispatch(updateUser(updatedUser));
     dispatch(receiveCurrentUser(updatedUser));
+    randomUsers.forEach(user => dispatch(updateUser({ ...user, likedUserId: currentUser._id })));
     history.push("/");
   }
 
@@ -151,7 +156,7 @@ const CreateProfileForm = () => {
                 <h2 className="profile-input-header">Favorite Programming Language:</h2>
                 <div className="profile-buttons-container">
                   <button className={favLangStyle["javascript"]} onClick={() => handleFavLang("javascript")}>Javascript</button>
-                  <button className={favLangStyle["python"]} onClick={() => handleFavLang("python")}>Pyton</button>
+                  <button className={favLangStyle["python"]} onClick={() => handleFavLang("python")}>Python</button>
                   <button className={favLangStyle["c"]} onClick={() => handleFavLang("c")}>C</button>
                   <button className={favLangStyle["ruby"]} onClick={() => handleFavLang("ruby")}>Ruby</button>
                   <button className={favLangStyle["java"]} onClick={() => handleFavLang("java")}>Java</button>

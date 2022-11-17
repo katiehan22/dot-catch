@@ -169,7 +169,7 @@ const UpdateProfileForm = () => {
                 <h2 className="profile-input-header">Favorite Programming Language:</h2>
                 <div className="profile-buttons-container">
                   <button className={favLangStyle["javascript"]} onClick={() => handleFavLang("javascript")}>Javascript</button>
-                  <button className={favLangStyle["python"]} onClick={() => handleFavLang("python")}>Pyton</button>
+                  <button className={favLangStyle["python"]} onClick={() => handleFavLang("python")}>Python</button>
                   <button className={favLangStyle["c"]} onClick={() => handleFavLang("c")}>C</button>
                   <button className={favLangStyle["ruby"]} onClick={() => handleFavLang("ruby")}>Ruby</button>
                   <button className={favLangStyle["java"]} onClick={() => handleFavLang("java")}>Java</button>

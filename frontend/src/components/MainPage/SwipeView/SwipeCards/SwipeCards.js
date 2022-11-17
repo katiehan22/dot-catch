@@ -8,6 +8,7 @@ import ProfileComponent from '../../../UserProfilePage/ProfileComponent/ProfileC
 const SwipeCards = () => {
     const dispatch = useDispatch();
     const users = useSelector(state => state.entities.users ? Object.values(state.entities.users) : []);
+    const tom = users.find(user => user.bio === "You're getting the hang of it! I am Tom. I like everyone. Match with me :)");
     const userLikes = useSelector(state => state.session.user.likes !== {} ? Object.keys(state.session.user.likes) : []);
     const userMatches = useSelector(state => state.session.user.matches !== {} ? Object.keys(state.session.user.matches) : []);
     const currentUser = useSelector(state => state.session.user ? state.session.user : null);
@@ -39,7 +40,10 @@ const SwipeCards = () => {
             }
         }
     }
+
     // const outOfFrame = nameLeft => console.log(nameLeft + " left the screen!");
+
+    if (tom === undefined) return null;
 
     return (
         <div className='swipe-cards'>
@@ -55,6 +59,14 @@ const SwipeCards = () => {
                         <ProfileComponent user={user} />
                     </TinderCard>
                 ))}
+                <TinderCard
+                    className='swipe'
+                    preventSwipe={['up', 'down', 'left']}
+                    onSwipe={dir => swiped(dir, tom)}
+                // onCardLeftScreen={() => outOfFrame(user._id)}
+                >
+                    <ProfileComponent user={tom} />
+                </TinderCard>
                 <TinderCard
                     className='swipe'
                     preventSwipe={['up', 'down', 'left']}
