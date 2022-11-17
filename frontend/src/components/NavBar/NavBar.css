@@ -21,6 +21,8 @@
     padding-left: 40px;
     padding-right: 40px;
     padding-top: 5px;
+    height: 10vh;
+    /* border-bottom: 1px solid #ebebeb;; */
 }
 
 .splash-nav-buttons {

@@ -3,7 +3,10 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { createMessage, fetchUserMessages } from "../../store/messages";
+import { updateUser } from '../../store/users';
 import MessagesList from "./MessagesList";
+import { BsFlagFill } from 'react-icons/bs';
+import { receiveCurrentUser } from "../../store/session";
 
 export default function Messaging({matchedUser}) {
   
@@ -11,7 +14,8 @@ export default function Messaging({matchedUser}) {
   
   const [message, setMessage] = useState('');
   
-  const currentUserId = useSelector( state => state.session.user._id );
+  const currentUser = useSelector( state => state.session.user );
+  const currentUserId = currentUser._id;
   const clickedMatchId = matchedUser._id
   
   const messageArray = useSelector( state => Object.values(state.entities.messages) )
@@ -19,6 +23,10 @@ export default function Messaging({matchedUser}) {
   useEffect( () => {
     dispatch( fetchUserMessages(currentUserId, clickedMatchId) )
   }, [dispatch, clickedMatchId, messageArray.length] )
+
+  useEffect(() => {
+    if (messageArray.length === 0 && matchedUser.bio === "You're getting the hang of it! I am Tom. I like everyone. Match with me :)") dispatch(createMessage({user_from: clickedMatchId, user_to: currentUserId, body: 'Hi my name is Tom'}));
+  }, [dispatch])
 
   const newMessage = {
     user_from: currentUserId,
@@ -31,18 +39,38 @@ export default function Messaging({matchedUser}) {
     dispatch(createMessage(newMessage) )
     document.getElementById("messageInput").value='';
   }
+
+  const unmatchUser = () => {
+    const newMatches = { ...currentUser.matches };
+    delete newMatches[clickedMatchId];
+    if (matchedUser.bio === "You're getting the hang of it! I am Tom. I like everyone. Match with me :)") dispatch(updateUser({ ...matchedUser, likedUserId: currentUser._id }));
+    dispatch(updateUser({ ...currentUser, deleteMatcherId: clickedMatchId }));
+    dispatch(updateUser({ ...matchedUser, deleteMatcherId: currentUserId }));
+    dispatch(receiveCurrentUser({ ...currentUser, matches: newMatches }));
+  }
   
   // if ( matchedUser === {}) return null;
+
   return(
     <section className="messagingContainer">
-      <div className="messagesHeaderContainer">
-        <Link
-          className="messagesHeaderLink"
-          to={ {pathname: `/profile/${matchedUser._id}`, state: { user: matchedUser, fromApp: true } } }
-          >
-            <img className={'profile-pic label'} src='https://upload.wikimedia.org/wikipedia/commons/1/18/Mark_Zuckerberg_F8_2019_Keynote_%2832830578717%29_%28cropped%29.jpg'></img>
-            <h2 className="messagingMatchedUser">{matchedUser.firstName}</h2>
-        </Link>
+      <div className="messagesHeader">
+        <div className="messagesHeaderContainer">
+          <Link
+            className="messagesHeaderLink"
+            to={ {pathname: `/profile/${matchedUser._id}`, state: { user: matchedUser, fromApp: true } } }
+            >
+              <img className={'profile-pic label'} src='https://upload.wikimedia.org/wikipedia/commons/1/18/Mark_Zuckerberg_F8_2019_Keynote_%2832830578717%29_%28cropped%29.jpg'></img>
+              <h2 className="messagingMatchedUser">{matchedUser.firstName}</h2>
+          </Link>
+        </div>
+        <div className="unmatch-dropdown">
+          <div>
+            <BsFlagFill className="unmatch-icon" />
+            <Link to='/' className="unmatch-dropdown-content" onClick={unmatchUser}>
+              <span className="hover-green">Unmatch User</span>
+            </Link>
+          </div>
+        </div>
       </div>
       <MessagesList messageArray={messageArray} clickedMatchId={clickedMatchId} />
       <form className="messageInputForm">

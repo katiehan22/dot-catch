@@ -27,15 +27,16 @@
 
 .submit-button {
   margin-top: 20px;
-  background-color: #77966D;
   text-align: center;
-  padding: 10px;
   border-radius: 20px;
+  background-color: #77966D;
+  padding: 10px;
   color: white;
 }
 
 .submit-button:disabled {
   background-color: #ebebeb;
+  color: black;
 }
 
 .bottom-flat {

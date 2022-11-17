@@ -19,16 +19,16 @@
 
 @keyframes bounce {
     from {
-        transform: translate3d(0, 84vh, 0);
+        transform: translate3d(0, 80vh, 0);
     }
 
     to {
-        transform: translate3d(0, 85vh, 0);
+        transform: translate3d(0, 81vh, 0);
     }
 }
 
 .splash-page-container {
-    height: 100vh;
+    height: 90vh;
     width: 100vw;
 }
 
@@ -68,7 +68,7 @@
 }
 
 .slide-one-text {
-    transform: translate(6vw, 53vh);
+    transform: translate(6vw, 50vh);
 }
 
 .slide-one-text h1 {

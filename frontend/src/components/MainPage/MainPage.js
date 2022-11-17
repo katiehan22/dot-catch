@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import SplashPage from '../SplashPage/SplashPage';
 import { LoggedInView } from './LoggedInView';
-import SplashPage from '../SplashPage/SplashPage'
 
 
 const MainPage = () => {
@@ -8,7 +9,7 @@ const MainPage = () => {
 
     return (
         <>
-            {curr ? <LoggedInView /> : <SplashPage></SplashPage>}
+            {curr ? (curr.location ? <LoggedInView /> : <Redirect to={{pathname: '/createprofile', state: { fromApp: true }}}/>) : <SplashPage />}
         </>
     )
 }

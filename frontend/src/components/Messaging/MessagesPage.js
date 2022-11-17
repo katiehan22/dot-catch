@@ -6,7 +6,7 @@ export default function MessagesPage() {
   const location = useLocation();
 
   const {matchedUser} = location.state || {};
-  if (!location.state?.fromApp) return <Redirect to='/main' />
+  if (!location.state?.fromApp) return <Redirect to='/' />
   
   return(
     <section className="main-page">

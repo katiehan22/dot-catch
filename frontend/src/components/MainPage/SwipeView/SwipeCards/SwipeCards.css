@@ -14,6 +14,18 @@
 .swipe {
     position: absolute;
     width: 65%;
-    height: 80%;
+    height: 75%;
     display: flex;
+}
+
+.instructions {
+    background-color: #748067;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.instructions > h1 {
+    color: white;
 }

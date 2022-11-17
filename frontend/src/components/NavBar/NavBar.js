@@ -36,7 +36,9 @@ function NavBar () {
 
   return (
     <nav className='nav'>
-      <h1>.catch</h1>
+      <Link to='/'>
+        <h1>.catch</h1>
+      </Link>
       { getLinks() }
       {modal === 'login' &&(<LoginFormModal></LoginFormModal>)}
       {modal === 'signup' &&(<SignupFormModal></SignupFormModal>)}
