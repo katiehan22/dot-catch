@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import SwipeCards from './SwipeCards/SwipeCards';
-import ListView from './ListView/ListView';
+import ListView from '../../ListView/ListView';
 import './SwipeView.css';
 
 const SwipeView = () => {

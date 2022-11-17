@@ -7,8 +7,9 @@ import './MatchesSidebar.css'
 export default function MatchesSidebar() {
 
   const dispatch = useDispatch();
-
-  const matchesArray = useSelector(state => state.session.user.matches !== {} ? Object.keys(state.session.user.matches) : []);
+  
+  const matchesArray = useSelector(state => state.session.user !== {} ? Object.keys(state.session.user.matches) : []);
+  console.log(matchesArray)
 
   useEffect(() => {
       dispatch(fetchUsers());

@@ -20,8 +20,10 @@ async function jwtFetch(url, options = {}) {
   // "application/json" and the "CSRF-Token" header to the value stored in the
   // "CSRF-TOKEN" cookie.
   if (options.method.toUpperCase() !== "GET") {
-    options.headers["Content-Type"] =
-      options.headers["Content-Type"] || "application/json";
+    if(!url.includes("add-photo")) {
+      options.headers["Content-Type"] =
+        options.headers["Content-Type"] || "application/json";
+    }
     options.headers["CSRF-Token"] = getCookie("CSRF-TOKEN");
   }
 

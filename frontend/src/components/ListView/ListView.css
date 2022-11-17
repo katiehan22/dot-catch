@@ -1,0 +1,54 @@
+.list-view-section {
+    display: grid;
+    width: 70vw;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    gap: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
+    overflow: scroll;
+}
+
+
+.profile-container img{
+    object-fit: cover;
+    object-position: 50% 50%;
+    width: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 15px;
+}
+
+.profile-container h3 {
+    position: absolute;
+    transform: translateY(-5vh);
+    font-size: 25px;
+    color: white;
+    padding-left: 10px;
+    text-shadow: 1 1 1 #ebebeb;
+}
+
+.profile-display {
+    position: fixed;
+    top: 150px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin-left: 33vw;
+    max-height: 60vh;
+    max-width: 60vw;
+    z-index: 2;
+
+    animation: slideIn 0.3s;
+        animation-delay: 0s;
+        animation-fill-mode: forwards;
+}
+
+.profile-display button {
+    z-index: 3;
+    position: relative;
+    transform: translateY(-60px);
+    margin-left: 10px;
+    padding: 15px;
+    background-color: white;
+    border-radius: 50%;
+    font-weight: 500;
+}

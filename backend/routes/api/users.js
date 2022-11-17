@@ -158,6 +158,9 @@ router.patch('/:userId', requireUser, async (req, res, next) => {
       prompt4: user.prompt4
     });
 
+    // const updatedUser = await user.save();
+    // return res.json(updatedUser);
+
   } catch (error) {
     next(error);
   }
@@ -170,5 +173,32 @@ router.delete('/:userId', requireUser, async (req, res, next) => {
     else return res.status(204).end();
   }).catch(error => next(error));
 })
+
+
+const upload = require("./image_upload_aws.js");
+const { update } = require('../../models/User');
+const singleUpload = upload.single("image");
+
+router.post("/:userId/add-photo", async (req, res) => {
+  const user = await User.findById(req.params.userId);
+
+  singleUpload(req, res, function (err) {
+    if (err) {
+      return res.json({
+        success: false,
+        errors: {
+          title: "Image Upload Error",
+          detail: err.message,
+          error: err,
+        },
+      });
+    }
+
+    const update = req.file.location;
+    user.photos.push(update);
+    user.save();
+    res.json(user);
+  });
+});
 
 module.exports = router;
