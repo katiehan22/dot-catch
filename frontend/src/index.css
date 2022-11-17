@@ -6,6 +6,11 @@ form > .errors {
   align-items: center;
 }
 
+.wrap-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 h1 {
   font-size: 32px;
   font-weight: bolder;

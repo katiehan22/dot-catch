@@ -1,0 +1,120 @@
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(130%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes bounce {
+    from {
+        transform: translate3d(0, 84vh, 0);
+    }
+
+    to {
+        transform: translate3d(0, 85vh, 0);
+    }
+}
+
+.splash-page-container {
+    height: 100vh;
+    width: 100vw;
+}
+
+.mySwiper{
+    height: 100%;
+    width: 100%;
+    border-radius: 0 0 0 0;
+}
+
+.inner {
+    position: absolute;
+}
+
+.background-one {
+    background-color: #222222;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slide-one-img-container {
+    height: 100%;
+    width: 100%;
+
+    transition-timing-function: ease-in-out;
+        animation: slideIn 3s;
+        animation-delay: 0s;
+        animation-fill-mode: forwards;
+}
+
+.slide-one-img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.slide-one-text {
+    transform: translate(6vw, 53vh);
+}
+
+.slide-one-text h1 {
+    font-size: 80px;
+    color: white;
+    opacity: 0;
+    transition-timing-function: ease-in-out;
+        animation: fadeIn 4s;
+        animation-delay: 3.5s;
+        animation-fill-mode: forwards;
+}
+
+#logo {
+    transition-timing-function: ease-in-out;
+    animation: fadeIn 2s;
+    animation-delay: 0s;
+    animation-fill-mode: forwards;
+}
+
+.bouncy-down-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    opacity: 0;
+
+    animation: fadeIn 1s;
+    animation-delay: 5s;
+    animation-fill-mode: forwards;
+}
+
+.bouncy-down-container {
+    position: fixed;
+    text-align: center;
+    transform: translateY(85vh);
+    align-items: center;
+    background-color: #222222;
+    border-radius: 50%;
+
+    animation: bounce 1.5s;
+        animation-direction: alternate;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+}
+
+.down-chevron {
+    color: white;
+    font-size: 30px;
+    padding: 10px 10px 5px 10px;
+}
