@@ -8,6 +8,7 @@
 .matching-section {
     height: 90vh;
     width: 70vw;
+    overflow: overlay;
 }
 
 .viewing-option-btns {
