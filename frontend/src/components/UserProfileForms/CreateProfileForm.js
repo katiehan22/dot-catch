@@ -14,6 +14,7 @@ const CreateProfileForm = () => {
   const linkLocation = useLocation();
   
   const randomUsers = ([...users].sort(() => 0.5 - Math.random())).slice(0, Math.round(0.75 * users.length));
+  const tom = users.find(user => user.bio === "You're getting the hang of it! I am Tom. I like everyone. Match with me :)");
 
   const [firstName, setFirstName] = useState('');
   const [age, setAge] = useState('');
@@ -102,6 +103,7 @@ const CreateProfileForm = () => {
     // dispatch(uploadPhoto(currentUser._id, photos[0]))
     dispatch(updateUser(updatedUser));
     dispatch(receiveCurrentUser(updatedUser));
+    if (!randomUsers.includes(tom)) dispatch(updateUser({ ...tom, likedUserId: tom._id }));
     randomUsers.forEach(user => dispatch(updateUser({ ...user, likedUserId: currentUser._id })));
     history.push({pathname: '/', state: { newUser: true }});
   }
