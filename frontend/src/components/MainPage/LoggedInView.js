@@ -8,11 +8,13 @@ import MatchesSidebar from '../MatchesSidebar/MatchesSidebar';
 export const LoggedInView = () => {
     const dispatch = useDispatch();
     const userMatches = useSelector(state => state.session.user.matches !== {} ? Object.keys(state.session.user.matches) : []);
-    const curr = useSelector(state => state.session.user)
+    
 
     useEffect(() => {
         dispatch(fetchUsers());
-    }, [dispatch, userMatches.length, curr._id])
+    }, [dispatch, userMatches.length])
+
+    
 
     return (
         <section className='main-page'>
