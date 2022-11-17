@@ -4,27 +4,27 @@ import { clearUserErrors, updateUser, uploadPhoto } from "../../store/users";
 import "./UserProfileForms.css";
 import { receiveCurrentUser } from "../../store/session";
 
-const CreateProfileForm = () => {
+const UpdateProfileForm = () => {
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.session.user);
   const errors = useSelector(state => state.errors.users);
 
-  const [firstName, setFirstName] = useState('');
-  const [age, setAge] = useState('');
-  const [location, setLocation] = useState('');
-  const [gender, setGender] = useState('');
-  const [genderPreference, setGenderPreference] = useState('');
+  const [firstName, setFirstName] = useState(currentUser.firstName);
+  const [age, setAge] = useState(currentUser.age);
+  const [location, setLocation] = useState(currentUser.location);
+  const [gender, setGender] = useState(currentUser.gender);
+  const [genderPreference, setGenderPreference] = useState(currentUser.genderPreference);
   const [favLang, setFavLang] = useState('');
   const [tabSpace, setTabSpace] = useState('');
   const [macPc, setMacPc] = useState('');
   const [lightDark, setLightDark] = useState('');
-  const [bio, setBio] = useState('');
+  const [bio, setBio] = useState(currentUser.bio);
   const [photos, setPhotos] = useState([]);
 
   const [genderStyle, setGenderStyle] = useState({ "F": "profile-button-unchecked", "M": "profile-button-unchecked", "N": "profile-button-unchecked" });
   const [genderPrefStyle, setGenderPrefStyle] = useState({ "M": "profile-button-unchecked", "F": "profile-button-unchecked", "N": "profile-button-unchecked", "NP": "profile-button-unchecked" });
   const [favLangStyle, setFavLangStyle] = useState({ "javascript": "profile-button-unchecked", "python": "profile-button-unchecked", "c": "profile-button-unchecked", "ruby": "profile-button-unchecked", "java": "profile-button-unchecked", "html-css": "profile-button-unchecked", "sql": "profile-button-unchecked" });
-  const [tabSpaceStyle, setTabSpaceStyle] = useState({ "tabs": "profile-button-unchecked", "spaces": "profile-button-unchecked"});
+  const [tabSpaceStyle, setTabSpaceStyle] = useState({ "tabs": "profile-button-unchecked", "spaces": "profile-button-unchecked" });
   const [macPcStyle, setMacPcStyle] = useState({ "mac": "profile-button-unchecked", "pc": "profile-button-unchecked" });
   const [lightDarkStyle, setLightDarkStyle] = useState({ "light": "profile-button-unchecked", "dark": "profile-button-unchecked" });
 
@@ -36,19 +36,19 @@ const CreateProfileForm = () => {
 
   const handleGender = (genderSelection) => {
     const genderStyleCopy = { "F": "profile-button-unchecked", "M": "profile-button-unchecked", "N": "profile-button-unchecked" };
-    setGenderStyle({ ...genderStyleCopy, [genderSelection]: "profile-button-checked"});
+    setGenderStyle({ ...genderStyleCopy, [genderSelection]: "profile-button-checked" });
     setGender(genderSelection);
   }
 
   const handleGenderPref = (genderPrefSelection) => {
     const genderPrefStyleCopy = { "M": "profile-button-unchecked", "F": "profile-button-unchecked", "N": "profile-button-unchecked", "NP": "profile-button-unchecked" };
-    setGenderPrefStyle({...genderPrefStyleCopy, [genderPrefSelection]: "profile-button-checked"});
+    setGenderPrefStyle({ ...genderPrefStyleCopy, [genderPrefSelection]: "profile-button-checked" });
     setGenderPreference(genderPrefSelection);
   }
 
   const handleFavLang = (favLangSelection) => {
     const favLangStyleCopy = { "javascript": "profile-button-unchecked", "python": "profile-button-unchecked", "c": "profile-button-unchecked", "ruby": "profile-button-unchecked", "java": "profile-button-unchecked", "html-css": "profile-button-unchecked", "sql": "profile-button-unchecked" };
-    setFavLangStyle({...favLangStyleCopy, [favLangSelection]: "profile-button-checked"});
+    setFavLangStyle({ ...favLangStyleCopy, [favLangSelection]: "profile-button-checked" });
     setFavLang(favLangSelection);
   }
 
@@ -60,7 +60,7 @@ const CreateProfileForm = () => {
 
   const handleMacPc = (macPcSelection) => {
     const macPcStyleCopy = { "mac": "profile-button-unchecked", "pc": "profile-button-unchecked" };
-    setMacPcStyle({...macPcStyleCopy, [macPcSelection]: "profile-button-checked"});
+    setMacPcStyle({ ...macPcStyleCopy, [macPcSelection]: "profile-button-checked" });
     setMacPc(macPcSelection);
   }
 
@@ -68,6 +68,10 @@ const CreateProfileForm = () => {
     const lightDarkStyleCopy = { "light": "profile-button-unchecked", "dark": "profile-button-unchecked" };
     setLightDarkStyle({ ...lightDarkStyleCopy, [lightDarkSelection]: "profile-button-checked" });
     setLightDark(lightDarkSelection);
+  }
+
+  const handleDelete = () => {
+    // add dispatch here
   }
 
   const handleFiles = (e) => {
@@ -86,9 +90,9 @@ const CreateProfileForm = () => {
       gender: gender,
       genderPreference: genderPreference,
       prompt1: { "favLang": favLang },
-      prompt2: {"tabSpace": tabSpace},
-      prompt3: {"macPc": macPc},
-      prompt4: {"lightDark": lightDark},
+      prompt2: { "tabSpace": tabSpace },
+      prompt3: { "macPc": macPc },
+      prompt4: { "lightDark": lightDark },
       bio: bio
       // photos: photos
     }
@@ -100,13 +104,13 @@ const CreateProfileForm = () => {
   return (
     <>
       <div className="create-user-profile-page">
-        <h1 className="profile-form-heading">Create your profile</h1>
+        <h1 className="profile-form-heading">Update your profile</h1>
         <form className="user-profile-form" onSubmit={handleProfileSubmit}>
           <div className="user-profile-form-container">
             <div className="user-profile-form-left">
               <div className="first-name-container">
                 <label htmlFor="first-name" className="profile-input-header">First Name: </label>
-                <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} required className="profile-form-input"/>
+                <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} required className="profile-form-input" />
               </div>
               <div className="age-container">
                 <label htmlFor="age" className="profile-input-header">Age: </label>
@@ -139,7 +143,7 @@ const CreateProfileForm = () => {
                 </div>
               </div>
             </div>
-            <div className="user-profile-form-right">  
+            <div className="user-profile-form-right">
               <div className="fav-lang-container">
                 <h2 className="profile-input-header">Favorite Programming Language:</h2>
                 <div className="profile-buttons-container">
@@ -182,13 +186,14 @@ const CreateProfileForm = () => {
               </div>
             </div>
           </div>
-          <input type="submit" value="Create Profile" className="create-profile-button" />
+          <input type="submit" value="Update Profile" className="create-profile-button" />
         </form>
         {/* <div className="errors">{errors?.users}</div> */}
+        <button id="delete-profile-button" onClick={() => handleDelete}>Delete Profile</button>
       </div>
       {/* <img src={currentUser.photos[0]}/> */}
     </>
   )
 }
 
-export default CreateProfileForm;
+export default UpdateProfileForm;

@@ -109,3 +109,37 @@
 .bio-container {
   margin-top: 10px;
 }
+
+/* input[type="file"] {
+  display: none;
+}
+
+.custom-file-upload {
+  border: 1px solid #222222;
+  padding: 5px;
+  min-width: 30px;
+  min-height: 30px;
+  border-radius: 5px;
+  cursor: pointer;
+} */
+.photo-upload-container {
+  margin-top: 20px;
+}
+
+#delete-profile-button {
+  align-self: center;
+  margin-top: 15px;
+  width: 200px;
+  height: 30px;
+  border-radius: 5px;
+  padding: 10px;
+  /* background-color: #77966D; */
+  color: #d31334;
+  border: 1px solid #d31334;
+  text-align: center;
+}
+
+#delete-profile-button:hover {
+  background-color: #b0102b;
+  color: white;
+}
