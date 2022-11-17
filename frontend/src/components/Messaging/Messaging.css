@@ -3,6 +3,7 @@
   overflow-y: overlay;
   flex: 1;
   padding: 40px;
+  /* border-top: 1px solid #ebebeb;; */
 }
 
 .messageUl::-webkit-scrollbar-track {
@@ -12,11 +13,27 @@
   border: none;
 }
 
+.messagesHeaderContainer {
+  width: fit-content;
+  padding: 5px 0;
+}
+
+.messagesHeaderLink {
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+
+}
+
+.messagingMatchedUser {
+  margin-left: 15px;
+}
+
 .messagingContainer {
   width: 70vw;
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 62px);
+  height: calc(100vh - 72px);
 }
 
 .formPlaceholder {
@@ -32,8 +49,24 @@
   margin-bottom: 10px;
 }
 
+.messageEditForm {
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  color: white;
+}
+
 #messageInput {
   flex-grow: 1;
+}
+
+#messageEdit {
+  color: white;
+}
+
+.editMsgCloseButton {
+  height: 20px;
+  margin-left: 15px;
 }
 
 .sendMessageButton {
@@ -41,6 +74,10 @@
   padding: 10px;
 }
 
+.sendEditMessageButton {
+  color: white;
+  margin-left: 15px;
+}
 .singleMsgContainer {
   display: flex;
   flex-direction: column;
