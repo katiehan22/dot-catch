@@ -24,7 +24,7 @@
 .user-profile-form textarea {
   border: 1px solid #222222;
   border-radius: 5px;
-  width: 70%;;
+  width: 70%;
 }
 
 .user-profile-form-left, .user-profile-form-right {
@@ -52,13 +52,98 @@
 .first-name-container, .age-container, .city-container {
   display: flex;
   flex-direction: column;
-  margin-bottom: 10px;
 }
 
 .profile-form-input {
-  width: 50%;
+  width: 70%;
   height: 25px;
   padding: 5px;
   border: 1px solid #222222;
   border-radius: 5px;
+}
+
+.profile-button-unchecked {
+  border: 1px solid #222222;
+  padding: 5px;
+  min-width: 30px;
+  min-height: 30px;
+  margin-right: 10px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-button-unchecked:hover {
+  background-color: #77966D;
+  color: white;
+  border: 1px solid #77966D;
+}
+
+.profile-button-checked {
+  border: 1px solid #77966D;
+  background-color: #77966D;
+  color: white;
+  padding: 5px;
+  min-width: 30px;
+  min-height: 30px;
+  margin-right: 10px;  
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-buttons-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.profile-input-header {
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 2px;
+}
+
+.bio-container {
+  margin-top: 10px;
+}
+
+#bio-field {
+  padding: 5px;
+}
+
+/* input[type="file"] {
+  display: none;
+}
+
+.custom-file-upload {
+  border: 1px solid #222222;
+  padding: 5px;
+  min-width: 30px;
+  min-height: 30px;
+  border-radius: 5px;
+  cursor: pointer;
+} */
+.photo-upload-container {
+  margin-top: 20px;
+}
+
+#delete-profile-button {
+  align-self: center;
+  margin-top: 15px;
+  width: 200px;
+  height: 30px;
+  border-radius: 5px;
+  padding: 10px;
+  /* background-color: #77966D; */
+  color: #d31334;
+  border: 1px solid #d31334;
+  text-align: center;
+}
+
+#delete-profile-button:hover {
+  background-color: #b0102b;
+  color: white;
 }
