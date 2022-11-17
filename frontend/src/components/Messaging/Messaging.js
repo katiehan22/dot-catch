@@ -37,12 +37,15 @@ export default function Messaging({matchedUser}) {
   }
 
   const unmatchUser = () => {
+    const newMatches = { ...currentUser.matches };
+    delete newMatches[clickedMatchId];
     dispatch(updateUser({ ...currentUser, deleteMatcherId: clickedMatchId }));
     dispatch(updateUser({ ...matchedUser, deleteMatcherId: currentUserId }));
-    dispatch(receiveCurrentUser({ ...currentUser }));
+    dispatch(receiveCurrentUser({ ...currentUser, matches: newMatches }));
   }
   
   // if ( matchedUser === {}) return null;
+
   return(
     <section className="messagingContainer">
       <div className="messagesHeader">
