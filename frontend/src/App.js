@@ -8,11 +8,12 @@ import NavBar from './components/NavBar/NavBar';
 
 import LoginForm from './components/SessionForms/LoginForm';
 import SignupForm from './components/SessionForms/SignupForm';
-import Profile from './components/Profile/Profile';
+import UserProfilePage from './components/UserProfilePage/UserProfilePage';
 import MainPage from './components/MainPage/MainPage';
 
 import { getCurrentUser } from './store/session';
 import CreateProfileForm from './components/UserProfileForms/CreateProfileForm';
+import MessagesPage from './components/Messaging/MessagesPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -29,8 +30,9 @@ function App() {
         <AuthRoute exact path="/login" component={LoginForm} />
         <AuthRoute exact path="/signup" component={SignupForm} />
 
-        <ProtectedRoute exact path="/profile" component={Profile} />
+        <ProtectedRoute exact path="/profile/:userId" component={UserProfilePage} />
         <ProtectedRoute exact path="/createprofile" component={CreateProfileForm} />
+        <ProtectedRoute exact path="/messages" component={MessagesPage} />
       </Switch>
     </>
   );

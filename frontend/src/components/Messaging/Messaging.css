@@ -1,0 +1,33 @@
+.messageUl {
+  background-color: #EBEBEB;
+  overflow: scroll;
+}
+
+.messagingContainer {
+  width: 70vw;
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+}
+
+.messageInputForm {
+  display: flex;
+}
+
+#messageInput {
+  padding: 10px;
+  flex-grow: 1;
+}
+
+.sendMessageButton {
+  right: 0;
+  padding: 10px;
+}
+
+.leftMessage {
+  text-align: left;
+}
+
+.rightMessage {
+  text-align: end;
+}
