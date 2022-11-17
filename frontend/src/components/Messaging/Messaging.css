@@ -50,18 +50,19 @@
   box-shadow: 1.5pt 0pt 5pt 0.5pt #D3D3D3;
   border-radius: 10px;
   padding: 10px;
-  top: 45px;
+  top: 50px;
   right: 0px;
   width: 130px;
   display: flex;
   justify-content: center;
   cursor: pointer;
   transition: opacity 0.5s ease, bottom 0.5s ease;
-  transition-delay: 0;
+  background-color: white;
 }
 
 .unmatch-dropdown:hover .unmatch-dropdown-content {
   opacity: 1;
+  z-index: 30;
 }
 
 .unmatch-dropdown-content:hover .hover-green {
