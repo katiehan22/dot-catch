@@ -35,13 +35,15 @@ export default function Messaging({matchedUser}) {
   // if ( matchedUser === {}) return null;
   return(
     <section className="messagingContainer">
-      <Link
-        className="matchItemContainer"
-        to={ {pathname: `/profile/${matchedUser._id}`, state: { user: matchedUser, fromApp: true } } }
-        >
-          <img className="matchedUserImg" src="https://cdn2.iconfinder.com/data/icons/media-player-ui/512/Media-Icon-25-512.png" alt="matched user" />
-          <h2 className="matchedUserName">{matchedUser.firstName}</h2>
-      </Link>
+      <div className="messagesHeaderContainer">
+        <Link
+          className="messagesHeaderLink"
+          to={ {pathname: `/profile/${matchedUser._id}`, state: { user: matchedUser, fromApp: true } } }
+          >
+            <img className={'profile-pic label'} src='https://upload.wikimedia.org/wikipedia/commons/1/18/Mark_Zuckerberg_F8_2019_Keynote_%2832830578717%29_%28cropped%29.jpg'></img>
+            <h2 className="messagingMatchedUser">{matchedUser.firstName}</h2>
+        </Link>
+      </div>
       <MessagesList messageArray={messageArray} clickedMatchId={clickedMatchId} />
       <form className="messageInputForm">
         <p className="formPlaceholder">{`>`}</p>
@@ -50,8 +52,6 @@ export default function Messaging({matchedUser}) {
           name="message"
           id="messageInput"
           placeholder={`Send a message!`}
-          cols="30"
-          rows="3"
           onChange={(e) => setMessage(e.target.value) }
           required
         />

@@ -104,6 +104,7 @@ export const uploadPhoto = (userId, file) => async dispatch => {
             body: imageData
         })
         const updatedUser = await res.json();
+        // debugger
         dispatch(receiveUser(updatedUser));
         dispatch(receiveCurrentUser(updatedUser));
     } catch (err) {
