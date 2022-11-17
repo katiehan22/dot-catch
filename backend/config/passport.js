@@ -52,7 +52,16 @@ exports.loginUser = async function (user) {
         { expiresIn: 3600 } // tell the key to expire in one hour
     );
     return {
-        user: userInfo,
+        user: {
+            _id: user._id,
+            email: user.email,
+            bio: user.bio,
+            age: user.age,
+            location: user.location,
+            gender: user.gender,
+            genderPreference: user.genderPreference,
+            likes: user.likes,
+            matches: user.matches},
         token
     };
 };

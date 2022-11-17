@@ -6,15 +6,7 @@ import { useEffect } from 'react';
 import MatchesSidebar from '../MatchesSidebar/MatchesSidebar';
 
 export const LoggedInView = () => {
-    const dispatch = useDispatch();
-    const userMatches = useSelector(state => state.session.user.matches !== {} ? Object.keys(state.session.user.matches) : []);
-    
-
-    useEffect(() => {
-        dispatch(fetchUsers());
-    }, [dispatch, userMatches.length])
-
-    
+    const dispatch = useDispatch();    
 
     return (
         <section className='main-page'>

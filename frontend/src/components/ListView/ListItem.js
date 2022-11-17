@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import Profile from "../Profile/Profile"
+import ProfileComponent from "../UserProfilePage/ProfileComponent/ProfileComponent"
 import { useState, useEffect } from "react"
 
 
@@ -10,7 +10,7 @@ export const ListItem = ({user}) => {
         if (menu) {
             return setMenu(false)
         } else {
-             return setMenu(true)
+            return setMenu(true)
         }
     }
 
@@ -26,7 +26,7 @@ export const ListItem = ({user}) => {
             <h3>{user.firstName}</h3>
         </section>
         <div className="profile-display" style={menu ? {display: 'block'} : {display: 'none'}}>
-            <Profile user={user}></Profile>
+            <ProfileComponent user={user}></ProfileComponent>
             <button onClick={toggleView}>X</button>
         </div>
         </>
