@@ -4,6 +4,7 @@ import pen from './pen-solid.svg'
 import { useState } from "react"
 import { deleteMessage, updateMessage } from "../../store/messages";
 import { useEffect } from "react";
+import closeButton from './closeButton.svg'
 
 export default function MessageListItem( {message, clickedMatchId} ) {
 
@@ -21,7 +22,7 @@ export default function MessageListItem( {message, clickedMatchId} ) {
 
   const [showLinks, setShowLinks] = useState(false)
   const [editingMsg, setEditingMsg] = useState(false)
-  const [editedMessage, setEditedMessage] = useState('');
+  const [editedMessage, setEditedMessage] = useState(message.body);
 
   const newMessage = {
     _id: message._id,
@@ -31,12 +32,15 @@ export default function MessageListItem( {message, clickedMatchId} ) {
   }
 
   const clickOut = () => {
-    setShowLinks(false)
+    if (showLinks) setShowLinks(false);
     setEditingMsg(false)
   }
 
   const Send = e => {
     e.preventDefault();
+    if ( newMessage.body === '' ) {
+      return dispatch( deleteMessage(message._id) );
+    }
     dispatch(updateMessage(newMessage) )
     clickOut()
   }
@@ -44,12 +48,11 @@ export default function MessageListItem( {message, clickedMatchId} ) {
   useEffect( () => {
     if (editingMsg) setShowLinks(false)
   }, [editingMsg]  )
-  // document.getElementById('root').addEventListener('click', clickOut)
 
   return(
     <div className="singleMsgContainer">
       <li 
-      onClick={ e => setShowLinks( showLinks ? false : true ) }
+      onClick={ e => {if (!editingMsg) return setShowLinks( showLinks ? false : true )} }
       className={messageSender === matchedUser ? 'leftMessage' : 'rightMessage'}>
         {/* <h4>{messageDateTime}</h4> */}
         {/* <h3>{messageSender.firstName}:</h3> */}
@@ -62,12 +65,13 @@ export default function MessageListItem( {message, clickedMatchId} ) {
               type='text'
               name="editedMessage"
               id="messageEdit"
-              placeholder={message.body}
+              value={editedMessage}
               onChange={(e) => setEditedMessage(e.target.value) }
               required
             />
+            <img onClick={ () => setEditingMsg(false) } className="editMsgCloseButton" src={closeButton} alt="x" />
             <button
-              className="sendMessageButton"
+              className="sendEditMessageButton"
               type="submit"
               onClick={Send}>Send
             </button>
