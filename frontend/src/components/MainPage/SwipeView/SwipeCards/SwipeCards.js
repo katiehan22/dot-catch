@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { updateUser } from '../../../../store/users';
+import { useLocation } from 'react-router-dom';
 import { receiveCurrentUser } from '../../../../store/session';
 import TinderCard from 'react-tinder-card';
 import './SwipeCards.css';
@@ -7,6 +8,7 @@ import ProfileComponent from '../../../UserProfilePage/ProfileComponent/ProfileC
 
 const SwipeCards = () => {
     const dispatch = useDispatch();
+    const location = useLocation();
     const users = useSelector(state => state.entities.users ? Object.values(state.entities.users) : []);
     const tom = users.find(user => user.bio === "You're getting the hang of it! I am Tom. I like everyone. Match with me :)");
     const userLikes = useSelector(state => state.session.user.likes !== {} ? Object.keys(state.session.user.likes) : []);
@@ -59,30 +61,38 @@ const SwipeCards = () => {
                         <ProfileComponent user={user} />
                     </TinderCard>
                 ))}
-                <TinderCard
-                    className='swipe'
-                    preventSwipe={['up', 'down', 'left']}
-                    onSwipe={dir => swiped(dir, tom)}
-                // onCardLeftScreen={() => outOfFrame(user._id)}
-                >
-                    <ProfileComponent user={tom} />
-                </TinderCard>
-                <TinderCard
-                    className='swipe'
-                    preventSwipe={['up', 'down', 'left']}
-                >
-                    <div className='card instructions'>
-                        <h1>Swipe right to like!</h1>
-                    </div>
-                </TinderCard>
-                <TinderCard
-                    className='swipe'
-                    preventSwipe={['up', 'down', 'right']}
-                >
-                    <div className='card instructions'>
-                        <h1>Swipe left to pass!</h1>
-                    </div>
-                </TinderCard>
+                {!userMatches.includes(tom._id) &&
+                    <TinderCard
+                        className='swipe'
+                        preventSwipe={['up', 'down', 'left']}
+                        onSwipe={dir => swiped(dir, tom)}
+                        // onCardLeftScreen={() => outOfFrame(user._id)}
+                    >
+                        <ProfileComponent user={tom} />
+                    </TinderCard>
+                }
+                {
+                    location.state ? 
+                    <>
+                        <TinderCard
+                            className='swipe'
+                            preventSwipe={['up', 'down', 'left']}
+                        >
+                            <div className='card instructions'>
+                                <h1>Swipe right to like!</h1>
+                            </div>
+                        </TinderCard>
+                        <TinderCard
+                            className='swipe'
+                            preventSwipe={['up', 'down', 'right']}
+                        >
+                            <div className='card instructions'>
+                                <h1>Swipe left to pass!</h1>
+                            </div>
+                        </TinderCard>
+                    </>
+                    : null
+                }
             </div>
         </div>
     )

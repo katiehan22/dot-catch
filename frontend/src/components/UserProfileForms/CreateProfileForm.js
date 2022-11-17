@@ -103,7 +103,7 @@ const CreateProfileForm = () => {
     dispatch(updateUser(updatedUser));
     dispatch(receiveCurrentUser(updatedUser));
     randomUsers.forEach(user => dispatch(updateUser({ ...user, likedUserId: currentUser._id })));
-    history.push("/");
+    history.push({pathname: '/', state: { newUser: true }});
   }
 
   if (!linkLocation.state?.fromApp) return <Redirect to='/' />
