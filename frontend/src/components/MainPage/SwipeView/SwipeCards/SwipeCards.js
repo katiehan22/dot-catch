@@ -3,7 +3,7 @@ import { updateUser } from '../../../../store/users';
 import { receiveCurrentUser } from '../../../../store/session';
 import TinderCard from 'react-tinder-card';
 import './SwipeCards.css';
-import Profile from '../../../Profile/Profile';
+import ProfileComponent from '../../../UserProfilePage/ProfileComponent/ProfileComponent';
 
 const SwipeCards = () => {
     const dispatch = useDispatch();
@@ -52,7 +52,7 @@ const SwipeCards = () => {
                         onSwipe={dir => swiped(dir, user)}
                         // onCardLeftScreen={() => outOfFrame(user._id)}
                     >
-                        <Profile user={user} />
+                        <ProfileComponent user={user} />
                     </TinderCard>
                 )}
             </div>

@@ -6,3 +6,7 @@ form > .errors {
   align-items: center;
 }
 
+h1 {
+  font-size: 32px;
+  font-weight: bolder;
+}
