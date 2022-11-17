@@ -1,8 +1,13 @@
 .swipe-view-section {
-    height: 90vh;
-    width: 70vw;
     background-color: #ffff;
     display: flex;
+    height: 90vh;
+    width: 70vw;
+}
+
+.matching-section {
+    height: 90vh;
+    width: 70vw;
 }
 
 .viewing-option-btns {

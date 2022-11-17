@@ -32,7 +32,7 @@
   width: 70vw;
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 72px);
+  height: 90vh;
 }
 
 .formPlaceholder {
