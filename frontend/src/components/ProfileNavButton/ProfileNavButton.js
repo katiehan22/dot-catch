@@ -1,6 +1,4 @@
-import { useEffect, useState} from "react"
 import { useDispatch, useSelector} from "react-redux"
-import { Link } from "react-router-dom"
 import { logout } from "../../store/session"
 import './ProfileNavButton.css'
 import { useHistory } from "react-router-dom"
