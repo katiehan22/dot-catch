@@ -1,7 +1,8 @@
 .matchesSidebarContainer {
   width: 30vw;
-  background-color: #EBEBEB;
-  height: 91vh;
+  background-color: #FFFFFF;
+  border-right: 1px solid #ebebeb;
+  height: calc(100vh - 72px);
 }
 
 .matchesSidebarTitle {
