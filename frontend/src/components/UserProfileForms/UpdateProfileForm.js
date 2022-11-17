@@ -1,13 +1,18 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { clearUserErrors, updateUser, uploadPhoto } from "../../store/users";
+import { clearUserErrors, deleteUser, updateUser, uploadPhoto } from "../../store/users";
 import "./UserProfileForms.css";
 import { getCurrentUser, receiveCurrentUser } from "../../store/session";
+import { showDeleteModal } from "../../store/ui";
+import { ConfirmDeleteModal } from "./ConfirmDeleteModal";
+import { useHistory } from "react-router-dom";
 
 const UpdateProfileForm = () => {
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.session.user);
   const errors = useSelector(state => state.errors.users);
+  const modal = useSelector(state => state.ui.modal);
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(getCurrentUser())
@@ -91,9 +96,10 @@ const UpdateProfileForm = () => {
     setLightDark(lightDarkSelection);
   }
 
-  const handleDelete = () => {
-    // add dispatch here
-  }
+  // const handleDelete = () => {
+  //   dispatch(deleteUser(currentUser._id));
+  //   history.push("/");
+  // }
 
   const handleFiles = (e) => {
     const file = e.target.files[0];
@@ -102,7 +108,7 @@ const UpdateProfileForm = () => {
   }
 
   const handleProfileSubmit = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     const updatedUser = {
       ...currentUser,
       firstName: firstName,
@@ -120,13 +126,14 @@ const UpdateProfileForm = () => {
     // dispatch(uploadPhoto(currentUser._id, photos[0]))
     dispatch(updateUser(updatedUser));
     dispatch(receiveCurrentUser(updatedUser));
+    history.push("/");
   }
 
   return (
     <>
       <div className="create-user-profile-page">
         <h1 className="profile-form-heading">Update your profile</h1>
-        <form className="user-profile-form" onSubmit={handleProfileSubmit}>
+        <div className="user-profile-form" >
           <div className="user-profile-form-container">
             <div className="user-profile-form-left">
               <div className="first-name-container">
@@ -207,10 +214,12 @@ const UpdateProfileForm = () => {
               </div>
             </div>
           </div>
-          <input type="submit" value="Update Profile" className="create-profile-button" />
-        </form>
+          {/* <input type="submit" value="Update Profile" className="create-profile-button" /> */}
+          <button className="create-profile-button" onClick={() => handleProfileSubmit()}>Update Profile</button>
+        </div>
         {/* <div className="errors">{errors?.users}</div> */}
-        <button id="delete-profile-button" onClick={() => handleDelete}>Delete Profile</button>
+        <button id="delete-profile-button" onClick={() => dispatch(showDeleteModal())}>Delete Profile</button>
+        {modal === 'delete' && <ConfirmDeleteModal></ConfirmDeleteModal>}
       </div>
       {/* <img src={currentUser.photos[0]}/> */}
     </>

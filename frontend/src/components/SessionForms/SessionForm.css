@@ -3,6 +3,8 @@
   display: flex;
   flex-direction: column;
   font-size: 22px;
+  background-color: white;
+  border-radius: 10px;
 }
 
 .session-form input {

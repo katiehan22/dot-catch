@@ -147,3 +147,57 @@
   background-color: #b0102b;
   color: white;
 }
+
+.confirm-delete-form {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  width: 550px;
+  min-height: 300px;
+}
+
+.delete-form-top {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #222222;
+}
+
+.delete-form-top h2 {
+  font-size: 20px;
+}
+
+.delete-form-bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 250px;
+}
+
+.confirm-delete-buttons {
+  /* align-self: center;
+  margin-top: 15px;
+  width: 200px;
+  height: 30px;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: #77966D;
+  color: #d31334;
+  border: 1px solid #d31334;
+  text-align: center; */
+  border: 1px solid black;
+  width: 300px;
+  height: 30px;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+  margin-top: 15px;
+  color: #d31334;
+  border: 1px solid #d31334;
+}
+
+.confirm-delete-buttons:hover {
+  background-color: #b0102b;
+  color: white;
+}
