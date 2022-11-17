@@ -52,8 +52,6 @@ export default function Messaging({matchedUser}) {
           name="message"
           id="messageInput"
           placeholder={`Send a message!`}
-          cols="30"
-          rows="3"
           onChange={(e) => setMessage(e.target.value) }
           required
         />

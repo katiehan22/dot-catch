@@ -9,7 +9,6 @@ export default function MatchesSidebar() {
   const dispatch = useDispatch();
   
   const matchesArray = useSelector(state => state.session.user !== {} ? Object.keys(state.session.user.matches) : []);
-  console.log(matchesArray)
 
   useEffect(() => {
       dispatch(fetchUsers());
