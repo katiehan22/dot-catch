@@ -1,13 +1,18 @@
-import { useSelector } from "react-redux"
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux"
+import { fetchUsers } from "../../store/users";
 import MatchesList from "./MatchesList"
 import './MatchesSidebar.css'
 
 export default function MatchesSidebar() {
 
-  // const currentUser = useSelector( state => state.users[state.session.user] )
+  const dispatch = useDispatch();
 
-  const allMatches = useSelector( state => state.session.user.matches )
-  const matchesArray = Object.keys(allMatches)
+  const matchesArray = useSelector(state => state.session.user.matches !== {} ? Object.keys(state.session.user.matches) : []);
+
+  useEffect(() => {
+      dispatch(fetchUsers());
+  }, [dispatch, matchesArray.length])
 
   return(
     <section className="matchesSidebarContainer">

@@ -1,0 +1,9 @@
+.profile-section {
+    width: 80vw;
+    height: 90vh;
+}
+
+.profile-card-container {
+    padding: 0 3% 0 3%;
+    height: 100%;
+}

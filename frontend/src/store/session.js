@@ -1,7 +1,7 @@
 import jwtFetch from './jwt';
 import { hideModal } from './ui';
 
-const RECEIVE_CURRENT_USER = "session/RECEIVE_CURRENT_USER";
+export const RECEIVE_CURRENT_USER = "session/RECEIVE_CURRENT_USER";
 const RECEIVE_SESSION_ERRORS = "session/RECEIVE_SESSION_ERRORS";
 const CLEAR_SESSION_ERRORS = "session/CLEAR_SESSION_ERRORS";
 export const RECEIVE_USER_LOGOUT = "session/RECEIVE_USER_LOGOUT";

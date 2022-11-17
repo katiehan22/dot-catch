@@ -1,0 +1,19 @@
+.swipe-cards {
+    padding: 0 3% 0 3%;
+    width: 100%;
+}
+
+.swipe-cards-container {
+    height: 90%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.swipe {
+    position: absolute;
+    width: 65%;
+    height: 80%;
+    display: flex;
+}

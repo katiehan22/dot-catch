@@ -11,3 +11,7 @@ form > .errors {
   justify-content: center;
   align-items: center;
 }
+h1 {
+  font-size: 32px;
+  font-weight: bolder;
+}

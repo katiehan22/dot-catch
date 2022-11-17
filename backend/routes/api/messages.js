@@ -21,7 +21,7 @@ router.get('/user/:currentUserId/match/:matchedUserId', async (req, res, next) =
       { $and: [ {user_from: req.params.currentUserId}, {user_to: req.params.matchedUserId} ] },
       { $and: [ {user_from: req.params.matchedUserId}, {user_to: req.params.currentUserId} ] }
     ]})
-                              .sort({ createdAt: -1 })
+                              .sort({ createdAt: 1 })
                               // .populate("author", "_id, username");
     return res.json(messages);
   }

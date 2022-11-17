@@ -29,7 +29,8 @@
     border-radius: 10px;
     width: 200px;
     top: 8vh;
-    right: 1vw
+    right: 1vw;
+    z-index: 100;
 }
 
 .profile-dropdown li {
