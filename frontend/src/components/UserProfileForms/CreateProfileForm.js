@@ -21,11 +21,54 @@ const CreateProfileForm = () => {
   const [bio, setBio] = useState('');
   const [photos, setPhotos] = useState([]);
 
+  const [genderStyle, setGenderStyle] = useState({ "F": "profile-button-unchecked", "M": "profile-button-unchecked", "N": "profile-button-unchecked" });
+  const [genderPrefStyle, setGenderPrefStyle] = useState({ "M": "profile-button-unchecked", "F": "profile-button-unchecked", "N": "profile-button-unchecked", "NP": "profile-button-unchecked" });
+  const [favLangStyle, setFavLangStyle] = useState({ "javascript": "profile-button-unchecked", "python": "profile-button-unchecked", "c": "profile-button-unchecked", "ruby": "profile-button-unchecked", "java": "profile-button-unchecked", "html-css": "profile-button-unchecked", "sql": "profile-button-unchecked" });
+  const [tabSpaceStyle, setTabSpaceStyle] = useState({ "tabs": "profile-button-unchecked", "spaces": "profile-button-unchecked"});
+  const [macPcStyle, setMacPcStyle] = useState({ "mac": "profile-button-unchecked", "pc": "profile-button-unchecked" });
+  const [lightDarkStyle, setLightDarkStyle] = useState({ "light": "profile-button-unchecked", "dark": "profile-button-unchecked" });
+
   useEffect(() => {
     return () => {
       dispatch(clearUserErrors());
     };
   }, [dispatch]);
+
+  const handleGender = (genderSelection) => {
+    const genderStyleCopy = { "F": "profile-button-unchecked", "M": "profile-button-unchecked", "N": "profile-button-unchecked" };
+    setGenderStyle({ ...genderStyleCopy, [genderSelection]: "profile-button-checked"});
+    setGender(genderSelection);
+  }
+
+  const handleGenderPref = (genderPrefSelection) => {
+    const genderPrefStyleCopy = { "M": "profile-button-unchecked", "F": "profile-button-unchecked", "N": "profile-button-unchecked", "NP": "profile-button-unchecked" };
+    setGenderPrefStyle({...genderPrefStyleCopy, [genderPrefSelection]: "profile-button-checked"});
+    setGenderPreference(genderPrefSelection);
+  }
+
+  const handleFavLang = (favLangSelection) => {
+    const favLangStyleCopy = { "javascript": "profile-button-unchecked", "python": "profile-button-unchecked", "c": "profile-button-unchecked", "ruby": "profile-button-unchecked", "java": "profile-button-unchecked", "html-css": "profile-button-unchecked", "sql": "profile-button-unchecked" };
+    setFavLangStyle({...favLangStyleCopy, [favLangSelection]: "profile-button-checked"});
+    setFavLang(favLangSelection);
+  }
+
+  const handleTabSpace = (tabSpaceSelection) => {
+    const tabSpaceStyleCopy = { "tabs": "profile-button-unchecked", "spaces": "profile-button-unchecked" };
+    setTabSpaceStyle({ ...tabSpaceStyleCopy, [tabSpaceSelection]: "profile-button-checked" });
+    setTabSpace(tabSpaceSelection);
+  }
+
+  const handleMacPc = (macPcSelection) => {
+    const macPcStyleCopy = { "mac": "profile-button-unchecked", "pc": "profile-button-unchecked" };
+    setMacPcStyle({...macPcStyleCopy, [macPcSelection]: "profile-button-checked"});
+    setMacPc(macPcSelection);
+  }
+
+  const handleLightDark = (lightDarkSelection) => {
+    const lightDarkStyleCopy = { "light": "profile-button-unchecked", "dark": "profile-button-unchecked" };
+    setLightDarkStyle({ ...lightDarkStyleCopy, [lightDarkSelection]: "profile-button-checked" });
+    setLightDark(lightDarkSelection);
+  }
 
   const handleFiles = (e) => {
     const file = e.target.files[0];
@@ -49,7 +92,6 @@ const CreateProfileForm = () => {
       bio: bio
       // photos: photos
     }
-    console.log(updatedUser);
     // dispatch(uploadPhoto(currentUser._id, photos[0]))
     dispatch(updateUser(updatedUser));
     dispatch(receiveCurrentUser(updatedUser));
@@ -63,59 +105,77 @@ const CreateProfileForm = () => {
           <div className="user-profile-form-container">
             <div className="user-profile-form-left">
               <div className="first-name-container">
-                <label htmlFor="first-name">First Name: </label>
+                <label htmlFor="first-name" className="profile-input-header">First Name: </label>
                 <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} required className="profile-form-input"/>
               </div>
               <div className="age-container">
-                <label htmlFor="age">Age: </label>
+                <label htmlFor="age" className="profile-input-header">Age: </label>
                 <input type="text" value={age} onChange={(e) => setAge(e.target.value)} required className="profile-form-input" />
               </div>
               <div className="city-container">
-                <label htmlFor="location">City: </label>
+                <label htmlFor="location" className="profile-input-header">City: </label>
                 <input type="text" value={location} onChange={(e) => setLocation(e.target.value)} required className="profile-form-input" />
               </div>
-              <div className="gender-container">
-                <label htmlFor="gender">Gender: </label>
+              <div className="bio-container">
+                <label htmlFor="bio" className="profile-input-header">Bio: </label>
                 <br />
-                <input type="radio" name="gender" id="gender" value="F" onChange={(e) => setGender(e.target.value)} required />Woman
-                <input type="radio" name="gender" id="gender" value="M" onChange={(e) => setGender(e.target.value)} required />Man
-                <input type="radio" name="gender" id="gender" value="N" onChange={(e) => setGender(e.target.value)} required />Nonbinary
+                <textarea value={bio} onChange={(e) => setBio(e.target.value)} id="bio-field" required placeholder="Tell others about yourself." />
               </div>
-              <label htmlFor="gender-preference">I'm Looking For: </label>
-              <input type="radio" name="gender-preference" id="gender-preference" value="M" onChange={(e) => setGenderPreference(e.target.value)} required />Men
-              <input type="radio" name="gender-preference" id="gender-preference" value="F" onChange={(e) => setGenderPreference(e.target.value)} required />Women
-              <input type="radio" name="gender-preference" id="gender-preference" value="N" onChange={(e) => setGenderPreference(e.target.value)} required />Nonbinary people
-              <input type="radio" name="gender-preference" id="gender-preference" value="NP" onChange={(e) => setGenderPreference(e.target.value)} required />No preference
+              <div className="gender-container">
+                <h2 className="profile-input-header">Gender:</h2>
+                <div className="profile-buttons-container">
+                  <button className={genderStyle["F"]} value="F" onClick={() => handleGender("F")}>Woman</button>
+                  <button className={genderStyle["M"]} value="M" onClick={() => handleGender("M")}>Man</button>
+                  <button className={genderStyle["N"]} value="N" onClick={() => handleGender("N")}>Nonbinary</button>
+                </div>
+              </div>
+              <div className="gender-pref-container">
+                <h2 className="profile-input-header">I'm Looking For:</h2>
+                <div className="profile-buttons-container">
+                  <button className={genderPrefStyle["M"]} onClick={() => handleGenderPref("M")}>Men</button>
+                  <button className={genderPrefStyle["F"]} onClick={() => handleGenderPref("F")}>Women</button>
+                  <button className={genderPrefStyle["N"]} onClick={() => handleGenderPref("N")}>Nonbinary People</button>
+                  <button className={genderPrefStyle["NP"]} onClick={() => handleGenderPref("NP")}>No Preference</button>
+                </div>
+              </div>
             </div>
             <div className="user-profile-form-right">  
-              <label htmlFor="language">Favorite Programming Language: </label>
-              <select name="language" value={favLang} onChange={(e) => setFavLang(e.target.value)}>
-                <option value="" disabled>Select Favorite Language</option>
-                <option value="javascript">Javascript</option>
-                <option value="python">Python</option>
-                <option value="c">C</option>
-                <option value="ruby">Ruby</option>
-                <option value="java">Java</option>
-                <option value="html-css">HTML/CSS</option>
-                <option value="sql">SQL</option>
-              </select>
-              <br />
-              <label htmlFor="tabs-spaces">Tabs vs. Spaces: </label>
-              <input type="radio" name="tabs-spaces" id="tabs-spaces" value="tabs" onChange={(e) => setTabSpace(e.target.value)} required />Tabs
-              <input type="radio" name="tabs-spaces" id="tabs-spaces" value="spaces" onChange={(e) => setTabSpace(e.target.value)} required />Spaces
-              <br />
-              <label htmlFor="mac-pc">Mac vs. PC: </label>
-              <input type="radio" name="mac-pc" id="mac-pc" value="mac" onChange={(e) => setMacPc(e.target.value)} required />Mac
-              <input type="radio" name="mac-pc" id="mac-pc" value="pc" onChange={(e) => setMacPc(e.target.value)} required />PC
-              <br />
-              <label htmlFor="light-dark">Light Theme vs. Dark Theme: </label>
-              <input type="radio" name="light-dark" id="light-dark" value="light" onChange={(e) => setLightDark(e.target.value)} required />Light
-              <input type="radio" name="light-dark" id="light-dark" value="dark" onChange={(e) => setLightDark(e.target.value)} required />Dark
-              <br />
-              <label htmlFor="bio">Bio: </label>
-              <textarea value={bio} onChange={(e) => setBio(e.target.value)} required placeholder="What else do you want others to know about you?"/>
-              <br />
+              <div className="fav-lang-container">
+                <h2 className="profile-input-header">Favorite Programming Language:</h2>
+                <div className="profile-buttons-container">
+                  <button className={favLangStyle["javascript"]} onClick={() => handleFavLang("javascript")}>Javascript</button>
+                  <button className={favLangStyle["python"]} onClick={() => handleFavLang("python")}>Pyton</button>
+                  <button className={favLangStyle["c"]} onClick={() => handleFavLang("c")}>C</button>
+                  <button className={favLangStyle["ruby"]} onClick={() => handleFavLang("ruby")}>Ruby</button>
+                  <button className={favLangStyle["java"]} onClick={() => handleFavLang("java")}>Java</button>
+                  <button className={favLangStyle["html-css"]} onClick={() => handleFavLang("html-css")}>HTML/CSS</button>
+                  <button className={favLangStyle["sql"]} onClick={() => handleFavLang("sql")}>SQL</button>
+                </div>
+              </div>
+              <div className="tabs-spaces-container">
+                <h2 className="profile-input-header" >Tabs vs. Spaces:</h2>
+                <div className="profile-buttons-container">
+                  <button className={tabSpaceStyle["tabs"]} onClick={() => handleTabSpace("tabs")}>Tabs</button>
+                  <button className={tabSpaceStyle["spaces"]} onClick={() => handleTabSpace("spaces")}>Spaces</button>
+                </div>
+              </div>
+              <div className="mac-pc-container">
+                <h2 className="profile-input-header" >Mac vs. PC:</h2>
+                <div className="profile-buttons-container">
+                  <button className={macPcStyle["mac"]} onClick={() => handleMacPc("mac")}>Mac</button>
+                  <button className={macPcStyle["pc"]} onClick={() => handleMacPc("pc")}>PC</button>
+                </div>
+              </div>
+              <div className="light-dark-container">
+                <h2 className="profile-input-header">Light Theme vs. Dark Theme:</h2>
+                <div className="profile-buttons-container">
+                  <button className={lightDarkStyle["light"]} onClick={() => handleLightDark("light")}>Light</button>
+                  <button className={lightDarkStyle["dark"]} onClick={() => handleLightDark("dark")}>Dark</button>
+                </div>
+              </div>
               <input type="file" onChange={handleFiles}/>
+              {/* <input type="file" onChange={handleFiles} />
+              <input type="file" onChange={handleFiles} /> */}
             </div>
           </div>
           <input type="submit" value="Create Profile" className="create-profile-button" />
