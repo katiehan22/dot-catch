@@ -2,24 +2,28 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearUserErrors, updateUser, uploadPhoto } from "../../store/users";
 import "./UserProfileForms.css";
-import { receiveCurrentUser } from "../../store/session";
+import { getCurrentUser, receiveCurrentUser } from "../../store/session";
 
 const UpdateProfileForm = () => {
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.session.user);
   const errors = useSelector(state => state.errors.users);
 
+  useEffect(() => {
+    dispatch(getCurrentUser())
+  }, [dispatch])
+
   const [firstName, setFirstName] = useState(currentUser.firstName);
   const [age, setAge] = useState(currentUser.age);
   const [location, setLocation] = useState(currentUser.location);
   const [gender, setGender] = useState(currentUser.gender);
   const [genderPreference, setGenderPreference] = useState(currentUser.genderPreference);
-  const [favLang, setFavLang] = useState('');
-  const [tabSpace, setTabSpace] = useState('');
-  const [macPc, setMacPc] = useState('');
-  const [lightDark, setLightDark] = useState('');
+  const [favLang, setFavLang] = useState(currentUser.prompt1["favLang"]);
+  const [tabSpace, setTabSpace] = useState(currentUser.prompt2["tabSpace"]);
+  const [macPc, setMacPc] = useState(currentUser.prompt3["macPc"]);
+  const [lightDark, setLightDark] = useState(currentUser.prompt4["lightDark"]);
   const [bio, setBio] = useState(currentUser.bio);
-  const [photos, setPhotos] = useState([]);
+  // const [photos, setPhotos] = useState([]);
 
   const [genderStyle, setGenderStyle] = useState({ "F": "profile-button-unchecked", "M": "profile-button-unchecked", "N": "profile-button-unchecked" });
   const [genderPrefStyle, setGenderPrefStyle] = useState({ "M": "profile-button-unchecked", "F": "profile-button-unchecked", "N": "profile-button-unchecked", "NP": "profile-button-unchecked" });
@@ -33,6 +37,23 @@ const UpdateProfileForm = () => {
       dispatch(clearUserErrors());
     };
   }, [dispatch]);
+
+  // Fill in buttons on dispatch
+  useEffect(() => {
+    const genderStyleCopy2 = { "F": "profile-button-unchecked", "M": "profile-button-unchecked", "N": "profile-button-unchecked" };
+    const genderPrefStyleCopy2 = { "M": "profile-button-unchecked", "F": "profile-button-unchecked", "N": "profile-button-unchecked", "NP": "profile-button-unchecked" };
+    const favLangStyleCopy2 = { "javascript": "profile-button-unchecked", "python": "profile-button-unchecked", "c": "profile-button-unchecked", "ruby": "profile-button-unchecked", "java": "profile-button-unchecked", "html-css": "profile-button-unchecked", "sql": "profile-button-unchecked" };
+    const tabSpaceStyleCopy2 = { "tabs": "profile-button-unchecked", "spaces": "profile-button-unchecked" };
+    const macPcStyleCopy2 = { "mac": "profile-button-unchecked", "pc": "profile-button-unchecked" };
+    const lightDarkStyleCopy2 = { "light": "profile-button-unchecked", "dark": "profile-button-unchecked" };
+
+    setGenderStyle({ ...genderStyleCopy2, [gender]: "profile-button-checked"});
+    setGenderPrefStyle({ ...genderPrefStyleCopy2, [genderPreference]: "profile-button-checked" });
+    setFavLangStyle({ ...favLangStyleCopy2 , [favLang]: "profile-button-checked"});
+    setTabSpaceStyle({ ...tabSpaceStyleCopy2 , [tabSpace]: "profile-button-checked"});
+    setMacPcStyle({ ...macPcStyleCopy2 , [macPc]: "profile-button-checked"});
+    setLightDarkStyle({ ...lightDarkStyleCopy2, [lightDark]: "profile-button-checked" })
+  }, [dispatch])
 
   const handleGender = (genderSelection) => {
     const genderStyleCopy = { "F": "profile-button-unchecked", "M": "profile-button-unchecked", "N": "profile-button-unchecked" };
@@ -178,9 +199,9 @@ const UpdateProfileForm = () => {
                 </div>
               </div>
               <div className="photo-upload-container">
-                <label className="custom-file-upload">
+                {/* <label className="custom-file-upload">
                   <input type="file" onChange={handleFiles} />
-                </label>
+                </label> */}
                 {/* <input type="file" onChange={handleFiles} />
                 <input type="file" onChange={handleFiles} /> */}
               </div>

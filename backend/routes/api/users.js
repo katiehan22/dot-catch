@@ -98,7 +98,12 @@ router.get('/current', restoreUser, (req, res) => {
     gender: req.user.gender,
     genderPreference: req.user.genderPreference,
     likes: req.user.likes,
-    matches: req.user.matches
+    matches: req.user.matches,
+    prompt1: req.user.prompt1,
+    prompt2: req.user.prompt2,
+    prompt3: req.user.prompt3,
+    prompt4: req.user.prompt4,
+    photos: req.user.photos
   });
 });
 
@@ -119,6 +124,7 @@ router.patch('/:userId', requireUser, async (req, res, next) => {
       user.prompt2 = req.body.prompt2 || user.prompt2;
       user.prompt3 = req.body.prompt3 || user.prompt3;
       user.prompt4 = req.body.prompt4 || user.prompt4;
+      user.photos = req.body.photos || user.photos;
       if (req.body.deleteLikerId) user.likes.delete(req.body.deleteLikerId);
       if (req.body.deleteMatcherId) user.matches.delete(req.body.deleteMatcherId);
       if (req.body.likedUserId) user.likes.set(req.body.likedUserId, true);
@@ -155,7 +161,8 @@ router.patch('/:userId', requireUser, async (req, res, next) => {
       prompt1: user.prompt1,
       prompt2: user.prompt2,
       prompt3: user.prompt3,
-      prompt4: user.prompt4
+      prompt4: user.prompt4,
+      photos: user.photos
     });
 
     // const updatedUser = await user.save();

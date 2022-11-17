@@ -3,11 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearUserErrors, updateUser, uploadPhoto } from "../../store/users";
 import "./UserProfileForms.css";
 import { receiveCurrentUser } from "../../store/session";
+import { useHistory } from "react-router-dom";
 
 const CreateProfileForm = () => {
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.session.user);
   const errors = useSelector(state => state.errors.users);
+  const history = useHistory();
 
   const [firstName, setFirstName] = useState('');
   const [age, setAge] = useState('');
@@ -77,7 +79,7 @@ const CreateProfileForm = () => {
   }
 
   const handleProfileSubmit = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     const updatedUser = {
       ...currentUser,
       firstName: firstName,
@@ -95,13 +97,15 @@ const CreateProfileForm = () => {
     // dispatch(uploadPhoto(currentUser._id, photos[0]))
     dispatch(updateUser(updatedUser));
     dispatch(receiveCurrentUser(updatedUser));
+    history.push("/");
   }
 
   return (
     <>
       <div className="create-user-profile-page">
         <h1 className="profile-form-heading">Create your profile</h1>
-        <form className="user-profile-form" onSubmit={handleProfileSubmit}>
+        {/* <form className="user-profile-form" onSubmit={handleProfileSubmit}> */}
+        <div className="user-profile-form">
           <div className="user-profile-form-container">
             <div className="user-profile-form-left">
               <div className="first-name-container">
@@ -177,13 +181,14 @@ const CreateProfileForm = () => {
                 <label className="custom-file-upload">
                   <input type="file" onChange={handleFiles} />
                 </label>
-                {/* <input type="file" onChange={handleFiles} />
-                <input type="file" onChange={handleFiles} /> */}
+                <input type="file" onChange={handleFiles} />
+                <input type="file" onChange={handleFiles} />
               </div>
             </div>
           </div>
-          <input type="submit" value="Create Profile" className="create-profile-button" />
-        </form>
+          {/* <input type="submit" value="Create Profile" className="create-profile-button" /> */}
+          <button className="create-profile-button" onClick={() => handleProfileSubmit()}>Create Profile</button>
+        </div>
         {/* <div className="errors">{errors?.users}</div> */}
       </div>
       {/* <img src={currentUser.photos[0]}/> */}
