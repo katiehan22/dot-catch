@@ -20,29 +20,51 @@ const ProfileComponent = ({ user }) => {
         className="mySwiper"
       >
         <SwiperSlide>
+          {/* <div className="card-content-container"> */}
+            <div className='card-content'>
+              <div className='user-img left-div uncolored-div'>
+                {/* {console.log(user)} */}
+                <img className="user-img-style" src={user.photos[1]} />
+              </div>
+              <div className='right-div colored-div'>
+                <h1>{user.firstName + ', ' + user.age}</h1>
+                <p>{user.location}</p>
+              </div>
+            </div>
+          {/* </div> */}
+        </SwiperSlide>
+        <SwiperSlide>
           <div className='card-content'>
-            <div className='user-img left-div uncolored-div' />
-            <div className='right-div colored-div'>
-              <h1>{user.firstName + ', ' + user.age}</h1>
-              <p>{user.location}</p>
+            <div className='left-div colored-div'>
+              <h1>About {user.firstName}</h1>
+              <p>{user.bio}</p>
+            </div>
+            <div className='user-img right-div uncolored-div'>
+              <img className="user-img-style" src={user.photos[2]} />
             </div>
           </div>
         </SwiperSlide>
-        <SwiperSlide>
+        {/* <SwiperSlide>
           <div className='card-content'>
             <div className='full-div uncolored-div'>
               <h1>About {user.firstName}</h1>
               <p>{user.bio}</p>
             </div>
           </div>
-        </SwiperSlide>
+        </SwiperSlide> */}
         <SwiperSlide>
           <div className='card-content'>
-            <div className='left-div colored-div'>
+            <div className='left-div uncolored-div'>
               <h1>const favLang = </h1>
+              <h1>Tabs vs. Spaces:</h1>
+              <h1>Mac vs. PC:</h1>
+              <h1>Light vs. Dark Theme:</h1>
             </div>
-            <div className='right-div uncolored-div'>
+            <div className='right-div colored-div'>
               <h1>{user.prompt1 ? user.prompt1['favLang'] : 'undefined'}</h1>
+              <h1>{user.prompt2 ? user.prompt2['tabSpace'] : 'undefined'}</h1>
+              <h1>{user.prompt3 ? user.prompt3['macPc'] : 'undefined'}</h1>
+              <h1>{user.prompt4 ? user.prompt4['lightDark'] : 'undefined'}</h1>
             </div>
           </div>
         </SwiperSlide>
