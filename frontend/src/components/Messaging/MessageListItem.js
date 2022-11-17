@@ -3,6 +3,7 @@ import trashCan from './trash-can-solid.svg'
 import pen from './pen-solid.svg'
 import { useState } from "react"
 import { deleteMessage, updateMessage } from "../../store/messages";
+import { useEffect } from "react";
 
 export default function MessageListItem( {message, clickedMatchId} ) {
 
@@ -23,16 +24,27 @@ export default function MessageListItem( {message, clickedMatchId} ) {
   const [editedMessage, setEditedMessage] = useState('');
 
   const newMessage = {
+    _id: message._id,
     user_from: currentUser,
     user_to: clickedMatchId,
     body: editedMessage
   }
 
+  const clickOut = () => {
+    setShowLinks(false)
+    setEditingMsg(false)
+  }
+
   const Send = e => {
     e.preventDefault();
-    dispatch(updateMessage(editedMessage) )
-    document.getElementById("messageInput").value='';
+    dispatch(updateMessage(newMessage) )
+    clickOut()
   }
+
+  useEffect( () => {
+    if (editingMsg) setShowLinks(false)
+  }, [editingMsg]  )
+  // document.getElementById('root').addEventListener('click', clickOut)
 
   return(
     <div className="singleMsgContainer">
@@ -45,29 +57,27 @@ export default function MessageListItem( {message, clickedMatchId} ) {
           <p>{message.body}</p>
         }
         {editingMsg &&
-          <form className="messageInputForm">
-          <input
-            type='text'
-            name="message"
-            id="messageInput"
-            placeholder={`Send a message!`}
-            cols="30"
-            rows="3"
-            onChange={(e) => setEditedMessage(e.target.value) }
-            required
-          />
-          <button
-            className="sendMessageButton"
-            type="submit"
-            onClick={Send}>Send
-          </button>
-        </form>
-
+          <form className="messageEditForm">
+            <input
+              type='text'
+              name="editedMessage"
+              id="messageEdit"
+              placeholder={message.body}
+              onChange={(e) => setEditedMessage(e.target.value) }
+              required
+            />
+            <button
+              className="sendMessageButton"
+              type="submit"
+              onClick={Send}>Send
+            </button>
+          </form>
         }
       </li>
       {editable && showLinks &&
       <div className="messageLinkContainer">
         <img
+          onClick={ () => setEditingMsg( editingMsg ? false : true) }
           className="editMsg"
           src={pen} alt="pen" />
         <img
