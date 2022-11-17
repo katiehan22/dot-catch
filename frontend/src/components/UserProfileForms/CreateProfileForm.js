@@ -29,8 +29,8 @@ const CreateProfileForm = () => {
 
   const handleFiles = (e) => {
     const file = e.target.files[0];
-    setPhotos(file);
-    // dispatch(uploadPhoto(currentUser._id, file));
+    // setPhotos(file);
+    dispatch(uploadPhoto(currentUser._id, file));
   }
 
   const handleProfileSubmit = (e) => {
@@ -46,13 +46,13 @@ const CreateProfileForm = () => {
       prompt2: {"tabSpace": tabSpace},
       prompt3: {"macPc": macPc},
       prompt4: {"lightDark": lightDark},
-      bio: bio,
-      photos: photos
+      bio: bio
+      // photos: photos
     }
     console.log(updatedUser);
     // dispatch(uploadPhoto(currentUser._id, photos[0]))
-    // dispatch(updateUser(updatedUser));
-    // dispatch(receiveCurrentUser(updatedUser));
+    dispatch(updateUser(updatedUser));
+    dispatch(receiveCurrentUser(updatedUser));
   }
 
   return (
@@ -115,7 +115,7 @@ const CreateProfileForm = () => {
               <label htmlFor="bio">Bio: </label>
               <textarea value={bio} onChange={(e) => setBio(e.target.value)} required placeholder="What else do you want others to know about you?"/>
               <br />
-              <input type="file" multiple onChange={handleFiles}/>
+              <input type="file" onChange={handleFiles}/>
             </div>
           </div>
           <input type="submit" value="Create Profile" className="create-profile-button" />

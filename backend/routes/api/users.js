@@ -117,6 +117,7 @@ router.patch('/:userId', requireUser, async (req, res, next) => {
       user.prompt2 = req.body.prompt2 || user.prompt2;
       user.prompt3 = req.body.prompt3 || user.prompt3;
       user.prompt4 = req.body.prompt4 || user.prompt4;
+      user.bio = req.body.bio || user.bio;
       if (req.body.likedUserId) user.likes.set(req.body.likedUserId, true);
       if (req.body.matchedUserId) user.matches.set(req.body.matchedUserId, true);
     }
@@ -135,8 +136,9 @@ router.patch('/:userId', requireUser, async (req, res, next) => {
         })
       });
     }
+    console.log(user.bio, "bio")
     const updatedUser = await user.save();
-    return res.json(user);
+    return res.json(updatedUser);
 
   } catch (error) {
     next(error);

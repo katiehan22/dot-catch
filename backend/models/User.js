@@ -14,6 +14,9 @@ const userSchema = Schema({
         type: String,
         required: true
     },
+    bio: {
+        type: String
+    },
     age: {
         type: Number
     },
