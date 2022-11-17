@@ -54,7 +54,10 @@ const userSchema = Schema({
         type: Map,
         default: {},
         of: Boolean
-    }
+    },
+    photos: [{
+        type: String
+    }]
 }, {
     timestamps: true
 });

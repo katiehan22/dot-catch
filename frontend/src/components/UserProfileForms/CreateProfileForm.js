@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { clearUserErrors, updateUser } from "../../store/users";
+import { clearUserErrors, updateUser, uploadPhoto } from "../../store/users";
 import "./UserProfileForms.css";
 import { receiveCurrentUser } from "../../store/session";
 
@@ -19,12 +19,19 @@ const CreateProfileForm = () => {
   const [macPc, setMacPc] = useState('');
   const [lightDark, setLightDark] = useState('');
   const [bio, setBio] = useState('');
+  const [photos, setPhotos] = useState([]);
 
   useEffect(() => {
     return () => {
       dispatch(clearUserErrors());
     };
   }, [dispatch]);
+
+  const handleFiles = (e) => {
+    const file = e.target.files[0];
+    // setPhotos(file);
+    dispatch(uploadPhoto(currentUser._id, file));
+  }
 
   const handleProfileSubmit = (e) => {
     e.preventDefault();
@@ -40,7 +47,10 @@ const CreateProfileForm = () => {
       prompt3: {"macPc": macPc},
       prompt4: {"lightDark": lightDark},
       bio: bio
+      // photos: photos
     }
+    console.log(updatedUser);
+    // dispatch(uploadPhoto(currentUser._id, photos[0]))
     dispatch(updateUser(updatedUser));
     dispatch(receiveCurrentUser(updatedUser));
   }
@@ -104,12 +114,15 @@ const CreateProfileForm = () => {
               <br />
               <label htmlFor="bio">Bio: </label>
               <textarea value={bio} onChange={(e) => setBio(e.target.value)} required placeholder="What else do you want others to know about you?"/>
+              <br />
+              <input type="file" onChange={handleFiles}/>
             </div>
           </div>
           <input type="submit" value="Create Profile" className="create-profile-button" />
         </form>
         {/* <div className="errors">{errors?.users}</div> */}
       </div>
+      {/* <img src={currentUser.photos[0]}/> */}
     </>
   )
 }

@@ -1,15 +1,15 @@
-import SwipeView from './SwipeView/SwipeView';
-import './MainPage.css';
-import MatchesSidebar from '../MatchesSidebar/MatchesSidebar';
+import { useSelector } from 'react-redux';
+import SplashPage from '../SplashPage/SplashPage';
+import { LoggedInView } from './LoggedInView';
 
 
 const MainPage = () => {
+    const curr = useSelector(state => state.session.user)
 
     return (
-        <section className='main-page'>
-            <MatchesSidebar />
-            <SwipeView />
-        </section>
+        <>
+            {curr ? <LoggedInView /> : <SplashPage />}
+        </>
     )
 }
 
