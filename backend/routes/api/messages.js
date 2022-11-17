@@ -23,7 +23,9 @@ router.get('/user/:currentUserId/match/:matchedUserId', async (req, res, next) =
     ]})
                               .sort({ createdAt: 1 })
                               // .populate("author", "_id, username");
-    return res.json(messages);
+    const messagesObj = {};
+    messages.map(message => messagesObj[message._id] = message )
+    return res.json(messagesObj);
   }
   catch(err) {
     return res.json([]);
