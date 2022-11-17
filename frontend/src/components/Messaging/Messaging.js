@@ -39,6 +39,7 @@ export default function Messaging({matchedUser}) {
   const unmatchUser = () => {
     const newMatches = { ...currentUser.matches };
     delete newMatches[clickedMatchId];
+    if (matchedUser.bio === "You're getting the hang of it! I am Tom. I like everyone. Match with me :)") dispatch(updateUser({ ...matchedUser, likedUserId: currentUser._id }));
     dispatch(updateUser({ ...currentUser, deleteMatcherId: clickedMatchId }));
     dispatch(updateUser({ ...matchedUser, deleteMatcherId: currentUserId }));
     dispatch(receiveCurrentUser({ ...currentUser, matches: newMatches }));
