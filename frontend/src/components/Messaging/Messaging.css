@@ -1,21 +1,38 @@
 .messageUl {
-  background-color: #EBEBEB;
-  overflow: scroll;
+  /* background-color: #EBEBEB; */
+  overflow-y: overlay;
+  flex: 1;
+  padding: 40px;
+}
+
+.messageUl::-webkit-scrollbar-track {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  background-color: white;
+  border: none;
 }
 
 .messagingContainer {
   width: 70vw;
   display: flex;
   flex-direction: column;
-  height: 90vh;
+  height: calc(100vh - 62px);
+}
+
+.formPlaceholder {
+  font-size: 20px;
+  padding-bottom: 5px;
+  padding-right: 5px;
 }
 
 .messageInputForm {
   display: flex;
+  align-items: center;
+  padding: 0 40px;
+  margin-bottom: 10px;
 }
 
 #messageInput {
-  padding: 10px;
   flex-grow: 1;
 }
 
@@ -24,10 +41,57 @@
   padding: 10px;
 }
 
+.singleMsgContainer {
+  display: flex;
+  flex-direction: column;
+}
+
 .leftMessage {
+  align-self: flex-start;
   text-align: left;
+  background-color: #ebebeb;
+}
+
+.editMsg {
+  height: 16px;
+  width: auto;
+  margin: 10px;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.editMsg:hover {
+  cursor: pointer;
 }
 
 .rightMessage {
-  text-align: end;
+  background-color: #77dd77;
+  align-self: flex-end;
+  /* white-space: initial; */
+}
+
+.rightMessage:hover {
+  cursor: pointer;
+}
+
+.rightMessage p {
+  color: white;
+  word-wrap: break-word;
+}
+
+.leftMessage p {
+  /* word-wrap: break-word; */
+}
+
+.leftMessage, .rightMessage {
+  border-radius: 15px;
+  margin: 5px;
+  padding: 10px;
+  font-weight: 300;
+  max-width: 60%;
+}
+
+.messageLinkContainer {
+  display: flex;
+  justify-content: end;
 }

@@ -44,11 +44,12 @@ export default function Messaging({matchedUser}) {
       </Link>
       <MessagesList messageArray={messageArray} clickedMatchId={clickedMatchId} />
       <form className="messageInputForm">
+        <p className="formPlaceholder">{`>`}</p>
         <input
           type='text'
           name="message"
           id="messageInput"
-          placeholder="Send a message!"
+          placeholder={`Send a message!`}
           cols="30"
           rows="3"
           onChange={(e) => setMessage(e.target.value) }
