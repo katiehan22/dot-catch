@@ -25,7 +25,7 @@ export default function Messaging({matchedUser}) {
   }, [dispatch, clickedMatchId, messageArray.length] )
 
   useEffect(() => {
-    if (messageArray.length === 0 && matchedUser.bio === "You're getting the hang of it! I am Tom. I like everyone. Match with me :)") dispatch(createMessage({user_from: clickedMatchId, user_to: currentUserId, body: 'Hi my name is Tom'}));
+    if (messageArray.length === 0 && matchedUser.bio === "You're getting the hang of it! I am Tom. I like everyone. Match with me :)") dispatch(createMessage({user_from: clickedMatchId, user_to: currentUserId, body: 'Are you an exception? Let me catch you ;)'}));
   }, [dispatch])
 
   const newMessage = {
@@ -59,7 +59,7 @@ export default function Messaging({matchedUser}) {
             className="messagesHeaderLink"
             to={ {pathname: `/profile/${matchedUser._id}`, state: { user: matchedUser, fromApp: true } } }
             >
-              <img className={'profile-pic label'} src='https://upload.wikimedia.org/wikipedia/commons/1/18/Mark_Zuckerberg_F8_2019_Keynote_%2832830578717%29_%28cropped%29.jpg'></img>
+              <img className={'profile-pic label'} src={matchedUser.photos[0]}></img>
               <h2 className="messagingMatchedUser">{matchedUser.firstName}</h2>
           </Link>
         </div>
