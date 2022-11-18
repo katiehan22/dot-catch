@@ -25,6 +25,16 @@
     /* border-bottom: 1px solid #ebebeb;; */
 }
 
+.navLogoContainer {
+    display: flex;
+    align-items: center;
+}
+
+.logoImg {
+    margin-left: 10px;
+    height: 30px;
+}
+
 .splash-nav-buttons {
     background-color: #222222;
     color: white;
