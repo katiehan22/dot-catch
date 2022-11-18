@@ -3,6 +3,7 @@
     width: 100%;
     height: 100%;
     display: flex;
+    user-select: none;
 }
 
 .mySwiper {
@@ -102,12 +103,14 @@
 
 .colored-div {
     background-color: #77966d;
+}
+
+.grab {
     cursor: grab;
 }
 
 .uncolored-div {
     background-color: #ebebeb;
-    cursor: grab;
 }
 
 .colored-div > * {
