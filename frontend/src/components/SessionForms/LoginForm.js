@@ -26,10 +26,17 @@ function LoginForm () {
     dispatch(login({ email, password })); 
   }
 
+  const handleDemo = (e) => {
+    e.preventDefault()
+    const demo = {email: 'demo@mail.io', password: 'password'}
+
+    dispatch(login(demo))
+  }
+
   return (
     <form className="session-form" onSubmit={handleSubmit}>
       <div className='form-top'>
-        <h2>Log in</h2>
+        <h2>Sign In</h2>
         <button className='close'
           type='button'
           onClick={() => dispatch(hideModal())}
@@ -57,8 +64,14 @@ function LoginForm () {
         type="submit"
         value="Log In"
         disabled={!email || !password}
-      >Log in
+      >Sign In
       </button>
+      <div id='line-div'>
+        <div className="line"><hr></hr></div>
+        <div id='or'>or</div>
+        <div className="line"><hr></hr></div>
+      </div>
+      <button className='demo-button' onClick={handleDemo} type='button'>Sign In with Demo</button>
     </form>
   );
 }

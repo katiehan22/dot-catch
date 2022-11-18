@@ -54,7 +54,7 @@ function SignupForm () {
   }
 
   return (
-    <form className="session-form" onSubmit={usernameSubmit}>
+    <form className="session-form splash-form" onSubmit={usernameSubmit}>
       <div className='form-top'>
         <h2>Create account</h2>
         <button className='close'
@@ -103,7 +103,7 @@ function SignupForm () {
           type="submit"
           disabled={!email || !name || !password || password !== password2}
         >
-          Sign up
+          Sign Up
         </button>
     </form>
   );

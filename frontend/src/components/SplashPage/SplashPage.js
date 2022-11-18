@@ -15,6 +15,8 @@ import {HiChevronDoubleDown} from 'react-icons/hi'
 
 
 export default function SplashPage() {
+  const slideFour = useRef(null)
+
   return (
     <div className="splash-page-container">
       <Swiper
@@ -43,7 +45,7 @@ export default function SplashPage() {
               <h1 id='h1-slow'>YOUR LOVE LIFE.</h1>
             </div>
             <div className="bouncy-down-wrapper inner">
-              <div className="bouncy-down-container">
+              <div onClick={() => slideFour.current?.scrollIntoView({behavior: 'smooth'})} className="bouncy-down-container">
                 <HiChevronDoubleDown className="down-chevron"/>
               </div>
             </div>
@@ -62,7 +64,7 @@ export default function SplashPage() {
             <div className="text-container">
               <div>
                 <h3>.match</h3>
-                <p>Swipe through profiles that meet your prefrences or switch over to likes to see those who have already liked you</p>
+                <p>Swipe through profiles that meet your preferences or switch to likes to see those who have already liked you</p>
               </div>
             </div>
           </div>
@@ -79,12 +81,15 @@ export default function SplashPage() {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="slide slide-four" style={{ backgroundColor: 'white' }}>
+          <div ref={slideFour} className="slide slide-four" style={{ backgroundColor: 'white' }}>
             <div className="text-container">
               <h3>.start</h3>
+              <p>What are you waiting for? The sign up form is right there 👀</p>
             </div>
-            <div children="form-splash">
-              <SignupForm></SignupForm>
+            <div className="form-splash">
+              <div>
+                <SignupForm></SignupForm>
+              </div>
             </div>
           </div>
         </SwiperSlide>

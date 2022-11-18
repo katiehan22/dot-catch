@@ -70,7 +70,7 @@
     height: 100%;
     width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
 
 .slide-one-text h1 {
@@ -149,3 +149,12 @@
     font-size: 30px;
     padding: 10px 10px 5px 10px;
 }
+
+.form-splash {
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    background-color: black;
+    padding: 15px;
+}
+
