@@ -15,7 +15,7 @@ export const ProfileNavButton = () => {
                 <div className="item"><Link to='/updateprofile'><span>Update profile</span></Link></div>
                 <div className="item" onClick={() => dispatch(logout())}><span>Logout</span></div>
                 <div id="nav-button">
-                    <img className={'profile-pic label'} src={ currUser.photos ? currUser.photos[0] : `https://media.wired.com/photos/5926fb75cfe0d93c47431fef/master/pass/fb_14-m-zuckerberg4_0963_fullsizeJPG_SRGB.jpg`}></img>
+                    <img className={'profile-pic label'} src={currUser.photos[0] ? currUser.photos[0] : 'https://exoffender.org/wp-content/uploads/2016/09/empty-profile.png'}></img>
                 </div>
             </div>
         </>
