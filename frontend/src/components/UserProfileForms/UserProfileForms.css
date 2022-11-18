@@ -116,18 +116,20 @@
 
 /* input[type="file"] {
   display: none;
-}
+} */
 
 .custom-file-upload {
-  border: 1px solid #222222;
-  padding: 5px;
-  min-width: 30px;
-  min-height: 30px;
-  border-radius: 5px;
-  cursor: pointer;
-} */
+  margin-bottom: 10px;
+}
+
 .photo-upload-container {
-  margin-top: 20px;
+  margin-top: 15px;
+}
+
+.file-button-container {
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
 }
 
 #delete-profile-button {
