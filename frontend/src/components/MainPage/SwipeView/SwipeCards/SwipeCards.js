@@ -59,7 +59,7 @@ const SwipeCards = () => {
                         onSwipe={dir => swiped(dir, user)}
                         // onCardLeftScreen={() => outOfFrame(user._id)}
                     >
-                        <ProfileComponent user={user} />
+                        <ProfileComponent user={user} swipe={true} />
                     </TinderCard>
                 ))}
                 {!userMatches.includes(tom._id) &&
@@ -69,7 +69,7 @@ const SwipeCards = () => {
                         onSwipe={dir => swiped(dir, tom)}
                         // onCardLeftScreen={() => outOfFrame(user._id)}
                     >
-                        <ProfileComponent user={tom} />
+                        <ProfileComponent user={tom} swipe={true} />
                     </TinderCard>
                 }
                 {
@@ -79,7 +79,7 @@ const SwipeCards = () => {
                             className='swipe'
                             preventSwipe={['up', 'down', 'left']}
                         >
-                            <div className='card instructions'>
+                            <div className='card instructions grab'>
                                 <h1>Swipe right to like!</h1>
                             </div>
                         </TinderCard>
@@ -87,7 +87,7 @@ const SwipeCards = () => {
                             className='swipe'
                             preventSwipe={['up', 'down', 'right']}
                         >
-                            <div className='card instructions'>
+                            <div className='card instructions grab'>
                                 <h1>Swipe left to pass!</h1>
                             </div>
                         </TinderCard>
