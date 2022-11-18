@@ -176,16 +176,6 @@
 }
 
 .confirm-delete-buttons {
-  /* align-self: center;
-  margin-top: 15px;
-  width: 200px;
-  height: 30px;
-  border-radius: 5px;
-  padding: 10px;
-  background-color: #77966D;
-  color: #d31334;
-  border: 1px solid #d31334;
-  text-align: center; */
   border: 1px solid black;
   width: 300px;
   height: 30px;
@@ -200,4 +190,12 @@
 .confirm-delete-buttons:hover {
   background-color: #b0102b;
   color: white;
+}
+
+.form-errors li {
+  color: #d31334;
+}
+
+.form-errors {
+  align-self: center;
 }
