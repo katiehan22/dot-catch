@@ -20,14 +20,14 @@ export default function Messaging({matchedUser}) {
   
   const messageArray = useSelector( state => Object.values(state.entities.messages) )
 
-  // useEffect( () => {
-  //   dispatch( fetchUserMessages(currentUserId, clickedMatchId) )
-  // }, [dispatch, clickedMatchId, messageArray.length] )
-
   useEffect( () => {
-    const updateMessages = setInterval( () => dispatch( fetchUserMessages(currentUserId, clickedMatchId)), 1000)
-    return () => clearInterval(updateMessages)
-  }, [dispatch])
+    dispatch( fetchUserMessages(currentUserId, clickedMatchId) )
+  }, [dispatch, clickedMatchId, messageArray.length] )
+
+  // useEffect( () => {
+  //   const updateMessages = setInterval( () => dispatch( fetchUserMessages(currentUserId, clickedMatchId)), 1000)
+  //   return () => clearInterval(updateMessages)
+  // }, [dispatch])
 
   useEffect(() => {
     if (messageArray.length === 0 && matchedUser.bio === "You're getting the hang of it! I am Tom. I like everyone. Match with me :)") dispatch(createMessage({user_from: clickedMatchId, user_to: currentUserId, body: 'Are you an exception? Let me catch you ;)'}));
