@@ -13,7 +13,7 @@ export default function MatchListItem( {match} ) {
       to={ {pathname: '/messages', state: { matchedUser, fromApp: true }}}
       className="matchItemContainer"
       >
-        <img className="matchedUserImg" src="https://cdn2.iconfinder.com/data/icons/media-player-ui/512/Media-Icon-25-512.png" alt="matched user" />
+        <img className="matchedUserImg" src="https://cdn2.iconfinder.com/data/i" />
         <h2 className="matchedUserName">{matchedUser.firstName}</h2>
       </Link>
     </li>

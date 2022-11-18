@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
-import { fetchUsers } from "../../store/users";
+import { fetchUsers, updateUser } from "../../store/users";
 import MatchesList from "./MatchesList"
 import './MatchesSidebar.css'
 

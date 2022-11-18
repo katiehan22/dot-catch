@@ -25,7 +25,7 @@ export default function Messaging({matchedUser}) {
   }, [dispatch, clickedMatchId, messageArray.length] )
 
   useEffect(() => {
-    if (messageArray.length === 0 && matchedUser.bio === "You're getting the hang of it! I am Tom. I like everyone. Match with me :)") dispatch(createMessage({user_from: clickedMatchId, user_to: currentUserId, body: 'Hi my name is Tom'}));
+    if (messageArray.length === 0 && matchedUser.bio === "You're getting the hang of it! I am Tom. I like everyone. Match with me :)") dispatch(createMessage({user_from: clickedMatchId, user_to: currentUserId, body: 'Are you an exception? Let me catch you ;)'}));
   }, [dispatch])
 
   const newMessage = {
