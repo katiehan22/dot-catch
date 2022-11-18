@@ -15,7 +15,7 @@ const UpdateProfileForm = () => {
   const history = useHistory();
 
   useEffect(() => {
-    dispatch(getCurrentUser())
+    dispatch(getCurrentUser());
   }, [dispatch])
 
   const [firstName, setFirstName] = useState(currentUser.firstName);

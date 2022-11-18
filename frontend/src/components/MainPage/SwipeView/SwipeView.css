@@ -8,8 +8,28 @@
 .matching-section {
     height: 90vh;
     width: 70vw;
+    overflow: overlay;
 }
 
 .viewing-option-btns {
     height: 7.5%;
+    display: flex;
+    align-items: flex-end;
+}
+
+.btns-div {
+    display: flex;
+    margin-left: 6%;
+    box-shadow: 1.5pt 0pt 5pt 0.5pt #D3D3D3;
+    border-radius: 10px;
+}
+
+.btns-div > button {
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.btns-div > button:hover {
+    color: #77966D;
+    transition: color 0.5s;
 }
