@@ -102,10 +102,12 @@
 
 .colored-div {
     background-color: #77966d;
+    cursor: grab;
 }
 
 .uncolored-div {
     background-color: #ebebeb;
+    cursor: grab;
 }
 
 .colored-div > * {
