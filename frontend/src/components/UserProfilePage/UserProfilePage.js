@@ -14,7 +14,7 @@ const UserProfilePage = () => {
             <MatchesSidebar />
             <section className='profile-section'>
                 <div className='profile-card-container'>
-                    <ProfileComponent user={user} />
+                    <ProfileComponent user={user} swipe={false} />
                 </div>
             </section>
         </section>

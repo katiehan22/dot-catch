@@ -5,7 +5,7 @@ import "swiper/css/pagination";
 import "swiper/css/mousewheel";
 import './ProfileComponent.css';
 
-const ProfileComponent = ({ user }) => {
+const ProfileComponent = ({ user, swipe }) => {
 
   return (
     <div className='card'>
@@ -21,7 +21,7 @@ const ProfileComponent = ({ user }) => {
       >
         <SwiperSlide>
           {/* <div className="card-content-container"> */}
-            <div className='card-content'>
+            <div className={swipe ? 'card-content grab' : 'card-content'}>
               <div className='user-img left-div uncolored-div'>
                 {/* {console.log(user)} */}
               <img draggable='false' className="user-img-style-left" src={user.photos[1] ? user.photos[1] : 'https://exoffender.org/wp-content/uploads/2016/09/empty-profile.png'} />
@@ -34,7 +34,7 @@ const ProfileComponent = ({ user }) => {
           {/* </div> */}
         </SwiperSlide>
         <SwiperSlide>
-          <div className='card-content'>
+          <div className={swipe ? 'card-content grab' : 'card-content'}>
             <div className='left-div colored-div'>
               <h1>About {user.firstName}</h1>
               <p>{user.bio}</p>
@@ -53,7 +53,7 @@ const ProfileComponent = ({ user }) => {
           </div>
         </SwiperSlide> */}
         <SwiperSlide>
-          <div className='card-content'>
+          <div className={swipe ? 'card-content grab' : 'card-content'}>
             <div className='left-div uncolored-div prompts-text'>
               <h1>const favLanguage = </h1>
               <h1>Tabs vs. Spaces:</h1>
