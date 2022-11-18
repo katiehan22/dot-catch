@@ -2,9 +2,12 @@
   padding: 40px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   font-size: 22px;
   background-color: white;
   border-radius: 10px;
+  height: 100%;
+  
 }
 
 .session-form input {
@@ -51,3 +54,32 @@
   font-size: 15px;
   text-align: center;
 }
+
+#line-div {
+  padding-top: 20px;
+  display: flex;
+  align-items: center;
+}
+
+#or {
+  display: inline-block;
+  padding-left: 2.5%;
+  padding-right: 2.5%;
+  font-weight: 300;
+  padding-bottom: 2px;
+}
+
+.line {
+  width: 47%;
+  display: inline-block;
+}
+
+.demo-button {
+  margin-top: 20px;
+    text-align: center;
+    border-radius: 20px;
+    background-color: #222222;
+    padding: 10px;
+    color: white;
+}
+

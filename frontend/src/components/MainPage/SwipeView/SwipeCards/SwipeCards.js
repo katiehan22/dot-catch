@@ -42,6 +42,7 @@ const SwipeCards = () => {
             }
         }
     }
+    console.log(tom)
 
     // const outOfFrame = nameLeft => console.log(nameLeft + " left the screen!");
 

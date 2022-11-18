@@ -27,7 +27,7 @@ const ProfileComponent = ({ user }) => {
               <img className="user-img-style-left" src={user.photos[1] ? user.photos[1] : 'https://exoffender.org/wp-content/uploads/2016/09/empty-profile.png'} />
               </div>
               <div className='right-div colored-div'>
-                <h1>{user.firstName + ', ' + user.age}</h1>
+                <h1 className="user-name-age">{user.firstName + ', ' + user.age}</h1>
                 <p>{user.location}</p>
               </div>
             </div>
