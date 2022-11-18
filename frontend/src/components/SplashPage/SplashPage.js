@@ -88,7 +88,7 @@ export default function SplashPage() {
             </div>
             <div className="form-splash">
               <div>
-                <SignupForm></SignupForm>
+                <SignupForm splash={true} />
               </div>
             </div>
           </div>
