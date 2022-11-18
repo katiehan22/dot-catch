@@ -24,7 +24,7 @@ const ProfileComponent = ({ user }) => {
             <div className='card-content'>
               <div className='user-img left-div uncolored-div'>
                 {/* {console.log(user)} */}
-                <img className="user-img-style-left" src={user.photos[1]} />
+              <img className="user-img-style-left" src={user.photos[1] ? user.photos[1] : 'https://exoffender.org/wp-content/uploads/2016/09/empty-profile.png'} />
               </div>
               <div className='right-div colored-div'>
                 <h1>{user.firstName + ', ' + user.age}</h1>
@@ -40,7 +40,7 @@ const ProfileComponent = ({ user }) => {
               <p>{user.bio}</p>
             </div>
             <div className='user-img right-div uncolored-div'>
-              <img className="user-img-style-right" src={user.photos[2]} />
+              <img className="user-img-style-right" src={user.photos[2] ? user.photos[2] : 'https://exoffender.org/wp-content/uploads/2016/09/empty-profile.png'} />
             </div>
           </div>
         </SwiperSlide>
