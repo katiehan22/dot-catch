@@ -2,8 +2,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     column-gap: 20px;
-    padding-left: 40px;
-    padding-right: 40px;
+    padding: 40px 40px 0 40px;
 }
 
 .profile-container img{

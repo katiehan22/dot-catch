@@ -11,7 +11,7 @@ const SwipeView = () => {
             <div className='viewing-option-btns'>
                 <div className='btns-div'>
                     <button style={!showListView ? {backgroundColor: '#ebebeb'} : {}} onClick={() => setShowListView(false)}>Swipe View</button>
-                    <button style={showListView ? {backgroundColor: '#ebebeb'} : {}} onClick={() => setShowListView(true)}>List View</button>
+                    <button style={showListView ? {backgroundColor: '#ebebeb'} : {}} onClick={() => setShowListView(true)}>Likes</button>
                 </div>
             </div>
             {!showListView &&
