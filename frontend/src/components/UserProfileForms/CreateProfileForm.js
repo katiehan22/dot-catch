@@ -103,7 +103,7 @@ const CreateProfileForm = () => {
     // dispatch(uploadPhoto(currentUser._id, photos[0]))
     dispatch(updateUser(updatedUser));
     dispatch(receiveCurrentUser(updatedUser));
-    if (!randomUsers.includes(tom)) dispatch(updateUser({ ...tom, likedUserId: tom._id }));
+    if (!randomUsers.includes(tom)) dispatch(updateUser({ ...tom, likedUserId: currentUser._id }));
     randomUsers.forEach(user => dispatch(updateUser({ ...user, likedUserId: currentUser._id })));
     history.push({pathname: '/', state: { newUser: true }});
   }
