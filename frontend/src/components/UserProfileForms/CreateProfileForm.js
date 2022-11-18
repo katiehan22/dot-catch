@@ -9,7 +9,6 @@ const CreateProfileForm = () => {
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.session.user);
   const users = useSelector(state => state.entities.users ? Object.values(state.entities.users) : []);
-  // const errors = useSelector(state => state.errors.users);
   const history = useHistory();
   const linkLocation = useLocation();
   
@@ -81,7 +80,6 @@ const CreateProfileForm = () => {
 
   const handleFiles = (e) => {
     const file = e.target.files[0];
-    // setPhotos(file);
     dispatch(uploadPhoto(currentUser._id, file));
   }
 
@@ -103,9 +101,7 @@ const CreateProfileForm = () => {
         prompt3: {"macPc": macPc},
         prompt4: {"lightDark": lightDark},
         bio: bio
-        // photos: photos
       }
-      // dispatch(uploadPhoto(currentUser._id, photos[0]))
       dispatch(updateUser(updatedUser));
       dispatch(receiveCurrentUser(updatedUser));
       if (!randomUsers.includes(tom)) dispatch(updateUser({ ...tom, likedUserId: currentUser._id }));
@@ -120,7 +116,6 @@ const CreateProfileForm = () => {
     <>
       <div className="create-user-profile-page">
         <h1 className="profile-form-heading">Create your profile</h1>
-        {/* <form className="user-profile-form" onSubmit={handleProfileSubmit}> */}
         <form className="user-profile-form" onSubmit={handleProfileSubmit}>
           <div className="user-profile-form-container">
             <div className="user-profile-form-left">
@@ -194,11 +189,18 @@ const CreateProfileForm = () => {
                 </div>
               </div>
               <div className="photo-upload-container">
-                <label className="custom-file-upload">
-                  <input type="file" onChange={handleFiles} />
-                </label>
-                <input type="file" onChange={handleFiles}  />
-                <input type="file" onChange={handleFiles}  />
+                <h2 className="profile-input-header">Upload your photos</h2>
+                <div className="file-button-container">
+                  <label className="custom-file-upload">
+                    <input type="file" onChange={handleFiles} />
+                  </label>
+                  <label className="custom-file-upload">
+                    <input type="file" onChange={handleFiles} />
+                  </label>
+                  <label className="custom-file-upload">
+                    <input type="file" onChange={handleFiles} />
+                  </label>
+                </div>
               </div>
             </div>
           </div>
@@ -206,11 +208,8 @@ const CreateProfileForm = () => {
             {errors.map(error => <li key={error}>{error}</li>)}
           </ul>
           <input type="submit" value="Create Profile" className="create-profile-button" />
-          {/* <button className="create-profile-button" onClick={() => handleProfileSubmit()}>Create Profile</button> */}
         </form>
-        {/* <div className="errors">{errors?.users}</div> */}
       </div>
-      {/* <img src={currentUser.photos[0]}/> */}
     </>
   )
 }
