@@ -9,10 +9,13 @@ import "./SplashPage.css";
 
 import { Mousewheel, Pagination } from "swiper";
 import SignupForm from "../SessionForms/SignupForm";
-import NavBar from "../NavBar/NavBar";
 import img_one from './pexels-blue-bird-7218663.jpg'
 import {HiChevronDoubleDown} from 'react-icons/hi'
-
+import { HiArrowRight } from 'react-icons/hi'
+import ab from './abigail.jpeg'
+import ch from './chris.jpeg'
+import pa from './paulo.png'
+import ka from './katie.jpeg'
 
 export default function SplashPage() {
   const slideFour = useRef(null)
@@ -57,12 +60,10 @@ export default function SplashPage() {
         <SwiperSlide>
           <div className="slide slide-two" style={{ backgroundColor: '#EBEBEB' }}>
             <div className="image-conatiner">
-              <img src='https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=' className="image-splash"></img>
-              <img src='https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=' className="image-splash"></img>
-              <img src='https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=' className="image-splash"></img>
-              <img src='https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=' className="image-splash"></img>
-              <img src='https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=' className="image-splash"></img>
-
+              <img src={ab} className="image-splash slide-two-1"></img>
+              <img src={ch} className="image-splash slide-two-2"></img>
+              <img src={ka} className="image-splash slide-two-3"></img>
+              <img src={pa} className="image-splash slide-two-4"></img>
             </div>
             <div className="text-container">
               <div>
@@ -88,6 +89,7 @@ export default function SplashPage() {
             <div className="text-container">
               <h3>.start</h3>
               <p>What are you waiting for? The sign up form is right there 👀</p>
+              <HiArrowRight className="right-arrow"></HiArrowRight>
             </div>
             <div className="form-splash">
               <div>
