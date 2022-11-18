@@ -19,11 +19,11 @@
 
 @keyframes bounce {
     from {
-        transform: translate3d(0, 80vh, 0);
+        transform: translateY(80vh);
     }
 
     to {
-        transform: translate3d(0, 81vh, 0);
+        transform: translatey(81vh);
     }
 }
 
@@ -49,10 +49,10 @@
 .slide-one-img-container {
     height: 100%;
     width: 100%;
-
+    transform: translateY(130%);
     transition-timing-function: ease-in-out;
         animation: slideIn 3s;
-        animation-delay: 0s;
+        animation-delay: 1.5s;
         animation-fill-mode: forwards;
 }
 
@@ -60,6 +60,7 @@
     height: 100%;
     width: 100%;
     object-fit: cover;
+    border-radius: 20px;
 }
 
 .slide-one-text {
@@ -112,6 +113,10 @@
     font-weight: 600;
 }
 
+.text-container p {
+    font-size: 20px;
+}
+
 #logo {
     transition-timing-function: ease-in-out;
     animation: fadeIn 2s;
@@ -151,10 +156,56 @@
 }
 
 .form-splash {
-    border-radius: 10px;
     display: flex;
     align-items: center;
-    background-color: black;
+    background-color: #222222;
     padding: 15px;
 }
 
+.background-one span{
+    color: white;
+    font-size: 110px;
+    font-weight: 600;
+}
+
+.background-one span:nth-child(1) {
+    opacity: 0;
+    animation: fadeIn 2s;
+    animation-delay: 0s;
+    animation-fill-mode: forwards;
+}
+
+.background-one span:nth-child(2) {
+    opacity: 0;
+    animation: fadeIn 2s;
+        animation-delay: 0.1s;
+        animation-fill-mode: forwards;
+}
+
+.background-one span:nth-child(3) {
+    opacity: 0;
+    animation: fadeIn 2s;
+        animation-delay: 0.2s;
+        animation-fill-mode: forwards;
+}
+
+.background-one span:nth-child(4) {
+    opacity: 0;
+    animation: fadeIn 2s;
+        animation-delay: 0.3s;
+        animation-fill-mode: forwards;
+}
+
+.background-one span:nth-child(5) {
+    opacity: 0;
+    animation: fadeIn 2s;
+        animation-delay: 0.4s;
+        animation-fill-mode: forwards;
+}
+
+.background-one span:nth-child(6) {
+    opacity: 0;
+    animation: fadeIn 2s;
+        animation-delay: 0.6s;
+        animation-fill-mode: forwards;
+}
