@@ -61,6 +61,12 @@ exports.loginUser = async function (user) {
             gender: user.gender,
             genderPreference: user.genderPreference,
             likes: user.likes,
+            photos: user.photos,
+            prompt1: user.prompt1,
+            prompt2: user.prompt2,
+            prompt3: user.prompt3,
+            prompt4: user.prompt4,
+            firstName: user.firstName,
             matches: user.matches},
         token
     };
