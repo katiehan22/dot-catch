@@ -9,7 +9,7 @@ export const SignupFormModal = () => {
     return (
         <>
             <Modal onClose={() => dispatch(hideModal())}>
-                <SignupForm></SignupForm>
+                <SignupForm splash={false}></SignupForm>
             </Modal>
         </>
     )

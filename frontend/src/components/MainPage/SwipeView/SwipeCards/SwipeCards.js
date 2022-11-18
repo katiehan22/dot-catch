@@ -42,7 +42,6 @@ const SwipeCards = () => {
             }
         }
     }
-    console.log(tom)
 
     // const outOfFrame = nameLeft => console.log(nameLeft + " left the screen!");
 
@@ -51,6 +50,7 @@ const SwipeCards = () => {
     return (
         <div className='swipe-cards'>
             <div className='swipe-cards-container'>
+                <h1>You have run out of users to swipe!</h1>
                 {usersToSwipe.map((user, index) => (
                     <TinderCard 
                         className='swipe'

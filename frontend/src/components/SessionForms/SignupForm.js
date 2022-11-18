@@ -5,7 +5,7 @@ import './SessionForm.css';
 import { signup, clearSessionErrors } from '../../store/session';
 import { hideModal } from '../../store/ui';
 
-function SignupForm () {
+function SignupForm ({ splash }) {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
@@ -57,11 +57,13 @@ function SignupForm () {
     <form className="session-form splash-form" onSubmit={usernameSubmit}>
       <div className='form-top'>
         <h2>Create account</h2>
-        <button className='close'
-          type='button'
-          onClick={() => dispatch(hideModal())}
-        >X
-        </button>
+        { !splash &&
+          <button className='close'
+            type='button'
+            onClick={() => dispatch(hideModal())}
+          >X
+          </button>
+        }
       </div>
       <label>
         <input type="email"
