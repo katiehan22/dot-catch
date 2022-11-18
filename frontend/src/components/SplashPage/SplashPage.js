@@ -16,6 +16,7 @@ import ab from './abigail.jpeg'
 import ch from './chris.jpeg'
 import pa from './paulo.png'
 import ka from './katie.jpeg'
+import message from './message.jpg'
 
 export default function SplashPage() {
   const slideFour = useRef(null)
@@ -75,8 +76,8 @@ export default function SplashPage() {
         </SwiperSlide>
         <SwiperSlide>
           <div className="slide slide-three" style={{ backgroundColor: '#77966D' }}>
-            <div className="image-conatiner">
-
+            <div className="image-conatiner full-image">
+              <img className="message-img" src={message}></img>
             </div>
             <div className="text-container">
               <h3>.message</h3>
