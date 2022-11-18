@@ -10,15 +10,15 @@ const ListView = () => {
     const preferencedLikes = likes.filter(user => {
         switch (currentUser.genderPreference) {
             case 'M':
-                return currentUser.genderPreference === user.gender;
+                return currentUser.genderPreference === user.gender && user._id !== currentUser._id;
             case 'F':
-                return currentUser.genderPreference === user.gender;
+                return currentUser.genderPreference === user.gender && user._id !== currentUser._id;
             case 'N':
-                return currentUser.genderPreference === user.gender;
+                return currentUser.genderPreference === user.gender && user._id !== currentUser._id;
             case 'NP':
-                return true;
+                return user._id !== currentUser._id;
             case undefined:
-                return true;
+                return user._id !== currentUser._id;
         }
     });
 
