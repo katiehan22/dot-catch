@@ -1,3 +1,14 @@
+@media (min-width: 0) {
+  .matchesGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 900px) {
+  .matchesGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
 .matchesSidebarContainer {
   width: 30vw;
   background-color: #FFFFFF;
@@ -14,7 +25,6 @@
 
 .matchesGrid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
   column-gap: 20px;
   margin: 0 20px;
 }
