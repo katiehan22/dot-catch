@@ -276,3 +276,15 @@
 .message-img {
     border-radius: 20px;
 }
+
+.slide-three {
+    background: radial-gradient(circle at top, #77966D, #A1DC7E);
+}
+
+.slide-three h3{
+    color: white;
+}
+
+.slide-three p {
+    color: white;
+}
