@@ -14,6 +14,7 @@
     "csurf": "^1.11.0",
     "debug": "~2.6.9",
     "express": "~4.16.1",
+    "express-async-handler": "^1.2.0",
     "express-validator": "^6.14.2",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.7.2",
@@ -22,7 +23,8 @@
     "multer-s3": "^2.10.0",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.0",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "socket.io": "^4.5.3"
   },
   "devDependencies": {
     "dotenv-cli": "^6.0.0",

@@ -10,12 +10,17 @@ const messageSchema = Schema({
   user_to: {
     type: Schema.Types.ObjectId,
     ref: 'User',
-    required: true
+    // required: true //commented out for socket.io
   },
   body: {
     type: String,
+    trim: true,
     required: true
-  }  
+  }, 
+  chat: { //which chat group it is
+    type: Schema.Types.ObjectId,
+    ref: "Chat"
+  }
 }, {
   timestamps: true
 })
