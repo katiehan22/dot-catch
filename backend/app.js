@@ -16,6 +16,8 @@ const passport = require('passport');
 const usersRouter = require('./routes/api/users');
 const csrfRouter = require('./routes/api/csrf');
 const messagesRouter = require('./routes/api/messages')
+const chatRouter = require('./routes/api/chat')
+const socketMessage = require('./routes/api/socketMessage')
 
 const app = express();
 
@@ -46,6 +48,7 @@ app.use(
 app.use('/api/users', usersRouter);
 app.use('/api/csrf', csrfRouter);
 app.use('/api/messages', messagesRouter)
+app.use('/api/chat', chatRouter)
 
 // Serve static React build files statically in production
 if (isProduction) {
@@ -88,5 +91,24 @@ app.use((err, req, res, next) => {
         errors: err.errors
     })
 });
+
+//Socket.io
+
+const server = app.listen(5000, console.log('Server started'))
+const io = require('soket.io')(server, {
+    pingTimeout: 600000,
+    cors: {
+        origin: "http://localhost:3000"
+    }
+})
+
+io.on("connection", (socket) => {
+    console.log("connected to message server")
+
+    socket.on('setup', (user) => {
+        socket.join(user._id)
+        socket.emit('connected')
+    })
+})
 
 module.exports = app;
