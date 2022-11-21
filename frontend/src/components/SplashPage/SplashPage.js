@@ -16,7 +16,7 @@ import ab from './abigail.jpeg'
 import ch from './chris.jpeg'
 import pa from './paulo.png'
 import ka from './katie.jpeg'
-import message from './message.jpg'
+import message from './message-splash.png'
 
 export default function SplashPage() {
   const slideFour = useRef(null)
@@ -75,13 +75,13 @@ export default function SplashPage() {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="slide slide-three" style={{ backgroundColor: '#77966D' }}>
+          <div className="slide slide-three" >
             <div className="image-conatiner full-image">
               <img className="message-img" src={message}></img>
             </div>
             <div className="text-container">
               <h3>.message</h3>
-              <p>Chat with those you have matched with to make sure they are perfect for you</p>
+              <p>Chat with those you have matched with to make sure they are perfect fit for you</p>
             </div>
           </div>
         </SwiperSlide>
@@ -94,7 +94,7 @@ export default function SplashPage() {
             </div>
             <div className="form-splash">
               <div>
-                <SignupForm></SignupForm>
+                <SignupForm splash={true} />
               </div>
             </div>
           </div>
