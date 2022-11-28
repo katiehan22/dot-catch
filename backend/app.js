@@ -94,21 +94,21 @@ app.use((err, req, res, next) => {
 
 //Socket.io
 
-const server = app.listen(5000, console.log('Server started'))
-const io = require('soket.io')(server, {
-    pingTimeout: 600000,
-    cors: {
-        origin: "http://localhost:3000"
-    }
-})
+// const server = app.listen(5000, console.log('Server started'))
+// const io = require('soket.io')(server, {
+//     pingTimeout: 600000,
+//     cors: {
+//         origin: "http://localhost:3000"
+//     }
+// })
 
-io.on("connection", (socket) => {
-    console.log("connected to message server")
+// io.on("connection", (socket) => {
+//     console.log("connected to message server")
 
-    socket.on('setup', (user) => {
-        socket.join(user._id)
-        socket.emit('connected')
-    })
-})
+//     socket.on('setup', (user) => {
+//         socket.join(user._id)
+//         socket.emit('connected')
+//     })
+// })
 
 module.exports = app;
