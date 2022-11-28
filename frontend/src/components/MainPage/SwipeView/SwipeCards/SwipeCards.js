@@ -1,4 +1,4 @@
-import React, { useState, useRef, useMemo } from 'react';
+import React, { useState, useRef, useMemo, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateUser } from '../../../../store/users';
 import { useLocation } from 'react-router-dom';
@@ -36,11 +36,11 @@ const SwipeCards = () => {
         if (dir === 'right') {
             if (!Object.keys(likedUser.likes).includes(currentUser._id)) {
                 dispatch(updateUser({ ...currentUser, likedUserId: likedUser._id }));
-                // dispatch(receiveCurrentUser({ ...currentUser, ...currentUser.likes[likedUser._id] = true }));
+                dispatch(receiveCurrentUser({ ...currentUser, ...currentUser.likes[likedUser._id] = true }));
             } else {
                 dispatch(updateUser({ ...currentUser, matchedUserId: likedUser._id }));
                 dispatch(updateUser({ ...likedUser, matchedUserId: currentUser._id, deleteLikerId: currentUser._id }));
-                // dispatch(receiveCurrentUser({ ...currentUser, ...currentUser.matches[likedUser._id] = true }));
+                dispatch(receiveCurrentUser({ ...currentUser, ...currentUser.matches[likedUser._id] = true }));
             }
         }
     }
@@ -72,7 +72,7 @@ const SwipeCards = () => {
 
     // const outOfFrame = nameLeft => console.log(nameLeft + " left the screen!");
 
-    if (tom === undefined || currentIndex === -1) return null;
+    if (tom === undefined) return null;
 
     return (
         <div className='swipe-cards'>
@@ -92,7 +92,7 @@ const SwipeCards = () => {
                         <ProfileComponent user={user} swipe={true} />
                     </TinderCard>
                 ))}
-                {/* {!userMatches.includes(tom._id) &&
+                {!userMatches.includes(tom._id) &&
                     <TinderCard
                         className='swipe'
                         preventSwipe={['up', 'down', 'left']}
@@ -123,11 +123,11 @@ const SwipeCards = () => {
                         </TinderCard>
                     </>
                     : null
-                } */}
-                <div className='buttons'>
+                }
+                {/* <div className='buttons'>
                     <button onClick={() => swipe('left')}>Swipe left!</button>
                     <button onClick={() => swipe('right')}>Swipe right!</button>
-                </div>
+                </div> */}
             </div>
         </div>
     )

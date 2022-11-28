@@ -65,10 +65,7 @@ export const updateUser = (user) => async dispatch => {
             body: JSON.stringify(user)
         })
         const updatedUser = await res.json();
-        return Promise.all([dispatch(receiveUser(updatedUser)), dispatch(receiveCurrentUser(updatedUser))]);
         dispatch(receiveUser(updatedUser));
-        dispatch(receiveCurrentUser(updatedUser));
-        // dispatch(receiveUser(updatedUser));
         // const currentUser = useSelector(state => state.session.user);
         // if(currentUser._id === user._id) {
         //     dispatch(receiveCurrentUser(updatedUser))
