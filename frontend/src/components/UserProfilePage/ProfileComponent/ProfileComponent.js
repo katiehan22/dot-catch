@@ -24,7 +24,7 @@ const ProfileComponent = ({ user, swipe }) => {
             <div className={swipe ? 'card-content grab' : 'card-content'}>
               <div className='user-img left-div uncolored-div'>
                 {/* {console.log(user)} */}
-              <img draggable='false' className="user-img-style-left" src={user.photos[1] ? user.photos[1] : 'https://exoffender.org/wp-content/uploads/2016/09/empty-profile.png'} />
+              <img draggable='false' className="user-img-style-left" src={user.photos[0] ? user.photos[0] : 'https://exoffender.org/wp-content/uploads/2016/09/empty-profile.png'} />
               </div>
               <div className='right-div colored-div'>
                 <h1 className="user-name-age">{user.firstName + ', ' + user.age}</h1>
@@ -40,7 +40,7 @@ const ProfileComponent = ({ user, swipe }) => {
               <p>{user.bio}</p>
             </div>
             <div className='user-img right-div uncolored-div'>
-              <img draggable='false' className="user-img-style-right" src={user.photos[2] ? user.photos[2] : 'https://exoffender.org/wp-content/uploads/2016/09/empty-profile.png'} />
+              <img draggable='false' className="user-img-style-right" src={user.photos[1] ? user.photos[1] : 'https://exoffender.org/wp-content/uploads/2016/09/empty-profile.png'} />
             </div>
           </div>
         </SwiperSlide>
