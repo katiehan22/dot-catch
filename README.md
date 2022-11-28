@@ -15,6 +15,9 @@ In addition, this project includes:
 - user authorization using JWT protocols
 
 ## Example Images
+![splash](https://user-images.githubusercontent.com/65314998/204390327-0ba82807-54d8-4571-82ca-f349642f2380.gif)
+![swipe](https://user-images.githubusercontent.com/65314998/204389590-1ab2c907-9adb-46fb-b0e4-f0ee2427c384.gif)
+![message](https://user-images.githubusercontent.com/65314998/204391360-2bee83f9-e47d-4dbc-8a6f-4d6352a11d33.gif)
 
 ## Technologies, Libraries, and APIs
 - React.js
