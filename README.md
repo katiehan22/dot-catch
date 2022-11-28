@@ -22,10 +22,10 @@ In addition, this project includes:
 - Mongoose
 - MongoDB
 - AWS
+- Passport-JWT
 - React-Redux
 - Swiper.js
 - React-Tinder-Card
 
 ## Code Snippets
 
-## Time Frame
