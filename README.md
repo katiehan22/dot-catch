@@ -31,4 +31,21 @@ In addition, this project includes:
 - React-Tinder-Card
 
 ## Code Snippets
-
+### AWS Image Upload
+```
+const upload = multer({
+  fileFilter,
+  storage: multerS3({
+    acl: 'public-read',
+    s3,
+    bucket: BUCKET_NAME,
+    contentType: multerS3.AUTO_CONTENT_TYPE,
+    metadata: function (req, file, cb) {
+      cb(null, { fieldName: file.fieldname });
+    },
+    key: function (req, file, cb) {
+      cb(null, `${Date.now().toString()}` + '-' + file.originalname);
+    }
+  })
+});
+```
