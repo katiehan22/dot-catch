@@ -1,3 +1,4 @@
+import React, { useState, useRef, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateUser } from '../../../../store/users';
 import { useLocation } from 'react-router-dom';
@@ -30,39 +31,68 @@ const SwipeCards = () => {
         }
     });
 
-    const swiped = (dir, likedUser) => {
+    const swiped = (dir, likedUser, index) => {
+        updateCurrentIndex(index - 1)
         if (dir === 'right') {
             if (!Object.keys(likedUser.likes).includes(currentUser._id)) {
                 dispatch(updateUser({ ...currentUser, likedUserId: likedUser._id }));
-                dispatch(receiveCurrentUser({ ...currentUser, ...currentUser.likes[likedUser._id] = true }));
+                // dispatch(receiveCurrentUser({ ...currentUser, ...currentUser.likes[likedUser._id] = true }));
             } else {
                 dispatch(updateUser({ ...currentUser, matchedUserId: likedUser._id }));
                 dispatch(updateUser({ ...likedUser, matchedUserId: currentUser._id, deleteLikerId: currentUser._id }));
-                dispatch(receiveCurrentUser({ ...currentUser, ...currentUser.matches[likedUser._id] = true }));
+                // dispatch(receiveCurrentUser({ ...currentUser, ...currentUser.matches[likedUser._id] = true }));
             }
+        }
+    }
+
+    const [currentIndex, setCurrentIndex] = useState(usersToSwipe.length - 1);
+    const currentIndexRef = useRef(currentIndex);
+
+    const childRefs = useMemo(
+        () =>
+            Array(usersToSwipe.length)
+                .fill(0)
+                .map((i) => React.createRef()),
+        []
+    )
+
+    const updateCurrentIndex = (val) => {
+        setCurrentIndex(val);
+        currentIndexRef.current = val;
+    }
+
+    const canSwipe = currentIndex >= 0;
+
+    const swipe = async (dir) => {
+        console.log(childRefs)
+        if (canSwipe && currentIndex < usersToSwipe.length) {
+            await childRefs[currentIndex].current.swipe(dir) // Swipe the card!
         }
     }
 
     // const outOfFrame = nameLeft => console.log(nameLeft + " left the screen!");
 
-    if (tom === undefined) return null;
+    if (tom === undefined || currentIndex === -1) return null;
 
     return (
         <div className='swipe-cards'>
             <div className='swipe-cards-container'>
-                <h1>You have run out of users to swipe!</h1>
+                {/* {usersToSwipe.length === 0 &&  */}
+                    <h1>You have run out of users to swipe!</h1>
+                {/* } */}
                 {usersToSwipe.map((user, index) => (
                     <TinderCard 
+                        ref={childRefs[index]}
                         className='swipe'
                         key={user._id}
                         preventSwipe={['up', 'down']}
-                        onSwipe={dir => swiped(dir, user)}
+                        onSwipe={dir => swiped(dir, user, index)}
                         // onCardLeftScreen={() => outOfFrame(user._id)}
                     >
                         <ProfileComponent user={user} swipe={true} />
                     </TinderCard>
                 ))}
-                {!userMatches.includes(tom._id) &&
+                {/* {!userMatches.includes(tom._id) &&
                     <TinderCard
                         className='swipe'
                         preventSwipe={['up', 'down', 'left']}
@@ -93,7 +123,11 @@ const SwipeCards = () => {
                         </TinderCard>
                     </>
                     : null
-                }
+                } */}
+                <div className='buttons'>
+                    <button onClick={() => swipe('left')}>Swipe left!</button>
+                    <button onClick={() => swipe('right')}>Swipe right!</button>
+                </div>
             </div>
         </div>
     )

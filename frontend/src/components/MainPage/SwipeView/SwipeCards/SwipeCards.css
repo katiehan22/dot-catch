@@ -9,6 +9,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 .swipe {
@@ -26,6 +27,17 @@
     align-items: center;
 }
 
-.instructions > h1 {
+.instructions>h1 {
     color: white;
+}
+
+.buttons {
+    position: absolute;
+    bottom: 15%;
+}
+
+.buttons>button {
+    border-radius: 100px;
+    padding: 10px;
+    background-color: white;
 }
