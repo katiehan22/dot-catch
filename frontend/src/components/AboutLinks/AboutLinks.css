@@ -5,6 +5,7 @@
 .personContainer {
     display: flex;
     margin-bottom: 20px;
+    max-width: 50vw;
 }
 
 .aboutImg {
@@ -37,6 +38,7 @@
 
 .bio {
     font-size: 12px;
+    max-width: 95%;
 }
 
 .repoLinkContainer {

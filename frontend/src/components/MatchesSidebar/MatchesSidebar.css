@@ -23,6 +23,12 @@
   padding: 10px;
 }
 
+.matchesSidebarSubTitle {
+  font-size: medium;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
 .matchesGrid {
   display: grid;
   column-gap: 20px;
