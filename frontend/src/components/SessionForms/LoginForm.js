@@ -28,7 +28,7 @@ function LoginForm () {
 
   const handleDemo = (e) => {
     e.preventDefault()
-    const demo = {email: 'demo@mail.io', password: 'password'}
+    const demo = {email: 'demo@user.io', password: 'password'}
 
     dispatch(login(demo))
   }

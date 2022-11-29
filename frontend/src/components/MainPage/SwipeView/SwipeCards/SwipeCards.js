@@ -50,19 +50,19 @@ const SwipeCards = ({ isLoading }) => {
         }
     }
 
-    const [currentIndex, setCurrentIndex] = useState(usersToSwipe.length - 1);
+    const [currentIndex, setCurrentIndex] = useState(usersToSwipe.length + 1);
     const currentIndexRef = useRef(currentIndex);
 
     const childRefs = useMemo(
         () =>
-            Array(usersToSwipe.length)
+            Array(usersToSwipe.length + 2)
                 .fill(0)
                 .map((i) => React.createRef()),
         [users.length]
     )
 
     useEffect(() => {
-        setCurrentIndex(usersToSwipe.length - 1);
+        setCurrentIndex(usersToSwipe.length + 1);
     }, [users.length])
 
     const updateCurrentIndex = (val) => {
@@ -73,10 +73,12 @@ const SwipeCards = ({ isLoading }) => {
     const canSwipe = currentIndex >= 0;
 
     const swipe = async (dir) => {
-        if (canSwipe && currentIndex < usersToSwipe.length) {
+        if (canSwipe) {
             await childRefs[currentIndex].current.swipe(dir)
         }
     }
+
+    console.log(currentIndex)
 
     // const outOfFrame = nameLeft => console.log(nameLeft + " left the screen!");
 
@@ -85,9 +87,7 @@ const SwipeCards = ({ isLoading }) => {
     return (
         <div className='swipe-cards'>
             <div className='swipe-cards-container'>
-                {/* {usersToSwipe.length === 0 &&  */}
-                    <h1>You have run out of users to swipe!</h1>
-                {/* } */}
+                <h1>You have run out of users to swipe!</h1>
                 {sortedDeck.map((user, index) => (
                     <TinderCard 
                         ref={childRefs[index]}
@@ -101,31 +101,37 @@ const SwipeCards = ({ isLoading }) => {
                     </TinderCard>
                 ))}
                 {
-                    location.state ? 
+                    location.state || currentUser._id === '638652c27433cea88d6d70f3' ? 
                     <>
                         <TinderCard
+                            ref={childRefs[sortedDeck.length]}
                             className='swipe'
-                            preventSwipe={['up', 'down', 'left']}
+                            preventSwipe={['up', 'down', 'left', 'right']}
+                            onSwipe={() => updateCurrentIndex(sortedDeck.length - 1)}
                         >
                             <div className='card instructions grab'>
-                                <h1>Swipe right to like!</h1>
+                                <h1>.push() to like!</h1>
                             </div>
                         </TinderCard>
                         <TinderCard
+                            ref={childRefs[sortedDeck.length + 1]}
                             className='swipe'
-                            preventSwipe={['up', 'down', 'right']}
+                            preventSwipe={['up', 'down', 'right', 'left']}
+                            onSwipe={() => updateCurrentIndex(sortedDeck.length)}
                         >
                             <div className='card instructions grab'>
-                                <h1>Swipe left to pass!</h1>
+                                <h1>.pop() to pass!</h1>
                             </div>
                         </TinderCard>
                     </>
                     : null
                 }
-                <div className='buttons'>
-                    <button onClick={() => swipe('left')}>Swipe left!</button>
-                    <button onClick={() => swipe('right')}>Swipe right!</button>
-                </div>
+                {currentIndex > -1 && 
+                    <div className='buttons'>
+                        <button className='dislike' onClick={() => swipe('left')}>.pop()</button>
+                        <button className='like' onClick={() => swipe('right')}>.push()</button>
+                    </div>
+                }
             </div>
         </div>
     )
