@@ -1,4 +1,3 @@
-import { useSelector } from "react-redux";
 import jwtFetch from "./jwt";
 import { receiveCurrentUser } from "./session";
 
@@ -65,7 +64,7 @@ export const updateUser = (user) => async dispatch => {
             method: 'PATCH',
             body: JSON.stringify(user)
         })
-        const updatedUser = await res.json()
+        const updatedUser = await res.json();
         dispatch(receiveUser(updatedUser));
         // const currentUser = useSelector(state => state.session.user);
         // if(currentUser._id === user._id) {

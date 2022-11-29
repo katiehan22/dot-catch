@@ -3,7 +3,7 @@ import SwipeCards from './SwipeCards/SwipeCards';
 import ListView from '../../ListView/ListView';
 import './SwipeView.css';
 
-const SwipeView = () => {
+const SwipeView = ({ isLoading, setIsLoading }) => {
     const [showListView, setShowListView] = useState(false);
 
     return (
@@ -16,7 +16,7 @@ const SwipeView = () => {
             </div>
             {!showListView &&
                 <section className='swipe-view-section'>
-                    <SwipeCards />
+                    <SwipeCards isLoading={isLoading} setIsLoading={setIsLoading}/>
                 </section>
             }
             {showListView &&
