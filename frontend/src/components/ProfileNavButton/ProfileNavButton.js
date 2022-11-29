@@ -2,6 +2,7 @@ import { useDispatch, useSelector} from "react-redux"
 import { logout } from "../../store/session"
 import './ProfileNavButton.css'
 import { useHistory, Link } from "react-router-dom"
+import { showAboutLinksModal } from "../../store/ui"
 
 export const ProfileNavButton = () => {
     const dispatch = useDispatch()
@@ -11,6 +12,7 @@ export const ProfileNavButton = () => {
     return (
         <>
             <div className="menu">
+                <div className="item" onClick={() => dispatch(showAboutLinksModal() ) }><span>About The Developers</span></div>
                 <div className="item" onClick={() => history.push({ pathname: `/profile/${currUser._id}` , state: {fromApp: true, user: currUser}})}><span>View profile</span></div>
                 <div className="item"><Link to='/updateprofile'><span>Update profile</span></Link></div>
                 <div className="item" onClick={() => dispatch(logout())}><span>Logout</span></div>

@@ -16,7 +16,7 @@ export default function MatchesSidebar() {
 
   return(
     <section className="matchesSidebarContainer">
-      <h1 className="matchesSidebarTitle">Messages</h1>
+      <h1 className="matchesSidebarTitle">Click a Match to Send a Message!</h1>
       <div>
         <MatchesList matchesArray={matchesArray} />
       </div>
