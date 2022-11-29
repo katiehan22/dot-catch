@@ -7,7 +7,6 @@ import { hideModal } from '../../store/ui';
 
 function SignupForm ({ splash }) {
   const [email, setEmail] = useState('');
-  const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [password2, setPassword2] = useState('');
   const errors = useSelector(state => state.errors.session);
@@ -26,9 +25,6 @@ function SignupForm ({ splash }) {
       case 'email':
         setState = setEmail;
         break;
-      case 'name':
-        setState = setName;
-        break;
       case 'password':
         setState = setPassword;
         break;
@@ -46,7 +42,6 @@ function SignupForm ({ splash }) {
     e.preventDefault();
     const user = {
       email,
-      name,
       password
     };
 
@@ -74,14 +69,6 @@ function SignupForm ({ splash }) {
       </label>
       <div className="errors">{errors?.email}</div>
       <label>
-        <input type="text"
-          value={name}
-          onChange={update('name')}
-          placeholder="First name"
-        />
-      </label>
-      <div className="errors">{errors?.username}</div>
-      <label>
         <input type="password"
           className='bottom-flat'
           value={password}
@@ -103,7 +90,7 @@ function SignupForm ({ splash }) {
         <button
           className='submit-button'
           type="submit"
-          disabled={!email || !name || !password || password !== password2}
+          disabled={!email || !password || password !== password2}
         >
           Sign Up
         </button>

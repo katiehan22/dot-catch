@@ -28,7 +28,6 @@ const UpdateProfileForm = () => {
   const [macPc, setMacPc] = useState(currentUser.prompt3["macPc"]);
   const [lightDark, setLightDark] = useState(currentUser.prompt4["lightDark"]);
   const [bio, setBio] = useState(currentUser.bio);
-  // const [photos, setPhotos] = useState([]);
 
   const [genderStyle, setGenderStyle] = useState({ "F": "profile-button-unchecked", "M": "profile-button-unchecked", "N": "profile-button-unchecked" });
   const [genderPrefStyle, setGenderPrefStyle] = useState({ "M": "profile-button-unchecked", "F": "profile-button-unchecked", "N": "profile-button-unchecked", "NP": "profile-button-unchecked" });
@@ -96,19 +95,12 @@ const UpdateProfileForm = () => {
     setLightDark(lightDarkSelection);
   }
 
-  // const handleDelete = () => {
-  //   dispatch(deleteUser(currentUser._id));
-  //   history.push("/");
-  // }
-
   const handleFiles = (e) => {
     const file = e.target.files[0];
-    // setPhotos(file);
     dispatch(uploadPhoto(currentUser._id, file));
   }
 
   const handleProfileSubmit = (e) => {
-    // e.preventDefault();
     const updatedUser = {
       ...currentUser,
       firstName: firstName,
@@ -121,9 +113,7 @@ const UpdateProfileForm = () => {
       prompt3: { "macPc": macPc },
       prompt4: { "lightDark": lightDark },
       bio: bio
-      // photos: photos
     }
-    // dispatch(uploadPhoto(currentUser._id, photos[0]))
     dispatch(updateUser(updatedUser));
     dispatch(receiveCurrentUser(updatedUser));
     history.push("/");
@@ -205,23 +195,13 @@ const UpdateProfileForm = () => {
                   <button className={lightDarkStyle["dark"]} onClick={() => handleLightDark("dark")}>Dark</button>
                 </div>
               </div>
-              <div className="photo-upload-container">
-                {/* <label className="custom-file-upload">
-                  <input type="file" onChange={handleFiles} />
-                </label> */}
-                {/* <input type="file" onChange={handleFiles} />
-                <input type="file" onChange={handleFiles} /> */}
-              </div>
             </div>
           </div>
-          {/* <input type="submit" value="Update Profile" className="create-profile-button" /> */}
           <button className="create-profile-button" onClick={() => handleProfileSubmit()}>Update Profile</button>
         </div>
-        {/* <div className="errors">{errors?.users}</div> */}
         <button id="delete-profile-button" onClick={() => dispatch(showDeleteModal())}>Delete Profile</button>
         {modal === 'delete' && <ConfirmDeleteModal></ConfirmDeleteModal>}
       </div>
-      {/* <img src={currentUser.photos[0]}/> */}
     </>
   )
 }

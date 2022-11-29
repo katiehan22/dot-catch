@@ -197,9 +197,6 @@ const CreateProfileForm = () => {
                   <label className="custom-file-upload">
                     <input type="file" onChange={handleFiles} />
                   </label>
-                  <label className="custom-file-upload">
-                    <input type="file" onChange={handleFiles} />
-                  </label>
                 </div>
               </div>
             </div>
