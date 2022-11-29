@@ -1,4 +1,4 @@
-import React, { useState, useRef, useMemo, useEffect } from 'react';
+import React, { useState, useRef, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateUser } from '../../../../store/users';
 import { useLocation } from 'react-router-dom';
@@ -7,7 +7,7 @@ import TinderCard from 'react-tinder-card';
 import './SwipeCards.css';
 import ProfileComponent from '../../../UserProfilePage/ProfileComponent/ProfileComponent';
 
-const SwipeCards = () => {
+const SwipeCards = ({ isLoading }) => {
     const dispatch = useDispatch();
     const location = useLocation();
     const users = useSelector(state => state.entities.users ? Object.values(state.entities.users) : []);
@@ -69,15 +69,16 @@ const SwipeCards = () => {
     const canSwipe = currentIndex >= 0;
 
     const swipe = async (dir) => {
-        // console.log(childRefs)
         if (canSwipe && currentIndex < usersToSwipe.length) {
             await childRefs[currentIndex].current.swipe(dir)
         }
     }
 
+    console.log(currentIndex)
+
     // const outOfFrame = nameLeft => console.log(nameLeft + " left the screen!");
 
-    if (tom === undefined || currentIndex === -1) return null;
+    if (tom === undefined || isLoading) return null;
 
     return (
         <div className='swipe-cards'>
