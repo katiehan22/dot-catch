@@ -14,7 +14,11 @@ router.get('/', async function(req, res, next) {
   try {
     const users = await User.find({}, '_id firstName age location gender likes matches bio prompt1 prompt2 prompt3 prompt4 photos').exec();
     const usersObj = {};
-    users.map( user => usersObj[user._id] = user )
+    users.map( user => {
+      if(user.firstName != undefined)
+      usersObj[user._id] = user 
+    })
+    console.log(usersObj)
     return res.json(usersObj);
   } catch (error) {
     return res.json([]);
