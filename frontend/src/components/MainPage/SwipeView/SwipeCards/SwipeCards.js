@@ -31,6 +31,11 @@ const SwipeCards = () => {
         }
     });
 
+    const sortedDeck = usersToSwipe.reduce((acc, user) => {
+        if (user === tom) return [...acc, user];
+        return [user, ...acc];
+    }, []);
+
     const swiped = (dir, likedUser, index) => {
         updateCurrentIndex(index - 1)
         if (dir === 'right') {
@@ -64,15 +69,15 @@ const SwipeCards = () => {
     const canSwipe = currentIndex >= 0;
 
     const swipe = async (dir) => {
-        console.log(childRefs)
+        // console.log(childRefs)
         if (canSwipe && currentIndex < usersToSwipe.length) {
-            await childRefs[currentIndex].current.swipe(dir) // Swipe the card!
+            await childRefs[currentIndex].current.swipe(dir)
         }
     }
 
     // const outOfFrame = nameLeft => console.log(nameLeft + " left the screen!");
 
-    if (tom === undefined) return null;
+    if (tom === undefined || currentIndex === -1) return null;
 
     return (
         <div className='swipe-cards'>
@@ -80,28 +85,18 @@ const SwipeCards = () => {
                 {/* {usersToSwipe.length === 0 &&  */}
                     <h1>You have run out of users to swipe!</h1>
                 {/* } */}
-                {usersToSwipe.map((user, index) => (
+                {sortedDeck.map((user, index) => (
                     <TinderCard 
                         ref={childRefs[index]}
                         className='swipe'
                         key={user._id}
-                        preventSwipe={['up', 'down']}
+                        preventSwipe={['up', 'down', 'right', 'left']}
                         onSwipe={dir => swiped(dir, user, index)}
                         // onCardLeftScreen={() => outOfFrame(user._id)}
                     >
                         <ProfileComponent user={user} swipe={true} />
                     </TinderCard>
                 ))}
-                {!userMatches.includes(tom._id) &&
-                    <TinderCard
-                        className='swipe'
-                        preventSwipe={['up', 'down', 'left']}
-                        onSwipe={dir => swiped(dir, tom)}
-                        // onCardLeftScreen={() => outOfFrame(user._id)}
-                    >
-                        <ProfileComponent user={tom} swipe={true} />
-                    </TinderCard>
-                }
                 {
                     location.state ? 
                     <>
@@ -124,10 +119,10 @@ const SwipeCards = () => {
                     </>
                     : null
                 }
-                {/* <div className='buttons'>
+                <div className='buttons'>
                     <button onClick={() => swipe('left')}>Swipe left!</button>
                     <button onClick={() => swipe('right')}>Swipe right!</button>
-                </div> */}
+                </div>
             </div>
         </div>
     )

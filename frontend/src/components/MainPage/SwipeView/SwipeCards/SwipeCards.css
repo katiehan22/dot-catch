@@ -9,7 +9,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
 }
 
 .swipe {
@@ -33,11 +32,12 @@
 
 .buttons {
     position: absolute;
-    bottom: 15%;
+    bottom: 10%;
 }
 
-.buttons>button {
+.buttons > button {
     border-radius: 100px;
     padding: 10px;
+    margin: 5px;
     background-color: white;
 }
