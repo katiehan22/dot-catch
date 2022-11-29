@@ -131,6 +131,8 @@ router.patch('/:userId', requireUser, async (req, res, next) => {
       user.photos = req.body.photos || user.photos;
       if (req.body.deleteLikerId) user.likes.delete(req.body.deleteLikerId);
       if (req.body.deleteMatcherId) user.matches.delete(req.body.deleteMatcherId);
+      if (req.body.deleteLikes) user.likes.clear();
+      if (req.body.deleteMatches) user.matches.clear();
       if (req.body.likedUserId) user.likes.set(req.body.likedUserId, true);
       if (req.body.matchedUserId) user.matches.set(req.body.matchedUserId, true);
     }
