@@ -132,7 +132,7 @@ const SwipeCards = ({ isLoading, setIsLoading }) => {
                     onSwipe={() => updateCurrentIndex(sortedDeck.length - 1)}
                 >
                     <div className='card instructions grab'>
-                        <h1>.push() to like!</h1>
+                        <h1>.push to like!</h1>
                     </div>
                 </TinderCard>
                 <TinderCard
@@ -142,13 +142,13 @@ const SwipeCards = ({ isLoading, setIsLoading }) => {
                     onSwipe={() => updateCurrentIndex(sortedDeck.length)}
                 >
                     <div className='card instructions grab'>
-                        <h1>.pop() to pass!</h1>
+                        <h1>.pop to pass!</h1>
                     </div>
                 </TinderCard>
                 {currentIndex > -1 && 
                     <div className='buttons'>
-                        <button className='dislike' onClick={() => swipe('left')}>.pop()</button>
-                        <button className='like' onClick={() => swipe('right')}>.push()</button>
+                        <button className='dislike' onClick={() => swipe('left')}>.pop</button>
+                        <button className='like' onClick={() => swipe('right')}>.push</button>
                     </div>
                 }
             </div>
