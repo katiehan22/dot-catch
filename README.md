@@ -25,6 +25,7 @@ In addition, this project includes:
 - Mongoose
 - MongoDB
 - AWS
+- Multer
 - Passport-JWT
 - React-Redux
 - Swiper.js
