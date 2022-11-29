@@ -194,10 +194,15 @@
   color: white;
 }
 
-.form-errors li {
+.form-errors li, .delete-form-errors li {
   color: #d31334;
 }
 
 .form-errors {
+  align-self: center;
+}
+
+.delete-form-errors {
+  margin-top: 5px;
   align-self: center;
 }

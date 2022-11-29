@@ -18,6 +18,7 @@ const UpdateProfileForm = () => {
     dispatch(getCurrentUser());
   }, [dispatch])
 
+  const [deleteErrors, setDeleteErrors] = useState([]);
   const [firstName, setFirstName] = useState(currentUser.firstName);
   const [age, setAge] = useState(currentUser.age);
   const [location, setLocation] = useState(currentUser.location);
@@ -119,6 +120,15 @@ const UpdateProfileForm = () => {
     history.push("/");
   }
 
+  const handleDelete = (e) => {
+    if (currentUser._id === "638652c27433cea88d6d70f3") {
+      // alert("You cannot delete the Demo User.")
+      setDeleteErrors(["You cannot delete the Demo User."]);
+    } else {
+      dispatch(showDeleteModal());
+    }
+  }
+
   return (
     <>
       <div className="create-user-profile-page">
@@ -199,8 +209,11 @@ const UpdateProfileForm = () => {
           </div>
           <button className="create-profile-button" onClick={() => handleProfileSubmit()}>Update Profile</button>
         </div>
-        <button id="delete-profile-button" onClick={() => dispatch(showDeleteModal())}>Delete Profile</button>
+        <button id="delete-profile-button" onClick={() => handleDelete()}>Delete Profile</button>
         {modal === 'delete' && <ConfirmDeleteModal></ConfirmDeleteModal>}
+        <ul className="delete-form-errors">
+          {deleteErrors.map(error => <li key={error}>{error}</li>)}
+        </ul>
       </div>
     </>
   )

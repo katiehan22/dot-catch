@@ -3,6 +3,9 @@ In today's climate of increasing remote work, it is tough for software engineers
 
 .catch is a dating application designed for software engineers to build meaningful relationships. Our platform makes it easy for software engineers to connect and start conversations with one another with prompts specifically designed around software engineering.
 
+## About
+.catch is a group project created by Katie Han, Jason Song, Brendan Tsuda, and Mitchell Jindra. In the four day timeline of the project, these engieneers were able to learn and implement previously unkonwn backend framework and database (Express.js and MongoDB), formulate and structure a project idea, and deploy a working product to production.
+
 ## Functionality and MVPS
 In .catch, users can:
 - create their profile including prompt questions and uploading photos as well as updating their profile: full CRUD
@@ -25,6 +28,7 @@ In addition, this project includes:
 - Mongoose
 - MongoDB
 - AWS
+- Multer
 - Passport-JWT
 - React-Redux
 - Swiper.js
