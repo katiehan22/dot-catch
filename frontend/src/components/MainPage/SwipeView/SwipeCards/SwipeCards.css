@@ -10,8 +10,32 @@
     justify-content: center;
 }
 
+.end-of-deck {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.end-of-deck > button {
+    box-shadow: 1.5pt 0pt 5pt 0.5pt #D3D3D3;
+    border-radius: 15px;
+    padding: 10px;
+    transition: color 0.5s;
+    margin-top: 7.5%;
+    margin-bottom: 3%;
+}
+
+.end-of-deck > p {
+    color: #77966D;
+}
+
+.end-of-deck > button:hover {
+    color: #77966D;
+}
+
 .swipe-cards-container > h1 {
-    margin-top: 35%;
+    margin-top: 30%;
 }
 
 .swipe {
