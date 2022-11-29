@@ -1,0 +1,60 @@
+.closeButton {
+    text-align: end;
+}
+
+.personContainer {
+    display: flex;
+    margin-bottom: 20px;
+    max-width: 50vw;
+}
+
+.aboutImg {
+    height: 80px;
+    width: auto;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+.logo {
+    height: 21px;
+    width: auto;
+    margin-left: 6px;
+}
+
+.logo:hover {
+    opacity: 70%;
+    transition-duration: 0.3s;
+}
+
+.aboutLinks {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.linkedin {
+    /* filter: opacity(90%) drop-shadow(0 0 0 black); */
+}
+
+.bio {
+    font-size: 12px;
+    max-width: 95%;
+}
+
+.repoLinkContainer {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.repoLink {
+    background-color: #222222;
+    color: white;
+    border-radius: 40px;
+    padding: 10px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.repoLink:hover {
+    background-color: #77966D;
+}
