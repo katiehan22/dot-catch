@@ -11,8 +11,9 @@ export default function MatchesSidebar({setIsLoading}) {
   const matchesArray = useSelector(state => state.session.user !== {} ? Object.keys(state.session.user.matches) : []);
 
   useEffect(() => {
-      dispatch(fetchUsers());
-      if (setIsLoading) setIsLoading(false);
+      dispatch(fetchUsers()).then(() => {
+        if (setIsLoading) setIsLoading(false);
+      })
   }, [dispatch, matchesArray.length])
 
   return(

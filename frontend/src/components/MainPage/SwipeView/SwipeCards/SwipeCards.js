@@ -1,4 +1,4 @@
-import React, { useState, useRef, useMemo } from 'react';
+import React, { useState, useRef, useMemo, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateUser } from '../../../../store/users';
 import { useLocation } from 'react-router-dom';
@@ -58,8 +58,12 @@ const SwipeCards = ({ isLoading }) => {
             Array(usersToSwipe.length)
                 .fill(0)
                 .map((i) => React.createRef()),
-        []
+        [users.length]
     )
+
+    useEffect(() => {
+        setCurrentIndex(usersToSwipe.length - 1);
+    }, [users.length])
 
     const updateCurrentIndex = (val) => {
         setCurrentIndex(val);
@@ -73,8 +77,6 @@ const SwipeCards = ({ isLoading }) => {
             await childRefs[currentIndex].current.swipe(dir)
         }
     }
-
-    console.log(currentIndex)
 
     // const outOfFrame = nameLeft => console.log(nameLeft + " left the screen!");
 
