@@ -82,8 +82,6 @@ const SwipeCards = ({ isLoading, setIsLoading }) => {
         }
     }
 
-    console.log(sortedDeck, "sortedDeck");
-
     const resetDemo = () => {
         dispatch(updateUser({ ...currentUser, deleteLikes: true, deleteMatches: true }));
         const resetUser = { ...currentUser, likes: {}, matches: {} }
@@ -96,8 +94,6 @@ const SwipeCards = ({ isLoading, setIsLoading }) => {
     }
 
     // const outOfFrame = nameLeft => console.log(nameLeft + " left the screen!");
-
-    console.log(currentIndex)
 
     if (tom === undefined || isLoading) return null;
 

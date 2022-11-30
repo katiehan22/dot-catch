@@ -81,7 +81,7 @@ export default function AboutLinks() {
                 </div>
             </div>
             <div className='repoLinkContainer'>
-                <a className='repoLink' href="https://github.com/katiehan22/dot-catch">Visit our GitHub Repository!</a>
+                <a className='repoLink' href="https://github.com/katiehan22/dot-catch" target="_blank">Visit our GitHub Repository!</a>
             </div>
 
         </section>
