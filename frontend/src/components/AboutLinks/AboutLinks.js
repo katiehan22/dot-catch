@@ -77,7 +77,7 @@ export default function AboutLinks() {
                             <img src={linkedin} className='logo' alt="Linked In" />
                         </a>
                     </div>
-                    <p className='bio'>bio</p>
+                    <p className='bio'>Hi, I'm a full-stack software engineer who is passionate about building highly-scalable, single-page applications and backend systems. As a former research chemist, I've learned how to deliver on deadlines, technically problem solve, and work collaboratively across many teams!</p>
                 </div>
             </div>
             <div className='repoLinkContainer'>
