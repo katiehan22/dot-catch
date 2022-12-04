@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { createMessage, fetchUserMessages } from "../../store/messages";
+import { clearMessageErrors, createMessage, fetchUserMessages } from "../../store/messages";
 import { updateUser } from '../../store/users';
 import MessagesList from "./MessagesList";
 import { BsFlagFill } from 'react-icons/bs';
@@ -19,9 +19,10 @@ export default function Messaging({matchedUser}) {
   const clickedMatchId = matchedUser._id
   
   const messageArray = useSelector( state => Object.values(state.entities.messages) )
-
+  
   useEffect( () => {
-    dispatch( fetchUserMessages(currentUserId, clickedMatchId) )
+    dispatch( fetchUserMessages(currentUserId, clickedMatchId) );
+    return () => dispatch( clearMessageErrors() );
   }, [dispatch, clickedMatchId, messageArray.length] )
 
   // useEffect( () => {
@@ -41,9 +42,12 @@ export default function Messaging({matchedUser}) {
 
   const Send = e => {
     e.preventDefault();
+    dispatch( clearMessageErrors() )
     dispatch(createMessage(newMessage) )
     document.getElementById("messageInput").value='';
   }
+
+  const msgError = useSelector( state => state.errors.messages )
 
   const unmatchUser = () => {
     const newMatches = { ...currentUser.matches };
@@ -84,7 +88,8 @@ export default function Messaging({matchedUser}) {
           type='text'
           name="message"
           id="messageInput"
-          placeholder={`Send a message!`}
+          className={ msgError ? `msgInputWithError` : ``}
+          placeholder={ msgError ? msgError.body : `Send a message!`}
           onChange={(e) => setMessage(e.target.value) }
           required
         />

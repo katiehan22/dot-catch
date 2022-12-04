@@ -16,7 +16,7 @@ export default function MessageListItem( {message, clickedMatchId} ) {
 
   const messageSender = useSelector( state => state.entities.users[message.user_from] )
 
-  const messageDateTime = Date(message.createdAt).toLocaleString().split(' G')[0]
+  // const messageDateTime = Date(message.createdAt).toLocaleString().split(' G')[0]
 
   const editable = message.user_from === currentUser
 
