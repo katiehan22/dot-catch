@@ -47,7 +47,7 @@ export default function AboutLinks() {
                             <img src={linkedin} className='logo' alt="Linked In" />
                         </a>
                     </div>
-                    <p className='bio'>bio</p>
+                    <p className='bio'>I'm a full-stack software engineer with experience working with React, Redux, Rails, Express, and Node. Before I became a software engineer, I received a degree in International Business: Finance and taught English In South Korea. As such, it should be no surprise that I enjoy learning new topics and exploring other people's viewpoints. My most recent projects include a clone of Airbnb using Ruby on Rails, PostgreSQL, and React and a dating app targeted towards people in tech using MongoDB, Express, React, and Node.</p>
                 </div>
             </div>
             <div className='personContainer'>
@@ -77,11 +77,11 @@ export default function AboutLinks() {
                             <img src={linkedin} className='logo' alt="Linked In" />
                         </a>
                     </div>
-                    <p className='bio'>bio</p>
+                    <p className='bio'>Hi, I'm a full-stack software engineer who is passionate about building highly-scalable, single-page applications and backend systems. As a former research chemist, I've learned how to deliver on deadlines, technically problem solve, and work collaboratively across many teams!</p>
                 </div>
             </div>
             <div className='repoLinkContainer'>
-                <a className='repoLink' href="https://github.com/katiehan22/dot-catch">Visit our GitHub Repository!</a>
+                <a className='repoLink' href="https://github.com/katiehan22/dot-catch" target="_blank">Visit our GitHub Repository!</a>
             </div>
 
         </section>

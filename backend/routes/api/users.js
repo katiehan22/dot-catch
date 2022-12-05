@@ -18,7 +18,6 @@ router.get('/', async function(req, res, next) {
       if(user.firstName != undefined)
       usersObj[user._id] = user 
     })
-    console.log(usersObj)
     return res.json(usersObj);
   } catch (error) {
     return res.json([]);
