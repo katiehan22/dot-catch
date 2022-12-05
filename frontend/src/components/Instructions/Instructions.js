@@ -13,7 +13,7 @@ export default function Instructions() {
                 onClick={() => dispatch(hideModal() ) }>X
                 </button>
             </div>
-            <p className="instructionsText">Click the <em className="buttonInstruction">.pop</em> button to pass, or click the <em className="buttonInstruction">.push</em> button to like!</p>
+            <p className="instructionsText">Click the <em className="buttonInstruction">.pop</em> button to pass on the profile, or click the <em className="buttonInstruction">.push</em> button to like the profile!</p>
         </section>
     )
 }
