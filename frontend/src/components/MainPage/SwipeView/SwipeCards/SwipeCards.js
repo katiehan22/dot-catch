@@ -61,7 +61,7 @@ const SwipeCards = ({ isLoading, setIsLoading }) => {
             Array(usersToSwipe.length)
                 .fill(0)
                 .map((i) => React.createRef()),
-        [users.length]
+        [users.length, restartDeck]
     )
 
     useEffect(() => {
