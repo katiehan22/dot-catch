@@ -68,6 +68,7 @@ router.patch('/:messageId', requireUser, validateMessageInput, async (req, res, 
     return res.json(message);
   }
   catch(err) {
+    // console.log('error is ',err)
     next(err);
   }
 });

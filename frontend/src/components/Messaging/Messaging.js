@@ -45,6 +45,7 @@ export default function Messaging({matchedUser}) {
     dispatch( clearMessageErrors() )
     dispatch(createMessage(newMessage) )
     document.getElementById("messageInput").value='';
+    setMessage('')
   }
 
   const msgError = useSelector( state => state.errors.messages )
