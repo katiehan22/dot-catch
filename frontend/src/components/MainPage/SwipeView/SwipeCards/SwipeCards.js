@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { updateUser } from '../../../../store/users';
 import { useHistory, useLocation } from 'react-router-dom';
 import { receiveCurrentUser } from '../../../../store/session';
-import { deleteMessage } from '../../../../store/messages';
+import SwipeCard from './SwipeCard/SwipeCard';
 import TinderCard from 'react-tinder-card';
 import './SwipeCards.css';
 import ProfileComponent from '../../../UserProfilePage/ProfileComponent/ProfileComponent';
@@ -54,19 +54,19 @@ const SwipeCards = ({ isLoading, setIsLoading }) => {
         }
     }
 
-    const [currentIndex, setCurrentIndex] = useState(usersToSwipe.length + 1);
+    const [currentIndex, setCurrentIndex] = useState(usersToSwipe.length - 1);
     const currentIndexRef = useRef(currentIndex);
 
     const childRefs = useMemo(
         () =>
-            Array(usersToSwipe.length + 2)
+            Array(usersToSwipe.length)
                 .fill(0)
                 .map((i) => React.createRef()),
         [users.length]
     )
 
     useEffect(() => {
-        setCurrentIndex(usersToSwipe.length + 1);
+        setCurrentIndex(usersToSwipe.length - 1);
     }, [users.length, restartDeck])
 
     const updateCurrentIndex = (val) => {
@@ -93,8 +93,6 @@ const SwipeCards = ({ isLoading, setIsLoading }) => {
         dispatch(receiveCurrentUser(resetUser));
     }
 
-    // const outOfFrame = nameLeft => console.log(nameLeft + " left the screen!");
-
     if (tom === undefined || isLoading) return null;
 
     return (
@@ -110,37 +108,16 @@ const SwipeCards = ({ isLoading, setIsLoading }) => {
                     }
                 </div>
                 {sortedDeck.map((user, index) => (
-                    <TinderCard 
+                    <SwipeCard 
                         ref={childRefs[index]}
                         className='swipe'
                         key={user._id}
                         preventSwipe={['up', 'down', 'right', 'left']}
                         onSwipe={dir => swiped(dir, user, index)}
-                        // onCardLeftScreen={() => outOfFrame(user._id)}
                     >
                         <ProfileComponent user={user} swipe={true} />
-                    </TinderCard>
+                    </SwipeCard>
                 ))}
-                <TinderCard
-                    ref={childRefs[sortedDeck.length]}
-                    className='swipe'
-                    preventSwipe={['up', 'down', 'left', 'right']}
-                    onSwipe={() => updateCurrentIndex(sortedDeck.length - 1)}
-                >
-                    <div className='card instructions grab'>
-                        <h1>.push to like!</h1>
-                    </div>
-                </TinderCard>
-                <TinderCard
-                    ref={childRefs[sortedDeck.length + 1]}
-                    className='swipe'
-                    preventSwipe={['up', 'down', 'right', 'left']}
-                    onSwipe={() => updateCurrentIndex(sortedDeck.length)}
-                >
-                    <div className='card instructions grab'>
-                        <h1>.pop to pass!</h1>
-                    </div>
-                </TinderCard>
                 {currentIndex > -1 && 
                     <div className='buttons'>
                         <button className='dislike' onClick={() => swipe('left')}>.pop</button>
