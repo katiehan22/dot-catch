@@ -4,7 +4,6 @@ import { updateUser } from '../../../../store/users';
 import { useHistory, useLocation } from 'react-router-dom';
 import { receiveCurrentUser } from '../../../../store/session';
 import SwipeCard from './SwipeCard/SwipeCard';
-import TinderCard from 'react-tinder-card';
 import './SwipeCards.css';
 import ProfileComponent from '../../../UserProfilePage/ProfileComponent/ProfileComponent';
 
@@ -92,6 +91,8 @@ const SwipeCards = ({ isLoading, setIsLoading }) => {
         setIsLoading(true);
         dispatch(receiveCurrentUser(resetUser));
     }
+
+    console.log(currentIndex);
 
     if (tom === undefined || isLoading) return null;
 
