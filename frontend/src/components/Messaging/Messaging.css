@@ -99,6 +99,11 @@
   margin-bottom: 10px;
 }
 
+.msgInputWithError {
+  border: 2px solid #ff6666;
+  border-radius: 5px;
+}
+
 .messageEditForm {
   display: flex;
   align-items: center;
@@ -176,5 +181,5 @@
 
 .messageLinkContainer {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 }

@@ -57,13 +57,16 @@
     color: white;
 }
 
-.buttons {
+.buttonsContainer {
     position: absolute;
     bottom: 6%;
+}
+
+.buttons {
     display: flex;
 }
 
-.buttons > button {
+.buttons button {
     border-radius: 50%;
     padding: 30px 20px;
     width: 40px;
@@ -75,6 +78,26 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.instructions {
+    text-align: center;
+    background-color: inherit;
+    text-decoration: underline;
+}
+
+.instructions:hover {
+    cursor: pointer;
+}
+
+.instructionsText {
+    margin-top: 5px;
+    margin-bottom: 33px;
+}
+
+.buttonInstruction {
+    font-style: inherit;
+    font-weight: 600;
 }
 
 .dislike:hover {

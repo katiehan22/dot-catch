@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux"
 import trashCan from './trash-can-solid.svg'
 import pen from './pen-solid.svg'
 import { useState } from "react"
-import { deleteMessage, updateMessage } from "../../store/messages";
+import { clearMessageErrors, deleteMessage, updateMessage } from "../../store/messages";
 import { useEffect } from "react";
 import closeButton from './closeButton.svg'
 
@@ -16,10 +16,14 @@ export default function MessageListItem( {message, clickedMatchId} ) {
 
   const messageSender = useSelector( state => state.entities.users[message.user_from] )
 
-  const messageDateTime = Date(message.createdAt).toLocaleString().split(' G')[0]
+  // const messageDateTime = Date(message.createdAt).toLocaleString().split(' G')[0]
 
   const editable = message.user_from === currentUser
+  // const editedMsgError = useSelector( state => state.errors.editedMessages )
+  // const prevMsg = editedMsgError ? editedMsgError.body : message.body
 
+  // console.log('editedMsgError is ', editedMsgError)
+  // console.log('prevMsg is ', prevMsg)
   const [showLinks, setShowLinks] = useState(false)
   const [editingMsg, setEditingMsg] = useState(false)
   const [editedMessage, setEditedMessage] = useState(message.body);
@@ -38,11 +42,12 @@ export default function MessageListItem( {message, clickedMatchId} ) {
 
   const Send = e => {
     e.preventDefault();
+    dispatch( clearMessageErrors() )
     if ( newMessage.body === '' ) {
       return dispatch( deleteMessage(message._id) );
     }
     dispatch(updateMessage(newMessage) )
-    clickOut()
+    clickOut();   
   }
 
   useEffect( () => {

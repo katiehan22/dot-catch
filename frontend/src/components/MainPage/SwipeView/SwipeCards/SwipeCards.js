@@ -6,6 +6,8 @@ import { receiveCurrentUser } from '../../../../store/session';
 import SwipeCard from './SwipeCard/SwipeCard';
 import './SwipeCards.css';
 import ProfileComponent from '../../../UserProfilePage/ProfileComponent/ProfileComponent';
+import { showInstructionsModal } from '../../../../store/ui';
+import InstructionsModal from '../../../Instructions/InstructionsModal';
 
 const SwipeCards = ({ isLoading, setIsLoading }) => {
     const history = useHistory();
@@ -18,7 +20,8 @@ const SwipeCards = ({ isLoading, setIsLoading }) => {
     const userMatches = useSelector(state => state.session.user.matches !== {} ? Object.keys(state.session.user.matches) : []);
     const currentUser = useSelector(state => state.session.user ? state.session.user : null);
     const [restartDeck, setRestartDeck] = useState(0);
-    
+    const modal = useSelector(state => state.ui.modal)
+
     const usersToSwipe = users.filter(user => {
         switch(currentUser.genderPreference) {
             case 'M':
@@ -92,7 +95,9 @@ const SwipeCards = ({ isLoading, setIsLoading }) => {
         dispatch(receiveCurrentUser(resetUser));
     }
 
-    console.log(currentIndex);
+    // const outOfFrame = nameLeft => console.log(nameLeft + " left the screen!");
+
+    // console.log(currentIndex)
 
     if (tom === undefined || isLoading) return null;
 
@@ -120,10 +125,18 @@ const SwipeCards = ({ isLoading, setIsLoading }) => {
                     </SwipeCard>
                 ))}
                 {currentIndex > -1 && 
+                <div className='buttonsContainer'>
                     <div className='buttons'>
                         <button className='dislike' onClick={() => swipe('left')}>.pop</button>
                         <button className='like' onClick={() => swipe('right')}>.push</button>
                     </div>
+                    <h2
+                    onClick={() => dispatch( showInstructionsModal() )}
+                    className='instructions'
+                    >Instructions
+                    </h2>
+                    {modal === 'instructions' && (<InstructionsModal></InstructionsModal>)}
+                </div>
                 }
             </div>
         </div>

@@ -4,6 +4,7 @@ const RECEIVE_USER_MESSAGES = "messages/RECEIVE_USER_MESSAGES";
 const RECEIVE_MESSAGE = "messages/RECEIVE_MESSAGE";
 const REMOVE_MESSAGE = "messages/REMOVE_MESSAGE";
 const RECEIVE_MESSAGE_ERRORS = "messages/RECEIVE_MESSAGE_ERRORS";
+const RECEIVE_EDITED_MESSAGE_ERRORS = "messages/RECEIVE_EDITED_MESSAGE_ERRORS";
 const CLEAR_MESSAGE_ERRORS = "messages/CLEAR_MESSAGE_ERRORS";
 
 const receiveUserMessages = (messages) => ({
@@ -25,6 +26,11 @@ const receiveMessageErrors = (errors) => ({
   type: RECEIVE_MESSAGE_ERRORS,
   errors
 });
+
+const receiveEditedMessageErrors = (errors) => ({
+  type: RECEIVE_EDITED_MESSAGE_ERRORS,
+  errors
+})
 
 export const clearMessageErrors = (errors) => ({
   type: CLEAR_MESSAGE_ERRORS,
@@ -70,8 +76,9 @@ export const updateMessage = (message) => async dispatch => {
     dispatch(receiveMessage(updatedMessage));
   } catch (err) {
     const resBody = await err.json();
+    // console.log('resbody is ', resBody)
     if(resBody.statusCode === 400) {
-      return dispatch(receiveMessageErrors(resBody.errors));
+      return dispatch(receiveEditedMessageErrors(resBody.errors));
     }
   }
 };
@@ -101,6 +108,17 @@ export const messageErrorsReducer = (state = nullErrors, action) => {
       return state;
   }
 };
+
+export const editedMessageErrorsReducer = (state = nullErrors, action) => {
+  switch (action.type) {
+    case RECEIVE_EDITED_MESSAGE_ERRORS:
+      return action.errors;
+    case CLEAR_MESSAGE_ERRORS:
+      return nullErrors;
+    default:
+      return state;
+  }
+}
 
 const messagesReducer = (state={}, action) => {
   switch (action.type) {

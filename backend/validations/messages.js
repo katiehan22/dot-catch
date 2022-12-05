@@ -4,7 +4,7 @@ const handleValidationErrors = require('./handleValidationErrors');
 const validateMessageInput = [
   check('body')
     .exists({ checkFalsy: true })
-    // .isLength({ min: 1, max: 140 })
+    // .not().isEmpty({ ignore_whitespace: true })
     .withMessage('Sorry, message cannot be blank!'),
   handleValidationErrors
 ];
