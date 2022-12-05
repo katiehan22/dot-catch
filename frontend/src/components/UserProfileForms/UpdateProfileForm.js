@@ -117,7 +117,7 @@ const UpdateProfileForm = () => {
     }
     dispatch(updateUser(updatedUser));
     dispatch(receiveCurrentUser(updatedUser));
-    history.push("/");
+    history.push({ pathname: `/profile/${currentUser._id}`, state: { fromApp: true, user: updatedUser } })
   }
 
   const handleDelete = (e) => {
