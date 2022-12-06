@@ -109,4 +109,4 @@ const SwipeCard = React.forwardRef(
     }
 )
 
-module.exports = SwipeCard;
+export default SwipeCard;
