@@ -62,7 +62,7 @@ export default function AboutLinks() {
                             <img src={linkedin} className='logo' alt="Linked In" />
                         </a>
                     </div>
-                    <p className='bio'>bio</p>
+                    <p className='bio'>I am a full-stack software engineer with radiology experience, from which I bring expertise that includes collaboration and customer service in addition to healthcare industry knowledge. My technical skills include React, JavaScript, Ruby on Rails, PostgreSQL, MongoDB, and more.</p>
                 </div>
             </div>
             <div className='personContainer'>
